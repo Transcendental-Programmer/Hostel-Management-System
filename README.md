@@ -1,5 +1,5 @@
 # Hostel Grievance Redressal System
-![gift](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpbs.twimg.com%2Fmedia%2FFwpqTWCWcAApO8q.jpg&f=1&nofb=1&ipt=8d5249298b533cdb8fa9779e1e1243f2a4c5f91ca38bc3bd73621b17c6b20780&ipo=images)
+
 ## Overview
 
 The Hostel Grievance Redressal System is a web application that facilitates the submission, tracking, and resolution of grievances raised by hostel residents. The system provides a user-friendly interface for residents to report issues and for administrators to efficiently manage and resolve them.
