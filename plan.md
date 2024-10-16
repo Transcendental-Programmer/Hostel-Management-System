@@ -182,7 +182,7 @@ function SubmitGrievance() {
     );
 }
 ```
-````
+
 
 ##### View Submitted Grievances
 - **Components:**
@@ -207,7 +207,7 @@ function ViewGrievances() {
     );
 }
 ```
-````
+
 
 ##### Grievance Details and Chatroom
 - **Components:**
@@ -235,7 +235,7 @@ function GrievanceDetails({ grievanceId }) {
     );
 }
 ```
-````
+
 
 #### 3. Administrator Pages
 
@@ -265,7 +265,7 @@ function WardenDashboard() {
     );
 }
 ```
-````
+
 
 ##### Manage Grievances
 - **Components:**
@@ -291,7 +291,7 @@ function ManageGrievances() {
     );
 }
 ```
-````
+
 
 ##### Resolve Grievance
 - **Components:**
@@ -318,7 +318,7 @@ function ResolveGrievance({ grievanceId }) {
     );
 }
 ```
-````
+
 
 #### 4. Common Components
 
@@ -345,7 +345,7 @@ function NavigationBar() {
     );
 }
 ```
-````
+
 
 ##### Footer
 - **Components:**
@@ -368,7 +368,7 @@ function Footer() {
     );
 }
 ```
-````
+
 
 ##### Notification System
 - **Components:**
@@ -390,7 +390,7 @@ function NotificationSystem() {
     );
 }
 ```
-````
+
 
 ---
 
@@ -568,7 +568,7 @@ src/
 ├── index.js
 └── routes.js
 ```
-````
+
 
 ### Backend Directory Structure
 
@@ -607,7 +607,7 @@ src/
 ├── app.js
 └── server.js
 ```
-````
+
 
 ### Explanation
 
@@ -727,7 +727,7 @@ The Performance Dashboard provides insights into the performance of different st
 ### Implementation
 
 ```markdown
-````react:src/frontend/pages/PerformanceDashboard.js
+react:src/frontend/pages/PerformanceDashboard.js
 function PerformanceDashboard() {
     const [data, setData] = useState({});
     const [filters, setFilters] = useState({
@@ -753,10 +753,10 @@ function PerformanceDashboard() {
     );
 }
 ```
-````
+
 
 ```markdown
-````javascript:src/frontend/services/dashboardService.js:fetchDashboardData
+javascript:src/frontend/services/dashboardService.js:fetchDashboardData
 async function fetchDashboardData(filters) {
     try {
         const response = await axios.get('/api/dashboard', { params: filters });
@@ -767,7 +767,7 @@ async function fetchDashboardData(filters) {
     }
 }
 ```
-````
+
 
 ```markdown
 ````javascript:src/backend/controllers/dashboardController.js:getDashboardData
@@ -781,10 +781,10 @@ async function getDashboardData(req, res) {
     }
 }
 ```
-````
+
 
 ```markdown
-````javascript:src/backend/services/dashboardService.js:aggregatePerformanceData
+javascript:src/backend/services/dashboardService.js:aggregatePerformanceData
 async function aggregatePerformanceData(filters) {
     const { dateRange, student, category } = filters;
     // Build query based on filters
@@ -807,7 +807,7 @@ async function aggregatePerformanceData(filters) {
     };
 }
 ```
-````
+
 
 ### Backend API Endpoint
 
@@ -824,7 +824,7 @@ router.get('/dashboard', authMiddleware.verifyAdmin, dashboardController.getDash
 
 module.exports = router;
 ```
-````
+
 
 ### Frontend API Integration
 
@@ -844,7 +844,7 @@ export async function fetchDashboardData(filters) {
     }
 }
 ```
-````
+
 
 ### UI Implementation
 
