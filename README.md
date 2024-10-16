@@ -18,36 +18,13 @@ The Hostel Grievance Redressal System is a web application that facilitates the 
 
 - **AI-Powered Grievance Analysis**:
   
-  - **Automated Categorization**: Utilizes machine learning algorithms to categorize grievances based on content, ensuring they are directed to the appropriate department or personnel.
-  
-  - **Sentiment Analysis**: Analyzes the sentiment of complaints to prioritize and address issues with higher urgency or emotional weight.
-  
-  - **Predictive Resolution Time**: Employs predictive analytics to estimate the time required to resolve each grievance, aiding in efficient workload management and setting realistic expectations for residents.
-  
-  - **Anomaly Detection in Grievance Patterns**: Detects unusual patterns or spikes in specific types of grievances using advanced anomaly detection algorithms. Identifying such anomalies early can help in addressing systemic issues before they escalate.
-  
   - **Voice-to-Text Integration for Complaint Submission**: Integrates voice recognition technology to allow residents to submit grievances via voice input, which is then transcribed and processed by the system. This enhances accessibility and convenience for users who prefer speaking over typing.
 
-## High-Level AI/ML Functionalities
+##  AI/ML Functionalities
 
 To elevate the Hostel Grievance Redressal System with cutting-edge AI/ML capabilities, the following high-level functionalities are proposed. These features are not only technically challenging but also indispensable for enhancing the system's efficiency and effectiveness.
 
-### 1. **Proactive Grievance Prediction and Prevention**
-
-**Description:**
-Utilize predictive modeling to anticipate potential grievances before they are formally submitted. By analyzing historical grievance data, environmental factors, and real-time contextual information, the system can identify patterns that precede common issues.
-
-**Implementation Highlights:**
-- **Data Integration**: Combine historical grievance data with external data sources such as hostel occupancy rates, maintenance schedules, and event calendars.
-- **Predictive Analytics**: Deploy time-series forecasting models and classification algorithms to identify indicators of impending grievances.
-- **Preventive Actions**: Automatically trigger preventive measures or alert relevant departments to address issues proactively, thereby reducing the volume of grievances.
-
-**Benefits:**
-- Minimizes the occurrence of common grievances by addressing root causes in advance.
-- Enhances resident satisfaction by preemptively resolving issues.
-- Optimizes resource allocation by focusing efforts on areas with predicted high grievance potential.
-
-### 2. **Intelligent Routing and Workflow Automation**
+### 1. **Intelligent Routing and Workflow Automation**
 
 **Description:**
 Implement an AI-driven routing system that intelligently assigns grievances to the most suitable personnel or department based on multiple factors such as expertise, current workload, past resolution success rates, and urgency.
@@ -62,7 +39,7 @@ Implement an AI-driven routing system that intelligently assigns grievances to t
 - Reduces resolution times by balancing workloads effectively.
 - Increases overall efficiency and effectiveness of the grievance redressal process.
 
-### 3. **Advanced Sentiment and Emotional Intelligence Analysis**
+### 2. **Advanced Sentiment and Emotional Intelligence Analysis**
 
 **Description:**
 Enhance sentiment analysis by incorporating emotional intelligence to better understand the nuances and underlying emotions in resident grievances. This involves detecting complex emotional states such as frustration, anger, satisfaction, or indifference.
