@@ -22,6 +22,8 @@ Below is an exhaustive list of the database schema for the **Hostel Grievance Re
 16. [Conversation Logs](#conversation-logs)
 17. [Notifications](#notifications)
 18. [Audit Logs](#audit-logs)
+19. [User Feedback](#user-feedback)
+20. [Worker Performance](#worker-performance)
 
 ---
 
@@ -413,6 +415,76 @@ Tracks all significant actions and changes within the system for security and co
 
 ---
 
+## User Feedback
+
+Stores feedback provided by users regarding their grievance experience and the performance of the assigned workers.
+
+```sql:database/user_feedback.sql
+-- user_feedback.sql
+CREATE TABLE UserFeedback (
+    feedback_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    grievance_id UUID NOT NULL REFERENCES Grievances(grievance_id) ON DELETE CASCADE,
+    user_id UUID NOT NULL REFERENCES Users(user_id) ON DELETE CASCADE,
+    staff_id UUID REFERENCES Users(user_id) ON DELETE SET NULL,
+    rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
+    comments TEXT,
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+**Fields:**
+
+| **Field**     | **Data Type** | **Constraints**                                           | **Description**                                  |
+|---------------|---------------|-----------------------------------------------------------|--------------------------------------------------|
+| `feedback_id` | UUID          | Primary Key, Default: UUID_GENERATE()                     | Unique identifier for each feedback entry        |
+| `grievance_id`| UUID          | Foreign Key → `Grievances.grievance_id`, Not Null         | Identifier of the associated grievance           |
+| `user_id`     | UUID          | Foreign Key → `Users.user_id`, Not Null                   | Identifier of the user providing the feedback    |
+| `staff_id`    | UUID          | Foreign Key → `Users.user_id`, Nullable                    | Identifier of the staff assigned to the grievance|
+| `rating`      | INTEGER       | Not Null, Check: (rating >= 1 AND rating <= 5)             | Rating provided by the user (1 to 5)             |
+| `comments`    | TEXT          | Nullable                                                   | Additional comments provided by the user          |
+| `submitted_at`| TIMESTAMP     | Default: CURRENT_TIMESTAMP                                 | Timestamp when the feedback was submitted         |
+| `created_at`  | TIMESTAMP     | Default: CURRENT_TIMESTAMP                                 | Timestamp of feedback record creation             |
+| `updated_at`  | TIMESTAMP     | Default: CURRENT_TIMESTAMP, On Update: CURRENT_TIMESTAMP   | Timestamp of last update                          |
+
+---
+
+## Worker Performance
+
+Aggregates performance metrics of workers based on assignments and user feedback.
+
+```sql:database/worker_performance.sql
+-- worker_performance.sql
+CREATE TABLE WorkerPerformance (
+    performance_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    staff_id UUID NOT NULL REFERENCES Users(user_id) ON DELETE CASCADE,
+    total_assignments INTEGER DEFAULT 0,
+    completed_assignments INTEGER DEFAULT 0,
+    average_rating DECIMAL(3,2) DEFAULT 0.00,
+    performance_score DECIMAL(5,2) DEFAULT 0.00,
+    evaluated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+**Fields:**
+
+| **Field**             | **Data Type** | **Constraints**                                           | **Description**                                      |
+|-----------------------|---------------|-----------------------------------------------------------|------------------------------------------------------|
+| `performance_id`      | UUID          | Primary Key, Default: UUID_GENERATE()                     | Unique identifier for each performance record        |
+| `staff_id`            | UUID          | Foreign Key → `Users.user_id`, Not Null                   | Identifier of the staff member                       |
+| `total_assignments`   | INTEGER       | Not Null, Default: 0                                      | Total number of assignments handled                  |
+| `completed_assignments` | INTEGER    | Not Null, Default: 0                                      | Number of assignments completed                      |
+| `average_rating`      | DECIMAL(3,2)  | Not Null, Default: 0.00                                   | Average rating from user feedback                    |
+| `performance_score`   | DECIMAL(5,2)  | Not Null, Default: 0.00                                   | Calculated performance score based on metrics        |
+| `evaluated_at`        | TIMESTAMP     | Default: CURRENT_TIMESTAMP                                | Timestamp when the performance was evaluated         |
+| `created_at`          | TIMESTAMP     | Default: CURRENT_TIMESTAMP                                | Timestamp of performance record creation             |
+| `updated_at`          | TIMESTAMP     | Default: CURRENT_TIMESTAMP, On Update: CURRENT_TIMESTAMP  | Timestamp of last update                              |
+
+---
+
 ## Entity-Relationship Diagram (ERD)
 
 Below is a simplified representation of the relationships between the main entities:
@@ -440,54 +512,10 @@ erDiagram
     Users ||--o{ WorkerPreferences : prefers
     Users ||--o{ ConversationLogs : engages_in
     Messages ||--o{ ConversationLogs : logs
+    Users ||--o{ UserFeedback : provides
+    Grievances ||--o{ UserFeedback : receives
+    Users ||--o{ WorkerPerformance : has
 ```
 
 ---
 
-## Additional Tables and Changes
-
-To align the database schema with the detailed AI/ML implementation plans outlined in the `ai_plan.md`, the following additional tables and modifications have been incorporated:
-
-### Skills
-
-Defines the various skills that staff members can possess, which are used for intelligent routing and job recommendations.
-
-### UserSkills
-
-Associates users with their respective skills. Each staff member can have multiple skills.
-
-### WorkerPreferences
-
-Stores preferences and additional attributes for workers to enhance job recommendation and assignment processes.
-
-### Conversation Logs
-
-Stores logs of conversations handled by the context-aware chatbots for initial grievance handling.
-
----
-
-## Additional Notes
-
-- **Intelligent Routing and Workflow Automation:** The `Skills`, `UserSkills`, and `WorkerPreferences` tables facilitate the intelligent assignment of grievances to suitable staff members based on their skills, availability, and preferences.
-
-- **Advanced Sentiment and Emotional Intelligence Analysis:** The `SentimentAnalysis` table captures nuanced emotional states from grievance descriptions, enabling empathetic responses.
-
-- **Context-Aware Chatbots for Initial Grievance Handling:** The `ConversationLogs` table records interactions between users and chatbots, aiding in improving chatbot responses and handling user intents effectively.
-
-- **Worker Job Recommendation:** The `WorkerPreferences` and related tables enhance the system's ability to recommend and assign jobs optimally, considering various factors like worker skills, preferences, and current workload.
-
-- **Multilingual Translation in Chatroom:** The existing `Translations` table supports multilingual communication within chatrooms, ensuring clear and effective interactions between users and staff.
-
-- **Anomaly Detection:** The `AnomalyDetection` table continues to monitor and log unusual patterns in grievances, aiding in proactive issue resolution.
-
-- **Scalability and Future Enhancements:** The schema is designed to accommodate future AI/ML functionalities, ensuring scalability and flexibility for additional features such as predictive analytics and personalized user experiences.
-
----
-
-# License
-
-This schema design is part of the Hostel Grievance Redressal System project and is licensed under the [MIT License](LICENSE).
-
-# Contact
-
-For any questions or feedback regarding the database schema, please contact [your-email@example.com](mailto:your-email@example.com).
