@@ -1,4 +1,4 @@
-# Exhaustive Database Schema for Hostel Grievance Redressal System
+# Schema for Hostel Grievance Redressal System
 
 Below is an exhaustive list of the updated database schema for the **Hostel Grievance Redressal System**, incorporating the necessary changes to accommodate user roles, simplify routing without skills, and streamline grievance management. The schema is designed to facilitate user management, grievance handling, real-time communication, multilingual support, and system administration without the previously included AI/ML functionalities.
 
