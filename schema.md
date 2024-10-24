@@ -41,6 +41,7 @@ Stores information about all users within the system, including students, worker
 | `created_at`          | TIMESTAMP             | Default: CURRENT_TIMESTAMP               | Timestamp of account creation                     |
 | `updated_at`          | TIMESTAMP             | Default: CURRENT_TIMESTAMP, On Update: CURRENT_TIMESTAMP | Timestamp of last update          |
 | `is_active`           | BOOLEAN               | Default: TRUE                            | Indicates if the user account is active           |
+| `available_time_slot` | VARCHAR(50)           | Nullable                                 | Time slot when the user is available              |
 
 ---
     
@@ -86,6 +87,7 @@ Stores all grievances submitted by residents.
 | `status`               | VARCHAR(50)   | Not Null                                                   | Current status of the grievance (e.g., Submitted, In Progress, Resolved, Closed) |
 | `voice_input_url`      | VARCHAR(255)  | Nullable                                                  | URL to the voice input file (if submitted via voice)       |
 | `language_detected`    | VARCHAR(20)   | Default: 'English'                                        | Language of the submitted grievance                        |
+| `items_used`           | TEXT[]        | Nullable                                                  | Array of items used in the repair or for sorting grievances |
 | `created_at`           | TIMESTAMP     | Default: CURRENT_TIMESTAMP                                | Timestamp of grievance record creation                     |
 | `updated_at`           | TIMESTAMP     | Default: CURRENT_TIMESTAMP, On Update: CURRENT_TIMESTAMP | Timestamp of last update                                   |
 
