@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import MongoDB from './config/MongoDB.js';
+import client from './config/redisClient.js';
 
 // import complaintRoutes from './routes/complaintRoutes.js';
 // import studentRoutes from './routes/studentRoutes.js';
@@ -16,7 +17,13 @@ app.use(express.json());
 // app.use("/", complaintRoutes);
 // app.use("/", studentRoutes);
 // app.use("/", wardenRoutes);
-app.use("/", userRoutes);
+app.use("/users/", userRoutes);
+
+// Initialize the Redis connection
+await client.connect(
+  console.log('Connected to Redis')
+);
+client.on('error', (err) => console.error('Redis Client Error', err));
 
 app.listen(3000, () => {
   console.log("Application is running on port 3000");

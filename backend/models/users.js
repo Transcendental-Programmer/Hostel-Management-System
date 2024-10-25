@@ -10,7 +10,7 @@ const UserSchema = new Schema({
     email: { type: String, unique: true, required: true, maxlength: 100 },
     full_name: { type: String, required: true, maxlength: 100 },
     phone_number: { type: String, maxlength: 15, default: null },
-    role_id: { type: String, required: true },
+    role: { type: String, required: true },
     department_id: { type: String, default: null },
     language_preference: { type: String, default: "English", maxlength: 20 },
     roll_number: { type: String, maxlength: 20, default: null },
