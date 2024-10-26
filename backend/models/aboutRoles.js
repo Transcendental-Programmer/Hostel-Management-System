@@ -8,3 +8,4 @@ const AboutRolesSchema = new mongoose.Schema({
     role_name: { type: String, required: true, unique: true, maxlength: 50 },
     role_description: { type: String, maxlength: 255 },
 });
+export default mongoose.model('AboutRoles', AboutRolesSchema);
