@@ -95,13 +95,6 @@ export const verifyOtpAndRegister = async (req, res) => {
 export const userLogin = async (req, res) => {
   const { email, password } = req.body;
 
-  // Email validation
-  // const emailPattern = /^[a-zA-Z0-9._%+-]+@iiitm\.ac\.in$/;
-  if (!emailPattern.test(email)) {
-    return res.status(400).json("Only the verified students, staff and authorities of IIITM-Gwalior are allowed");
-  }
-
-
   try {
     const user = await User.findOne({ email });
     if (!user) return res.status(401).json("Invalid Credentials");
