@@ -3,7 +3,7 @@ import User from "../models/users.js";
 import Staff from "../models/staff.js";
 import Admin from "../models/admin.js";
 import { jwtGenerator, jwtDecoder } from "../utils/jwtToken.js";
-import { otpGenerator, verifyOtp } from "../utils/otpUtils.js";
+import { otpGenerator } from "../utils/otpUtils.js";
 import { sendOtp } from "../utils/communicationUtils.js"; // Send OTP via email/SMS
 import client from "../config/redisClient.js";
 
@@ -12,7 +12,9 @@ const emailPattern = /^[a-zA-Z0-9._%+-]+@iiitm\.ac\.in$/;
 // Updated registerUser function
 export const registerUser = async (req, res) => {
   const { full_name, email, username, phone_number, password, role, roll_number, hostel_number } = req.body;
-
+  if(!email || !full_name || !username) {
+    return res.status(400).json("Full name, email, and username are required");
+  }
   // Email validation
   if (!emailPattern.test(email)) {
     return res.status(400).json("Only the verified students, staff and authorities of IIITM-Gwalior are allowed");
@@ -44,7 +46,7 @@ export const registerUser = async (req, res) => {
 
     // Generate OTP and convert the otp into string
     const otp = otpGenerator().toString();
-    await sendOtp(email, otp);
+    await sendOtp(email, otp, full_name);
 
     // Cache OTP and user data with expiration (e.g., 5 minutes)
     const tempUserData = { full_name, email, username, phone_number, password, role, roll_number, hostel_number };
