@@ -45,7 +45,7 @@ Stores information about all users within the system, including students, worker
 
 ---
     
-## Roles
+## About Roles
 
 Defines different user roles within the system.
 
