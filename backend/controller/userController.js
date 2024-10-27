@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import User from "../models/users.js";
+import Student from "../models/student.js";
 import Staff from "../models/staff.js";
 import Admin from "../models/admin.js";
 import { jwtGenerator, jwtDecoder } from "../utils/jwtToken.js";
@@ -26,7 +26,7 @@ export const registerUser = async (req, res) => {
 
   try {
     // Check if user exists
-    const existingUser = await User.findOne({
+    const existingUser = await Student.findOne({
       $or: [
         { email },
         { username }
@@ -93,7 +93,7 @@ export const verifyOtpAndRegister = async (req, res) => {
     };
 
     if (role === "student") {
-      newUser = new User({
+      newUser = new Student({
         ...baseUserData,
         roll_number: roll_number, // Roll number is specific to students
         hostel_number: hostel_number,
@@ -139,7 +139,7 @@ export const userLogin = async (req, res) => {
     let role;
 
     // Check if the user exists in the User, Staff, or Admin collections
-    user = await User.findOne({ email });
+    user = await Student.findOne({ email });
     if (user) {
       role = "student";
     } else {
@@ -184,7 +184,7 @@ export const createStaff = async (req, res) => {
   try {
     // Check if the user already exists in any table
     const existingUser =
-      await User.findOne({ $or: [{ email }, { username }] }) ||
+      await Student.findOne({ $or: [{ email }, { username }] }) ||
       await Staff.findOne({ $or: [{ email }, { username }] }) ||
       await Admin.findOne({ $or: [{ email }, { username }] });
 
@@ -221,7 +221,7 @@ export const getUserDetailsById = async (req, res) => {
     const { user_id } = req.params; // Assume user_id is extracted from decoded JWT token
 
     // Search across User, Staff, and Admin tables
-    let user = await User.findOne({ user_id });
+    let user = await Student.findOne({ user_id });
     let role = "student"; // Default role if found in User table
 
     if (!user) {
@@ -278,12 +278,12 @@ export const updateUserDetails = async (req, res) => {
     const updateData = req.body; // Receive updated fields in the request body
 
     // Determine which collection the user belongs to and set the role
-    let user = await User.findOne({ user_id });
+    let user = await Student.findOne({ user_id });
     let role = "student"; // Default role if found in User table
     let model;
 
     if (user) {
-      model = User;
+      model = Student;
     } else {
       user = await Staff.findOne({ user_id });
       if (user) {

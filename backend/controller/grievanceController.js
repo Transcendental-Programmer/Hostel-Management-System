@@ -1,4 +1,4 @@
-import Grievance from "../models/grievances";
+import Grievance from '../models/grievances.js'; 
 
 // Create a new grievance
 export const createGrievance = async (req, res) => {

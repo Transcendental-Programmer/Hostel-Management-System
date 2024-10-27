@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
-import User from './users.js';
+import Student from './student.js';
 
 const GrievanceSchema = new mongoose.Schema({
   grievance_id: {
@@ -12,7 +12,7 @@ const GrievanceSchema = new mongoose.Schema({
   user_id: {
     type: String,
     required: true,
-    ref: 'User'
+    ref: 'Student'
   },
   category: {
     type: String,

@@ -5,7 +5,7 @@ import { createGrievance,
     getGrievanceById,
     updateGrievanceById,
     deleteGrievanceById,
- } from '../controller/grievanceController';
+ } from '../controller/grievanceController.js';
 
 const grievanceRoutes = express.Router();
 

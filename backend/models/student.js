@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const { Schema } = mongoose;
 
-const UserSchema = new Schema({
+const StudentSchema = new Schema({
     user_id: { type: String, default: uuidv4, unique: true },
     username: { type: String, unique: true, required: true, maxlength: 50 },
     password_hash: { type: String, required: true, maxlength: 255 },
@@ -23,9 +23,9 @@ const UserSchema = new Schema({
     available_time_slot: { type: String, maxlength: 50, default: null },
 });
 
-UserSchema.pre('save', function (next) {
+StudentSchema.pre('save', function (next) {
     this.updated_at = Date.now();
     next();
 });
 
-export default mongoose.model('User', UserSchema);
+export default mongoose.model('Student', StudentSchema);
