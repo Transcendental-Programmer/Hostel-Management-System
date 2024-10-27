@@ -1,1 +1,4705 @@
-{}
+{
+  "grievances": [
+    {
+      "grievance_id": "G1235601",
+      "category": "furniture",
+      "submission_timestamp": "2023-10-02T08:15:00Z",
+      "student_room_no": "006",
+      "hostel_name": "gh",
+      "floor_number": 1,
+      "current_staff_status": [
+        {
+          "staff_id": "S67914",
+          "department": "furniture",
+          "current_workload": 1,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.9
+        },
+        {
+          "staff_id": "S67915",
+          "department": "furniture",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.94
+        },
+        {
+          "staff_id": "S67916",
+          "department": "furniture",
+          "current_workload": 0,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.85
+        },
+        {
+          "staff_id": "S67917",
+          "department": "furniture",
+          "current_workload": 0,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.89
+        },
+        {
+          "staff_id": "S67918",
+          "department": "furniture",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.9
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 15,
+        "total_delays": 0
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S67914",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S67915",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S67916",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S67917",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S67918",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU601",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S67917",
+      "assignment_timestamp": "2023-10-02T08:16:00Z"
+    },
+    {
+      "grievance_id": "G1235602",
+      "category": "internet",
+      "submission_timestamp": "2023-10-02T08:30:00Z",
+      "student_room_no": "003",
+      "hostel_name": "ivh",
+      "floor_number": 3,
+      "current_staff_status": [
+        {
+          "staff_id": "S67919",
+          "department": "it",
+          "current_workload": 3,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S67920",
+          "department": "it",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S67921",
+          "department": "it",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.89
+        },
+        {
+          "staff_id": "S67922",
+          "department": "it",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.94
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 11,
+        "total_delays": 0
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S67919",
+            "time_slot": "16:00-18:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S67920",
+            "time_slot": "16:00-18:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S67921",
+            "time_slot": "16:00-18:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S67922",
+            "time_slot": "16:00-18:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU602",
+            "time_slot": "16:00-18:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S67919",
+      "assignment_timestamp": "2023-10-02T08:31:00Z"
+    },
+    {
+      "grievance_id": "G1235603",
+      "category": "plumbing",
+      "submission_timestamp": "2023-10-02T08:45:00Z",
+      "student_room_no": "005",
+      "hostel_name": "bh1",
+      "floor_number": 3,
+      "current_staff_status": [
+        {
+          "staff_id": "S67923",
+          "department": "plumber",
+          "current_workload": 0,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.89
+        },
+        {
+          "staff_id": "S67924",
+          "department": "plumber",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.87
+        },
+        {
+          "staff_id": "S67925",
+          "department": "plumber",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.9
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 8,
+        "total_delays": 5
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S67923",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S67924",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S67925",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU603",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S67923",
+      "assignment_timestamp": "2023-10-02T08:46:00Z"
+    },
+    {
+      "grievance_id": "G1235607",
+      "category": "electricity",
+      "submission_timestamp": "2023-10-02T09:45:00Z",
+      "student_room_no": "005",
+      "hostel_name": "bh3",
+      "floor_number": 1,
+      "current_staff_status": [
+        {
+          "staff_id": "S67938",
+          "department": "electricity",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.9
+        },
+        {
+          "staff_id": "S67939",
+          "department": "electricity",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.89
+        },
+        {
+          "staff_id": "S67940",
+          "department": "electricity",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.91
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 21,
+        "total_delays": 0
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S67938",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S67939",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S67940",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU607",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S67938",
+      "assignment_timestamp": "2023-10-02T09:46:00Z"
+    },
+    {
+      "grievance_id": "G1235608",
+      "category": "electricity",
+      "submission_timestamp": "2023-10-02T10:00:00Z",
+      "student_room_no": "003",
+      "hostel_name": "bh2",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S67941",
+          "department": "electricity",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S67942",
+          "department": "electricity",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S67943",
+          "department": "electricity",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.86
+        },
+        {
+          "staff_id": "S67944",
+          "department": "electricity",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.86
+        },
+        {
+          "staff_id": "S67945",
+          "department": "electricity",
+          "current_workload": 1,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.88
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 23,
+        "total_delays": 2
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S67941",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S67942",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S67943",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S67944",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S67945",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU608",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S67941",
+      "assignment_timestamp": "2023-10-02T10:01:00Z"
+    },
+    {
+      "grievance_id": "G1235615",
+      "category": "electricity",
+      "submission_timestamp": "2023-10-02T11:45:00Z",
+      "student_room_no": "005",
+      "hostel_name": "bh3",
+      "floor_number": 1,
+      "current_staff_status": [
+        {
+          "staff_id": "S67967",
+          "department": "electricity",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S67968",
+          "department": "electricity",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S67969",
+          "department": "electricity",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.94
+        },
+        {
+          "staff_id": "S67970",
+          "department": "electricity",
+          "current_workload": 3,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.91
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 24,
+        "total_delays": 5
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S67967",
+            "time_slot": "15:00-17:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S67968",
+            "time_slot": "15:00-17:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S67969",
+            "time_slot": "15:00-17:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S67970",
+            "time_slot": "15:00-17:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU615",
+            "time_slot": "15:00-17:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S67970",
+      "assignment_timestamp": "2023-10-02T11:46:00Z"
+    },
+    {
+      "grievance_id": "G1235619",
+      "category": "furniture",
+      "submission_timestamp": "2023-10-02T12:45:00Z",
+      "student_room_no": "004",
+      "hostel_name": "bh3",
+      "floor_number": 1,
+      "current_staff_status": [
+        {
+          "staff_id": "S67982",
+          "department": "furniture",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.87
+        },
+        {
+          "staff_id": "S67983",
+          "department": "furniture",
+          "current_workload": 1,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.86
+        },
+        {
+          "staff_id": "S67984",
+          "department": "furniture",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.91
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 24,
+        "total_delays": 0
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S67982",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S67983",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S67984",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU619",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S67984",
+      "assignment_timestamp": "2023-10-02T12:46:00Z"
+    },
+    {
+      "grievance_id": "G1235624",
+      "category": "electricity",
+      "submission_timestamp": "2023-10-02T14:00:00Z",
+      "student_room_no": "003",
+      "hostel_name": "bh1",
+      "floor_number": 1,
+      "current_staff_status": [
+        {
+          "staff_id": "S68003",
+          "department": "electricity",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.91
+        },
+        {
+          "staff_id": "S68004",
+          "department": "electricity",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.95
+        },
+        {
+          "staff_id": "S68005",
+          "department": "electricity",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.89
+        },
+        {
+          "staff_id": "S68006",
+          "department": "electricity",
+          "current_workload": 0,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68007",
+          "department": "electricity",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.92
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 17,
+        "total_delays": 0
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68003",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68004",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68005",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68006",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68007",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU624",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68003",
+      "assignment_timestamp": "2023-10-02T14:01:00Z"
+    },
+    {
+      "grievance_id": "G1235625",
+      "category": "electricity",
+      "submission_timestamp": "2023-10-02T14:15:00Z",
+      "student_room_no": "002",
+      "hostel_name": "gh",
+      "floor_number": 2,
+      "current_staff_status": [
+        {
+          "staff_id": "S68008",
+          "department": "electricity",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.91
+        },
+        {
+          "staff_id": "S68009",
+          "department": "electricity",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.89
+        },
+        {
+          "staff_id": "S68010",
+          "department": "electricity",
+          "current_workload": 3,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.95
+        },
+        {
+          "staff_id": "S68011",
+          "department": "electricity",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.88
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 15,
+        "total_delays": 5
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68008",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68009",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68010",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68011",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU625",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68009",
+      "assignment_timestamp": "2023-10-02T14:16:00Z"
+    },
+    {
+      "grievance_id": "G1235630",
+      "category": "plumbing",
+      "submission_timestamp": "2023-10-02T15:30:00Z",
+      "student_room_no": "002",
+      "hostel_name": "bh1",
+      "floor_number": 1,
+      "current_staff_status": [
+        {
+          "staff_id": "S68028",
+          "department": "plumber",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.86
+        },
+        {
+          "staff_id": "S68029",
+          "department": "plumber",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68030",
+          "department": "plumber",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.89
+        },
+        {
+          "staff_id": "S68031",
+          "department": "plumber",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.87
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 20,
+        "total_delays": 5
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68028",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68029",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68030",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68031",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU630",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68028",
+      "assignment_timestamp": "2023-10-02T15:31:00Z"
+    },
+    {
+      "grievance_id": "G1235632",
+      "category": "cleaning",
+      "submission_timestamp": "2023-10-02T16:00:00Z",
+      "student_room_no": "003",
+      "hostel_name": "gh",
+      "floor_number": 1,
+      "current_staff_status": [
+        {
+          "staff_id": "S68037",
+          "department": "cleaning",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68038",
+          "department": "cleaning",
+          "current_workload": 0,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.89
+        },
+        {
+          "staff_id": "S68039",
+          "department": "cleaning",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S68040",
+          "department": "cleaning",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68041",
+          "department": "cleaning",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.87
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 21,
+        "total_delays": 4
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68037",
+            "time_slot": "16:00-18:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68038",
+            "time_slot": "16:00-18:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68039",
+            "time_slot": "16:00-18:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68040",
+            "time_slot": "16:00-18:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68041",
+            "time_slot": "16:00-18:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU632",
+            "time_slot": "16:00-18:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68037",
+      "assignment_timestamp": "2023-10-02T16:01:00Z"
+    },
+    {
+      "grievance_id": "G1235637",
+      "category": "furniture",
+      "submission_timestamp": "2023-10-02T17:15:00Z",
+      "student_room_no": "004",
+      "hostel_name": "bh1",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S68058",
+          "department": "furniture",
+          "current_workload": 3,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68059",
+          "department": "furniture",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.86
+        },
+        {
+          "staff_id": "S68060",
+          "department": "furniture",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.86
+        },
+        {
+          "staff_id": "S68061",
+          "department": "furniture",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.91
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 11,
+        "total_delays": 4
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68058",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68059",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68060",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68061",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU637",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68059",
+      "assignment_timestamp": "2023-10-02T17:16:00Z"
+    },
+    {
+      "grievance_id": "G1235639",
+      "category": "electricity",
+      "submission_timestamp": "2023-10-02T17:45:00Z",
+      "student_room_no": "001",
+      "hostel_name": "gh",
+      "floor_number": 3,
+      "current_staff_status": [
+        {
+          "staff_id": "S68065",
+          "department": "electricity",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.91
+        },
+        {
+          "staff_id": "S68066",
+          "department": "electricity",
+          "current_workload": 3,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S68067",
+          "department": "electricity",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68068",
+          "department": "electricity",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.91
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 25,
+        "total_delays": 1
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68065",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68066",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68067",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68068",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU639",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68065",
+      "assignment_timestamp": "2023-10-02T17:46:00Z"
+    },
+    {
+      "grievance_id": "G1235641",
+      "category": "cleaning",
+      "submission_timestamp": "2023-10-02T18:15:00Z",
+      "student_room_no": "006",
+      "hostel_name": "gh",
+      "floor_number": 3,
+      "current_staff_status": [
+        {
+          "staff_id": "S68072",
+          "department": "cleaning",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68073",
+          "department": "cleaning",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68074",
+          "department": "cleaning",
+          "current_workload": 0,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S68075",
+          "department": "cleaning",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.87
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 24,
+        "total_delays": 5
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68072",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68073",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68074",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68075",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU641",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68075",
+      "assignment_timestamp": "2023-10-02T18:16:00Z"
+    },
+    {
+      "grievance_id": "G1235642",
+      "category": "plumbing",
+      "submission_timestamp": "2023-10-02T18:30:00Z",
+      "student_room_no": "006",
+      "hostel_name": "ivh",
+      "floor_number": 1,
+      "current_staff_status": [
+        {
+          "staff_id": "S68076",
+          "department": "plumber",
+          "current_workload": 0,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.86
+        },
+        {
+          "staff_id": "S68077",
+          "department": "plumber",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68078",
+          "department": "plumber",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68079",
+          "department": "plumber",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68080",
+          "department": "plumber",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.9
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 13,
+        "total_delays": 0
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68076",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68077",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68078",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68079",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68080",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU642",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68076",
+      "assignment_timestamp": "2023-10-02T18:31:00Z"
+    },
+    {
+      "grievance_id": "G1235643",
+      "category": "furniture",
+      "submission_timestamp": "2023-10-02T18:45:00Z",
+      "student_room_no": "003",
+      "hostel_name": "bh2",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S68081",
+          "department": "furniture",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.89
+        },
+        {
+          "staff_id": "S68082",
+          "department": "furniture",
+          "current_workload": 3,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68083",
+          "department": "furniture",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68084",
+          "department": "furniture",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.89
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 11,
+        "total_delays": 5
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68081",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68082",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68083",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68084",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU643",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68083",
+      "assignment_timestamp": "2023-10-02T18:46:00Z"
+    },
+    {
+      "grievance_id": "G1235652",
+      "category": "furniture",
+      "submission_timestamp": "2023-10-02T21:00:00Z",
+      "student_room_no": "001",
+      "hostel_name": "bh3",
+      "floor_number": 2,
+      "current_staff_status": [
+        {
+          "staff_id": "S68121",
+          "department": "furniture",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68122",
+          "department": "furniture",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68123",
+          "department": "furniture",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.89
+        },
+        {
+          "staff_id": "S68124",
+          "department": "furniture",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.86
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 15,
+        "total_delays": 1
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68121",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68122",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68123",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68124",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU652",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68124",
+      "assignment_timestamp": "2023-10-02T21:01:00Z"
+    },
+    {
+      "grievance_id": "G1235662",
+      "category": "internet",
+      "submission_timestamp": "2023-10-02T23:30:00Z",
+      "student_room_no": "005",
+      "hostel_name": "ivh",
+      "floor_number": 2,
+      "current_staff_status": [
+        {
+          "staff_id": "S68161",
+          "department": "it",
+          "current_workload": 1,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.89
+        },
+        {
+          "staff_id": "S68162",
+          "department": "it",
+          "current_workload": 0,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.86
+        },
+        {
+          "staff_id": "S68163",
+          "department": "it",
+          "current_workload": 0,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S68164",
+          "department": "it",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.9
+        },
+        {
+          "staff_id": "S68165",
+          "department": "it",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.89
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 13,
+        "total_delays": 5
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68161",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68162",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68163",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68164",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68165",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU662",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68163",
+      "assignment_timestamp": "2023-10-02T23:31:00Z"
+    },
+    {
+      "grievance_id": "G1235665",
+      "category": "plumbing",
+      "submission_timestamp": "2023-10-03T00:15:00Z",
+      "student_room_no": "004",
+      "hostel_name": "bh2",
+      "floor_number": 3,
+      "current_staff_status": [
+        {
+          "staff_id": "S68174",
+          "department": "plumber",
+          "current_workload": 3,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S68175",
+          "department": "plumber",
+          "current_workload": 0,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68176",
+          "department": "plumber",
+          "current_workload": 1,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.9
+        },
+        {
+          "staff_id": "S68177",
+          "department": "plumber",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.85
+        },
+        {
+          "staff_id": "S68178",
+          "department": "plumber",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.93
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 7,
+        "total_delays": 2
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68174",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68175",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68176",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68177",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68178",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU665",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68174",
+      "assignment_timestamp": "2023-10-03T00:16:00Z"
+    },
+    {
+      "grievance_id": "G1235667",
+      "category": "cleaning",
+      "submission_timestamp": "2023-10-03T00:45:00Z",
+      "student_room_no": "001",
+      "hostel_name": "bh2",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S68184",
+          "department": "cleaning",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.91
+        },
+        {
+          "staff_id": "S68185",
+          "department": "cleaning",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S68186",
+          "department": "cleaning",
+          "current_workload": 3,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.94
+        },
+        {
+          "staff_id": "S68187",
+          "department": "cleaning",
+          "current_workload": 3,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.91
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 7,
+        "total_delays": 4
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68184",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68185",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68186",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68187",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU667",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68187",
+      "assignment_timestamp": "2023-10-03T00:46:00Z"
+    },
+    {
+      "grievance_id": "G1235668",
+      "category": "internet",
+      "submission_timestamp": "2023-10-03T01:00:00Z",
+      "student_room_no": "003",
+      "hostel_name": "ivh",
+      "floor_number": 1,
+      "current_staff_status": [
+        {
+          "staff_id": "S68188",
+          "department": "it",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.91
+        },
+        {
+          "staff_id": "S68189",
+          "department": "it",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.91
+        },
+        {
+          "staff_id": "S68190",
+          "department": "it",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.91
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 23,
+        "total_delays": 4
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68188",
+            "time_slot": "16:00-18:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68189",
+            "time_slot": "16:00-18:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68190",
+            "time_slot": "16:00-18:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU668",
+            "time_slot": "16:00-18:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68189",
+      "assignment_timestamp": "2023-10-03T01:01:00Z"
+    },
+    {
+      "grievance_id": "G1235686",
+      "category": "plumbing",
+      "submission_timestamp": "2023-10-03T05:30:00Z",
+      "student_room_no": "006",
+      "hostel_name": "ivh",
+      "floor_number": 2,
+      "current_staff_status": [
+        {
+          "staff_id": "S68259",
+          "department": "plumber",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.87
+        },
+        {
+          "staff_id": "S68260",
+          "department": "plumber",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.9
+        },
+        {
+          "staff_id": "S68261",
+          "department": "plumber",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.94
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 6,
+        "total_delays": 2
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68259",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68260",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68261",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU686",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68260",
+      "assignment_timestamp": "2023-10-03T05:31:00Z"
+    },
+    {
+      "grievance_id": "G1235693",
+      "category": "furniture",
+      "submission_timestamp": "2023-10-03T07:15:00Z",
+      "student_room_no": "005",
+      "hostel_name": "ivh",
+      "floor_number": 2,
+      "current_staff_status": [
+        {
+          "staff_id": "S68289",
+          "department": "furniture",
+          "current_workload": 3,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68290",
+          "department": "furniture",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.85
+        },
+        {
+          "staff_id": "S68291",
+          "department": "furniture",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.9
+        },
+        {
+          "staff_id": "S68292",
+          "department": "furniture",
+          "current_workload": 1,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.9
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 10,
+        "total_delays": 5
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68289",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68290",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68291",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68292",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU693",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68292",
+      "assignment_timestamp": "2023-10-03T07:16:00Z"
+    },
+    {
+      "grievance_id": "G1235694",
+      "category": "cleaning",
+      "submission_timestamp": "2023-10-03T07:30:00Z",
+      "student_room_no": "005",
+      "hostel_name": "gh",
+      "floor_number": 2,
+      "current_staff_status": [
+        {
+          "staff_id": "S68293",
+          "department": "cleaning",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.9
+        },
+        {
+          "staff_id": "S68294",
+          "department": "cleaning",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.9
+        },
+        {
+          "staff_id": "S68295",
+          "department": "cleaning",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.91
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 22,
+        "total_delays": 4
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68293",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68294",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68295",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU694",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68293",
+      "assignment_timestamp": "2023-10-03T07:31:00Z"
+    },
+    {
+      "grievance_id": "G1235695",
+      "category": "internet",
+      "submission_timestamp": "2023-10-03T07:45:00Z",
+      "student_room_no": "004",
+      "hostel_name": "gh",
+      "floor_number": 2,
+      "current_staff_status": [
+        {
+          "staff_id": "S68296",
+          "department": "it",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.89
+        },
+        {
+          "staff_id": "S68297",
+          "department": "it",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.95
+        },
+        {
+          "staff_id": "S68298",
+          "department": "it",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S68299",
+          "department": "it",
+          "current_workload": 1,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.94
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 22,
+        "total_delays": 1
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68296",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68297",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68298",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68299",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU695",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68299",
+      "assignment_timestamp": "2023-10-03T07:46:00Z"
+    },
+    {
+      "grievance_id": "G1235696",
+      "category": "plumbing",
+      "submission_timestamp": "2023-10-03T08:00:00Z",
+      "student_room_no": "005",
+      "hostel_name": "bh3",
+      "floor_number": 2,
+      "current_staff_status": [
+        {
+          "staff_id": "S68300",
+          "department": "plumber",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68301",
+          "department": "plumber",
+          "current_workload": 1,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68302",
+          "department": "plumber",
+          "current_workload": 1,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.9
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 25,
+        "total_delays": 2
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68300",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68301",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68302",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU696",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68301",
+      "assignment_timestamp": "2023-10-03T08:01:00Z"
+    },
+    {
+      "grievance_id": "G1235698",
+      "category": "cleaning",
+      "submission_timestamp": "2023-10-03T08:30:00Z",
+      "student_room_no": "002",
+      "hostel_name": "bh1",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S68308",
+          "department": "cleaning",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.86
+        },
+        {
+          "staff_id": "S68309",
+          "department": "cleaning",
+          "current_workload": 3,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68310",
+          "department": "cleaning",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.88
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 12,
+        "total_delays": 2
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68308",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68309",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68310",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU698",
+            "time_slot": "08:00-10:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68309",
+      "assignment_timestamp": "2023-10-03T08:31:00Z"
+    },
+    {
+      "grievance_id": "G12356101",
+      "category": "furniture",
+      "submission_timestamp": "2023-10-03T09:15:00Z",
+      "student_room_no": "006",
+      "hostel_name": "bh2",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S68321",
+          "department": "furniture",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68322",
+          "department": "furniture",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.85
+        },
+        {
+          "staff_id": "S68323",
+          "department": "furniture",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.86
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 21,
+        "total_delays": 5
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68321",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68322",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68323",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU701",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68323",
+      "assignment_timestamp": "2023-10-03T09:16:00Z"
+    },
+    {
+      "grievance_id": "G12356102",
+      "category": "electricity",
+      "submission_timestamp": "2023-10-03T09:30:00Z",
+      "student_room_no": "004",
+      "hostel_name": "bh1",
+      "floor_number": 1,
+      "current_staff_status": [
+        {
+          "staff_id": "S68324",
+          "department": "electricity",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.94
+        },
+        {
+          "staff_id": "S68325",
+          "department": "electricity",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.95
+        },
+        {
+          "staff_id": "S68326",
+          "department": "electricity",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.86
+        },
+        {
+          "staff_id": "S68327",
+          "department": "electricity",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.91
+        },
+        {
+          "staff_id": "S68328",
+          "department": "electricity",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.91
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 19,
+        "total_delays": 3
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68324",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68325",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68326",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68327",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68328",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU702",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68327",
+      "assignment_timestamp": "2023-10-03T09:31:00Z"
+    },
+    {
+      "grievance_id": "G12356105",
+      "category": "plumbing",
+      "submission_timestamp": "2023-10-03T10:15:00Z",
+      "student_room_no": "006",
+      "hostel_name": "bh1",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S68338",
+          "department": "plumber",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68339",
+          "department": "plumber",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.95
+        },
+        {
+          "staff_id": "S68340",
+          "department": "plumber",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.94
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 24,
+        "total_delays": 4
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68338",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68339",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68340",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU705",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68339",
+      "assignment_timestamp": "2023-10-03T10:16:00Z"
+    },
+    {
+      "grievance_id": "G12356110",
+      "category": "cleaning",
+      "submission_timestamp": "2023-10-03T11:30:00Z",
+      "student_room_no": "006",
+      "hostel_name": "bh1",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S68356",
+          "department": "cleaning",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.91
+        },
+        {
+          "staff_id": "S68357",
+          "department": "cleaning",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.89
+        },
+        {
+          "staff_id": "S68358",
+          "department": "cleaning",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 6,
+        "total_delays": 0
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68356",
+            "time_slot": "16:00-18:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68357",
+            "time_slot": "16:00-18:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68358",
+            "time_slot": "16:00-18:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU710",
+            "time_slot": "16:00-18:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68358",
+      "assignment_timestamp": "2023-10-03T11:31:00Z"
+    },
+    {
+      "grievance_id": "G12356114",
+      "category": "electricity",
+      "submission_timestamp": "2023-10-03T12:30:00Z",
+      "student_room_no": "001",
+      "hostel_name": "bh3",
+      "floor_number": 2,
+      "current_staff_status": [
+        {
+          "staff_id": "S68370",
+          "department": "electricity",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.87
+        },
+        {
+          "staff_id": "S68371",
+          "department": "electricity",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.87
+        },
+        {
+          "staff_id": "S68372",
+          "department": "electricity",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.86
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 11,
+        "total_delays": 4
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68370",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68371",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68372",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU714",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68371",
+      "assignment_timestamp": "2023-10-03T12:31:00Z"
+    },
+    {
+      "grievance_id": "G12356115",
+      "category": "plumbing",
+      "submission_timestamp": "2023-10-03T12:45:00Z",
+      "student_room_no": "006",
+      "hostel_name": "ivh",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S68373",
+          "department": "plumber",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68374",
+          "department": "plumber",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.95
+        },
+        {
+          "staff_id": "S68375",
+          "department": "plumber",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.94
+        },
+        {
+          "staff_id": "S68376",
+          "department": "plumber",
+          "current_workload": 3,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.95
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 8,
+        "total_delays": 3
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68373",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68374",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68375",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68376",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU715",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68375",
+      "assignment_timestamp": "2023-10-03T12:46:00Z"
+    },
+    {
+      "grievance_id": "G12356124",
+      "category": "cleaning",
+      "submission_timestamp": "2023-10-03T15:00:00Z",
+      "student_room_no": "005",
+      "hostel_name": "bh3",
+      "floor_number": 2,
+      "current_staff_status": [
+        {
+          "staff_id": "S68407",
+          "department": "cleaning",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.85
+        },
+        {
+          "staff_id": "S68408",
+          "department": "cleaning",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.86
+        },
+        {
+          "staff_id": "S68409",
+          "department": "cleaning",
+          "current_workload": 3,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.86
+        },
+        {
+          "staff_id": "S68410",
+          "department": "cleaning",
+          "current_workload": 3,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68411",
+          "department": "cleaning",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.89
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 14,
+        "total_delays": 1
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68407",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68408",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68409",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68410",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68411",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU724",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68407",
+      "assignment_timestamp": "2023-10-03T15:01:00Z"
+    },
+    {
+      "grievance_id": "G12356130",
+      "category": "internet",
+      "submission_timestamp": "2023-10-03T16:30:00Z",
+      "student_room_no": "005",
+      "hostel_name": "ivh",
+      "floor_number": 3,
+      "current_staff_status": [
+        {
+          "staff_id": "S68431",
+          "department": "it",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68432",
+          "department": "it",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.89
+        },
+        {
+          "staff_id": "S68433",
+          "department": "it",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.87
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 20,
+        "total_delays": 2
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68431",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68432",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68433",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU730",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68432",
+      "assignment_timestamp": "2023-10-03T16:31:00Z"
+    },
+    {
+      "grievance_id": "G12356135",
+      "category": "plumbing",
+      "submission_timestamp": "2023-10-03T17:45:00Z",
+      "student_room_no": "003",
+      "hostel_name": "bh2",
+      "floor_number": 1,
+      "current_staff_status": [
+        {
+          "staff_id": "S68448",
+          "department": "plumber",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.85
+        },
+        {
+          "staff_id": "S68449",
+          "department": "plumber",
+          "current_workload": 3,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.91
+        },
+        {
+          "staff_id": "S68450",
+          "department": "plumber",
+          "current_workload": 3,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.86
+        },
+        {
+          "staff_id": "S68451",
+          "department": "plumber",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.89
+        },
+        {
+          "staff_id": "S68452",
+          "department": "plumber",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.91
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 18,
+        "total_delays": 3
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68448",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68449",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68450",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68451",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68452",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU735",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68448",
+      "assignment_timestamp": "2023-10-03T17:46:00Z"
+    },
+    {
+      "grievance_id": "G12356138",
+      "category": "plumbing",
+      "submission_timestamp": "2023-10-03T18:30:00Z",
+      "student_room_no": "002",
+      "hostel_name": "bh3",
+      "floor_number": 3,
+      "current_staff_status": [
+        {
+          "staff_id": "S68460",
+          "department": "plumber",
+          "current_workload": 3,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S68461",
+          "department": "plumber",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68462",
+          "department": "plumber",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.85
+        },
+        {
+          "staff_id": "S68463",
+          "department": "plumber",
+          "current_workload": 3,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.95
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 8,
+        "total_delays": 5
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68460",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68461",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68462",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68463",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU738",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68461",
+      "assignment_timestamp": "2023-10-03T18:31:00Z"
+    },
+    {
+      "grievance_id": "G12356141",
+      "category": "furniture",
+      "submission_timestamp": "2023-10-03T19:15:00Z",
+      "student_room_no": "001",
+      "hostel_name": "bh1",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S68471",
+          "department": "furniture",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68472",
+          "department": "furniture",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S68473",
+          "department": "furniture",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.94
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 7,
+        "total_delays": 1
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68471",
+            "time_slot": "15:00-17:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68472",
+            "time_slot": "15:00-17:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68473",
+            "time_slot": "15:00-17:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU741",
+            "time_slot": "15:00-17:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68472",
+      "assignment_timestamp": "2023-10-03T19:16:00Z"
+    },
+    {
+      "grievance_id": "G12356146",
+      "category": "electricity",
+      "submission_timestamp": "2023-10-03T20:30:00Z",
+      "student_room_no": "003",
+      "hostel_name": "ivh",
+      "floor_number": 1,
+      "current_staff_status": [
+        {
+          "staff_id": "S68488",
+          "department": "electricity",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.86
+        },
+        {
+          "staff_id": "S68489",
+          "department": "electricity",
+          "current_workload": 3,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.87
+        },
+        {
+          "staff_id": "S68490",
+          "department": "electricity",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S68491",
+          "department": "electricity",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.91
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 25,
+        "total_delays": 5
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68488",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68489",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68490",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68491",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU746",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68490",
+      "assignment_timestamp": "2023-10-03T20:31:00Z"
+    },
+    {
+      "grievance_id": "G12356147",
+      "category": "cleaning",
+      "submission_timestamp": "2023-10-03T20:45:00Z",
+      "student_room_no": "003",
+      "hostel_name": "bh2",
+      "floor_number": 2,
+      "current_staff_status": [
+        {
+          "staff_id": "S68492",
+          "department": "cleaning",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.9
+        },
+        {
+          "staff_id": "S68493",
+          "department": "cleaning",
+          "current_workload": 0,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.94
+        },
+        {
+          "staff_id": "S68494",
+          "department": "cleaning",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.91
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 20,
+        "total_delays": 3
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68492",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68493",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68494",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU747",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68493",
+      "assignment_timestamp": "2023-10-03T20:46:00Z"
+    },
+    {
+      "grievance_id": "G12356148",
+      "category": "furniture",
+      "submission_timestamp": "2023-10-03T21:00:00Z",
+      "student_room_no": "004",
+      "hostel_name": "ivh",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S68495",
+          "department": "furniture",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68496",
+          "department": "furniture",
+          "current_workload": 3,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.91
+        },
+        {
+          "staff_id": "S68497",
+          "department": "furniture",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.88
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 19,
+        "total_delays": 3
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68495",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68496",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68497",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU748",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68495",
+      "assignment_timestamp": "2023-10-03T21:01:00Z"
+    },
+    {
+      "grievance_id": "G12356149",
+      "category": "cleaning",
+      "submission_timestamp": "2023-10-03T21:15:00Z",
+      "student_room_no": "004",
+      "hostel_name": "bh2",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S68498",
+          "department": "cleaning",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.86
+        },
+        {
+          "staff_id": "S68499",
+          "department": "cleaning",
+          "current_workload": 0,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68500",
+          "department": "cleaning",
+          "current_workload": 0,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.91
+        },
+        {
+          "staff_id": "S68501",
+          "department": "cleaning",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.91
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 10,
+        "total_delays": 3
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68498",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68499",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68500",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68501",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU749",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68500",
+      "assignment_timestamp": "2023-10-03T21:16:00Z"
+    },
+    {
+      "grievance_id": "G12356174",
+      "category": "plumbing",
+      "submission_timestamp": "2023-10-04T03:30:00Z",
+      "student_room_no": "004",
+      "hostel_name": "gh",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S68593",
+          "department": "plumber",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S68594",
+          "department": "plumber",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.87
+        },
+        {
+          "staff_id": "S68595",
+          "department": "plumber",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.94
+        },
+        {
+          "staff_id": "S68596",
+          "department": "plumber",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.9
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 15,
+        "total_delays": 0
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68593",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68594",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68595",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68596",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU774",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68595",
+      "assignment_timestamp": "2023-10-04T03:31:00Z"
+    },
+    {
+      "grievance_id": "G12356198",
+      "category": "electricity",
+      "submission_timestamp": "2023-10-04T09:30:00Z",
+      "student_room_no": "001",
+      "hostel_name": "bh3",
+      "floor_number": 2,
+      "current_staff_status": [
+        {
+          "staff_id": "S68687",
+          "department": "electricity",
+          "current_workload": 1,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S68688",
+          "department": "electricity",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.91
+        },
+        {
+          "staff_id": "S68689",
+          "department": "electricity",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.94
+        },
+        {
+          "staff_id": "S68690",
+          "department": "electricity",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.91
+        },
+        {
+          "staff_id": "S68691",
+          "department": "electricity",
+          "current_workload": 3,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.85
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 18,
+        "total_delays": 0
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68687",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68688",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68689",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68690",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68691",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU798",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68687",
+      "assignment_timestamp": "2023-10-04T09:31:00Z"
+    },
+    {
+      "grievance_id": "G12356199",
+      "category": "electricity",
+      "submission_timestamp": "2023-10-04T09:45:00Z",
+      "student_room_no": "002",
+      "hostel_name": "gh",
+      "floor_number": 2,
+      "current_staff_status": [
+        {
+          "staff_id": "S68692",
+          "department": "electricity",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.94
+        },
+        {
+          "staff_id": "S68693",
+          "department": "electricity",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68694",
+          "department": "electricity",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.91
+        },
+        {
+          "staff_id": "S68695",
+          "department": "electricity",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68696",
+          "department": "electricity",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.89
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 15,
+        "total_delays": 4
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68692",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68693",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68694",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68695",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68696",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU799",
+            "time_slot": "11:00-13:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68693",
+      "assignment_timestamp": "2023-10-04T09:46:00Z"
+    },
+    {
+      "grievance_id": "G12356204",
+      "category": "electricity",
+      "submission_timestamp": "2023-10-04T11:00:00Z",
+      "student_room_no": "002",
+      "hostel_name": "bh2",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S68713",
+          "department": "electricity",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S68714",
+          "department": "electricity",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68715",
+          "department": "electricity",
+          "current_workload": 0,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.85
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 12,
+        "total_delays": 4
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68713",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68714",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68715",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU804",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68713",
+      "assignment_timestamp": "2023-10-04T11:01:00Z"
+    },
+    {
+      "grievance_id": "G12356210",
+      "category": "electricity",
+      "submission_timestamp": "2023-10-04T12:30:00Z",
+      "student_room_no": "005",
+      "hostel_name": "gh",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S68737",
+          "department": "electricity",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.94
+        },
+        {
+          "staff_id": "S68738",
+          "department": "electricity",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68739",
+          "department": "electricity",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.86
+        },
+        {
+          "staff_id": "S68740",
+          "department": "electricity",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S68741",
+          "department": "electricity",
+          "current_workload": 1,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 20,
+        "total_delays": 1
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68737",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68738",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68739",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68740",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68741",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU810",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68738",
+      "assignment_timestamp": "2023-10-04T12:31:00Z"
+    },
+    {
+      "grievance_id": "G12356211",
+      "category": "internet",
+      "submission_timestamp": "2023-10-04T12:45:00Z",
+      "student_room_no": "006",
+      "hostel_name": "bh3",
+      "floor_number": 3,
+      "current_staff_status": [
+        {
+          "staff_id": "S68742",
+          "department": "it",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68743",
+          "department": "it",
+          "current_workload": 3,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.94
+        },
+        {
+          "staff_id": "S68744",
+          "department": "it",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68745",
+          "department": "it",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.86
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 20,
+        "total_delays": 2
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68742",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68743",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68744",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68745",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU811",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68742",
+      "assignment_timestamp": "2023-10-04T12:46:00Z"
+    },
+    {
+      "grievance_id": "G12356214",
+      "category": "plumbing",
+      "submission_timestamp": "2023-10-04T13:30:00Z",
+      "student_room_no": "002",
+      "hostel_name": "gh",
+      "floor_number": 2,
+      "current_staff_status": [
+        {
+          "staff_id": "S68754",
+          "department": "plumber",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.86
+        },
+        {
+          "staff_id": "S68755",
+          "department": "plumber",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68756",
+          "department": "plumber",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.95
+        },
+        {
+          "staff_id": "S68757",
+          "department": "plumber",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.9
+        },
+        {
+          "staff_id": "S68758",
+          "department": "plumber",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.85
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 24,
+        "total_delays": 3
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68754",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68755",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68756",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68757",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68758",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU814",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68756",
+      "assignment_timestamp": "2023-10-04T13:31:00Z"
+    },
+    {
+      "grievance_id": "G12356223",
+      "category": "internet",
+      "submission_timestamp": "2023-10-04T15:45:00Z",
+      "student_room_no": "002",
+      "hostel_name": "gh",
+      "floor_number": 1,
+      "current_staff_status": [
+        {
+          "staff_id": "S68787",
+          "department": "it",
+          "current_workload": 1,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68788",
+          "department": "it",
+          "current_workload": 1,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68789",
+          "department": "it",
+          "current_workload": 0,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.85
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 5,
+        "total_delays": 1
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68787",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68788",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68789",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU823",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68787",
+      "assignment_timestamp": "2023-10-04T15:46:00Z"
+    },
+    {
+      "grievance_id": "G12356225",
+      "category": "electricity",
+      "submission_timestamp": "2023-10-04T16:15:00Z",
+      "student_room_no": "005",
+      "hostel_name": "bh2",
+      "floor_number": 2,
+      "current_staff_status": [
+        {
+          "staff_id": "S68794",
+          "department": "electricity",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68795",
+          "department": "electricity",
+          "current_workload": 3,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S68796",
+          "department": "electricity",
+          "current_workload": 1,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.95
+        },
+        {
+          "staff_id": "S68797",
+          "department": "electricity",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.89
+        },
+        {
+          "staff_id": "S68798",
+          "department": "electricity",
+          "current_workload": 3,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.94
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 17,
+        "total_delays": 0
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68794",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68795",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68796",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68797",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68798",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU825",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68794",
+      "assignment_timestamp": "2023-10-04T16:16:00Z"
+    },
+    {
+      "grievance_id": "G12356228",
+      "category": "plumbing",
+      "submission_timestamp": "2023-10-04T17:00:00Z",
+      "student_room_no": "006",
+      "hostel_name": "bh3",
+      "floor_number": 1,
+      "current_staff_status": [
+        {
+          "staff_id": "S68806",
+          "department": "plumber",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.87
+        },
+        {
+          "staff_id": "S68807",
+          "department": "plumber",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.9
+        },
+        {
+          "staff_id": "S68808",
+          "department": "plumber",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.9
+        },
+        {
+          "staff_id": "S68809",
+          "department": "plumber",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S68810",
+          "department": "plumber",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.95
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 23,
+        "total_delays": 4
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68806",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68807",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68808",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68809",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68810",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU828",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68806",
+      "assignment_timestamp": "2023-10-04T17:01:00Z"
+    },
+    {
+      "grievance_id": "G12356232",
+      "category": "plumbing",
+      "submission_timestamp": "2023-10-04T18:00:00Z",
+      "student_room_no": "004",
+      "hostel_name": "gh",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S68823",
+          "department": "plumber",
+          "current_workload": 0,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68824",
+          "department": "plumber",
+          "current_workload": 1,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.86
+        },
+        {
+          "staff_id": "S68825",
+          "department": "plumber",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.94
+        },
+        {
+          "staff_id": "S68826",
+          "department": "plumber",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.94
+        },
+        {
+          "staff_id": "S68827",
+          "department": "plumber",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.85
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 6,
+        "total_delays": 3
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68823",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68824",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68825",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68826",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68827",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU832",
+            "time_slot": "13:00-15:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68826",
+      "assignment_timestamp": "2023-10-04T18:01:00Z"
+    },
+    {
+      "grievance_id": "G12356247",
+      "category": "cleaning",
+      "submission_timestamp": "2023-10-04T21:45:00Z",
+      "student_room_no": "003",
+      "hostel_name": "gh",
+      "floor_number": 3,
+      "current_staff_status": [
+        {
+          "staff_id": "S68879",
+          "department": "cleaning",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.95
+        },
+        {
+          "staff_id": "S68880",
+          "department": "cleaning",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.85
+        },
+        {
+          "staff_id": "S68881",
+          "department": "cleaning",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.9
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 23,
+        "total_delays": 3
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68879",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68880",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68881",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU847",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68879",
+      "assignment_timestamp": "2023-10-04T21:46:00Z"
+    },
+    {
+      "grievance_id": "G12356257",
+      "category": "internet",
+      "submission_timestamp": "2023-10-05T00:15:00Z",
+      "student_room_no": "005",
+      "hostel_name": "gh",
+      "floor_number": 2,
+      "current_staff_status": [
+        {
+          "staff_id": "S68916",
+          "department": "it",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68917",
+          "department": "it",
+          "current_workload": 3,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.91
+        },
+        {
+          "staff_id": "S68918",
+          "department": "it",
+          "current_workload": 1,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.89
+        },
+        {
+          "staff_id": "S68919",
+          "department": "it",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.94
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 20,
+        "total_delays": 4
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68916",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68917",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68918",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68919",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU857",
+            "time_slot": "12:00-14:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68917",
+      "assignment_timestamp": "2023-10-05T00:16:00Z"
+    },
+    {
+      "grievance_id": "G12356264",
+      "category": "electricity",
+      "submission_timestamp": "2023-10-05T02:00:00Z",
+      "student_room_no": "002",
+      "hostel_name": "gh",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S68943",
+          "department": "electricity",
+          "current_workload": 1,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.87
+        },
+        {
+          "staff_id": "S68944",
+          "department": "electricity",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.85
+        },
+        {
+          "staff_id": "S68945",
+          "department": "electricity",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.87
+        },
+        {
+          "staff_id": "S68946",
+          "department": "electricity",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.9
+        },
+        {
+          "staff_id": "S68947",
+          "department": "electricity",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.86
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 24,
+        "total_delays": 0
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68943",
+            "time_slot": "15:00-17:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68944",
+            "time_slot": "15:00-17:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68945",
+            "time_slot": "15:00-17:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68946",
+            "time_slot": "15:00-17:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68947",
+            "time_slot": "15:00-17:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU864",
+            "time_slot": "15:00-17:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68945",
+      "assignment_timestamp": "2023-10-05T02:01:00Z"
+    },
+    {
+      "grievance_id": "G12356265",
+      "category": "cleaning",
+      "submission_timestamp": "2023-10-05T02:15:00Z",
+      "student_room_no": "003",
+      "hostel_name": "ivh",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S68948",
+          "department": "cleaning",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68949",
+          "department": "cleaning",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.85
+        },
+        {
+          "staff_id": "S68950",
+          "department": "cleaning",
+          "current_workload": 3,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.9
+        },
+        {
+          "staff_id": "S68951",
+          "department": "cleaning",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.91
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 19,
+        "total_delays": 1
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68948",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68949",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68950",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68951",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU865",
+            "time_slot": "10:00-12:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68949",
+      "assignment_timestamp": "2023-10-05T02:16:00Z"
+    },
+    {
+      "grievance_id": "G12356268",
+      "category": "electricity",
+      "submission_timestamp": "2023-10-05T03:00:00Z",
+      "student_room_no": "006",
+      "hostel_name": "bh1",
+      "floor_number": 1,
+      "current_staff_status": [
+        {
+          "staff_id": "S68962",
+          "department": "electricity",
+          "current_workload": 5,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.87
+        },
+        {
+          "staff_id": "S68963",
+          "department": "electricity",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S68964",
+          "department": "electricity",
+          "current_workload": 1,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S68965",
+          "department": "electricity",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.91
+        },
+        {
+          "staff_id": "S68966",
+          "department": "electricity",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.93
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 24,
+        "total_delays": 3
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68962",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68963",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68964",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68965",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68966",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU868",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68962",
+      "assignment_timestamp": "2023-10-05T03:01:00Z"
+    },
+    {
+      "grievance_id": "G12356271",
+      "category": "electricity",
+      "submission_timestamp": "2023-10-05T03:45:00Z",
+      "student_room_no": "005",
+      "hostel_name": "bh2",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S68977",
+          "department": "electricity",
+          "current_workload": 4,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S68978",
+          "department": "electricity",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.87
+        },
+        {
+          "staff_id": "S68979",
+          "department": "electricity",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.94
+        },
+        {
+          "staff_id": "S68980",
+          "department": "electricity",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.89
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 9,
+        "total_delays": 3
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68977",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68978",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68979",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68980",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU871",
+            "time_slot": "14:00-16:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68979",
+      "assignment_timestamp": "2023-10-05T03:46:00Z"
+    },
+    {
+      "grievance_id": "G12356275",
+      "category": "electricity",
+      "submission_timestamp": "2023-10-05T04:45:00Z",
+      "student_room_no": "004",
+      "hostel_name": "bh3",
+      "floor_number": 1,
+      "current_staff_status": [
+        {
+          "staff_id": "S68991",
+          "department": "electricity",
+          "current_workload": 4,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.86
+        },
+        {
+          "staff_id": "S68992",
+          "department": "electricity",
+          "current_workload": 3,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S68993",
+          "department": "electricity",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.93
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 10,
+        "total_delays": 0
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S68991",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S68992",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S68993",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Available"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU875",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S68992",
+      "assignment_timestamp": "2023-10-05T04:46:00Z"
+    },
+    {
+      "grievance_id": "G12356288",
+      "category": "plumbing",
+      "submission_timestamp": "2023-10-05T08:00:00Z",
+      "student_room_no": "002",
+      "hostel_name": "bh1",
+      "floor_number": 3,
+      "current_staff_status": [
+        {
+          "staff_id": "S69043",
+          "department": "plumber",
+          "current_workload": 5,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S69044",
+          "department": "plumber",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.89
+        },
+        {
+          "staff_id": "S69045",
+          "department": "plumber",
+          "current_workload": 0,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.91
+        },
+        {
+          "staff_id": "S69046",
+          "department": "plumber",
+          "current_workload": 0,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.9
+        },
+        {
+          "staff_id": "S69047",
+          "department": "plumber",
+          "current_workload": 3,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 5,
+        "total_delays": 4
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S69043",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S69044",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S69045",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Unavailable"
+          },
+          {
+            "staff_id": "S69046",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S69047",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU888",
+            "time_slot": "09:00-11:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S69046",
+      "assignment_timestamp": "2023-10-05T08:01:00Z"
+    },
+    {
+      "grievance_id": "G12356295",
+      "category": "internet",
+      "submission_timestamp": "2023-10-05T09:45:00Z",
+      "student_room_no": "002",
+      "hostel_name": "bh2",
+      "floor_number": 1,
+      "current_staff_status": [
+        {
+          "staff_id": "S69071",
+          "department": "it",
+          "current_workload": 2,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S69072",
+          "department": "it",
+          "current_workload": 3,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.92
+        },
+        {
+          "staff_id": "S69073",
+          "department": "it",
+          "current_workload": 3,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.92
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 8,
+        "total_delays": 2
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S69071",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S69072",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S69073",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU895",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          }
+        ]
+      },
+      "assigned_staff_id": "S69072",
+      "assignment_timestamp": "2023-10-05T09:46:00Z"
+    },
+    {
+      "grievance_id": "G12356296",
+      "category": "furniture",
+      "submission_timestamp": "2023-10-05T10:00:00Z",
+      "student_room_no": "005",
+      "hostel_name": "bh1",
+      "floor_number": 0,
+      "current_staff_status": [
+        {
+          "staff_id": "S69074",
+          "department": "furniture",
+          "current_workload": 1,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.88
+        },
+        {
+          "staff_id": "S69075",
+          "department": "furniture",
+          "current_workload": 3,
+          "availability_status": "Available",
+          "past_resolution_rate": 0.93
+        },
+        {
+          "staff_id": "S69076",
+          "department": "furniture",
+          "current_workload": 2,
+          "availability_status": "Unavailable",
+          "past_resolution_rate": 0.86
+        }
+      ],
+      "floor_metrics": {
+        "number_of_requests": 6,
+        "total_delays": 0
+      },
+      "availability_data": {
+        "staff_availability": [
+          {
+            "staff_id": "S69074",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S69075",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Available"
+          },
+          {
+            "staff_id": "S69076",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Unavailable"
+          }
+        ],
+        "student_availability": [
+          {
+            "student_id": "STU896",
+            "time_slot": "17:00-19:00",
+            "availability_status": "Unavailable"
+          }
+        ]
+      },
+      "assigned_staff_id": "S69074",
+      "assignment_timestamp": "2023-10-05T10:01:00Z"
+    }
+  ]
+}
