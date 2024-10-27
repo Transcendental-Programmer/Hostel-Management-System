@@ -1,59 +1,86 @@
 # Schema for Hostel Grievance Redressal System
 
-Below is an exhaustive list of the updated database schema for the **Hostel Grievance Redressal System**, incorporating the necessary changes to accommodate user roles, simplify routing without skills, and streamline grievance management. The schema is designed to facilitate user management, grievance handling, real-time communication, multilingual support, and system administration without the previously included AI/ML functionalities.
+Below is an exhaustive list of the updated database schema for the **Hostel Grievance Redressal System**, incorporating the necessary changes to accommodate separate user roles by having distinct tables for students, staff, and administrators. This update removes the unified `Users` and `Roles` tables to streamline user management. The schema is designed to facilitate grievance handling, real-time communication, multilingual support, and system administration without the previously included AI/ML functionalities.
 
 ## Table of Contents
 
-1. [Users](#users)
-2. [Roles](#roles)
-3. [Departments](#departments)
-4. [Grievances](#grievances)
-5. [Assignments](#assignments)
-6. [Chatrooms](#chatrooms)
-7. [Messages](#messages)
-8. [Sentiment Analysis](#sentiment-analysis)
-9. [Conversation Logs](#conversation-logs)
-10. [Notifications](#notifications)
-11. [User Feedback](#user-feedback)
-12. [Worker Performance](#worker-performance)
+1. [Students](#students)
+2. [Staff](#staff)
+3. [Admins](#admins)
+4. [Departments](#departments)
+5. [Grievances](#grievances)
+6. [Assignments](#assignments)
+7. [Chatrooms](#chatrooms)
+8. [Messages](#messages)
+9. [Sentiment Analysis](#sentiment-analysis)
+10. [Conversation Logs](#conversation-logs)
+11. [Notifications](#notifications)
+12. [User Feedback](#user-feedback)
+13. [Worker Performance](#worker-performance)
 
 ---
 
-## Users
+## Students
 
-Stores information about all users within the system, including students, workers, and administrators.
+Stores information specific to student users within the system.
 
-| **Field**             | **Data Type**         | **Constraints**                          | **Description**                                   |
-|-----------------------|-----------------------|------------------------------------------|---------------------------------------------------|
-| `user_id`             | UUID                  | Primary Key, Default: UUID_GENERATE()    | Unique identifier for each user                   |
-| `username`            | VARCHAR(50)           | Unique, Not Null                         | Username for login                                |
-| `password_hash`       | VARCHAR(255)          | Not Null                                 | Hashed password for authentication                |
-| `email`               | VARCHAR(100)          | Unique, Not Null                         | User's email address                              |
-| `full_name`           | VARCHAR(100)          | Not Null                                 | User's full name                                  |
-| `phone_number`        | VARCHAR(15)           | Nullable                                 | User's contact number                             |
-| `role_id`             | UUID                  | Foreign Key → `Roles.role_id`, Not Null  | Role assigned to the user (e.g., Student, Worker, Admin) |
-| `department_id`      | UUID                  | Foreign Key → `Departments.department_id`| Department the user belongs to (applicable for Workers) |
-| `language_preference` | VARCHAR(20)           | Default: 'English'                       | Preferred language for communication             |
-| `roll_number`         | VARCHAR(20)           | Nullable                                 | Roll number for students                           |
-| `hostel_number`       | VARCHAR(20)           | Nullable                                 | Hostel number for students and admins             |
-| `room_number`         | VARCHAR(20)           | Nullable                                 | Room number for students                           |
-| `floor_number`        | INTEGER               | Nullable                                 | Floor number for students                          |
-| `created_at`          | TIMESTAMP             | Default: CURRENT_TIMESTAMP               | Timestamp of account creation                     |
-| `updated_at`          | TIMESTAMP             | Default: CURRENT_TIMESTAMP, On Update: CURRENT_TIMESTAMP | Timestamp of last update          |
-| `is_active`           | BOOLEAN               | Default: TRUE                            | Indicates if the user account is active           |
-| `available_time_slot` | VARCHAR(50)           | Nullable                                 | Time slot when the user is available              |
+| **Field**             | **Data Type** | **Constraints**                          | **Description**                                   |
+|-----------------------|---------------|------------------------------------------|---------------------------------------------------|
+| `user_id`             | UUID          | Primary Key, Default: UUID_GENERATE()    | Unique identifier for each student                 |
+| `username`            | VARCHAR(50)   | Unique, Not Null                         | Username for login                                |
+| `password_hash`       | VARCHAR(255)  | Not Null                                 | Hashed password for authentication                |
+| `email`               | VARCHAR(100)  | Unique, Not Null                         | Student's email address                           |
+| `full_name`           | VARCHAR(100)  | Not Null                                 | Student's full name                               |
+| `phone_number`        | VARCHAR(15)   | Nullable                                 | Student's contact number                          |
+| `language_preference` | VARCHAR(20)   | Default: 'English'                       | Preferred language for communication             |
+| `roll_number`         | VARCHAR(20)   | Not Null                                 | Roll number for students                          |
+| `hostel_number`       | VARCHAR(20)   | Nullable                                 | Hostel number for students                        |
+| `room_number`         | VARCHAR(20)   | Nullable                                 | Room number for students                          |
+| `floor_number`        | INTEGER       | Nullable                                 | Floor number for students                         |
+| `created_at`          | TIMESTAMP     | Default: CURRENT_TIMESTAMP               | Timestamp of account creation                     |
+| `updated_at`          | TIMESTAMP     | Default: CURRENT_TIMESTAMP, On Update: CURRENT_TIMESTAMP | Timestamp of last update          |
+| `is_active`           | BOOLEAN       | Default: TRUE                            | Indicates if the student account is active        |
+| `available_time_slot` | VARCHAR(50)   | Nullable                                 | Time slot when the student is available           |
 
 ---
-    
-## Roles
 
-Defines different user roles within the system.
+## Staff
 
-| **Field**      | **Data Type** | **Constraints**                       | **Description**                     |
-|----------------|---------------|---------------------------------------|-------------------------------------|
-| `role_id`      | UUID          | Primary Key, Default: UUID_GENERATE() | Unique identifier for each role     |
-| `role_name`    | VARCHAR(50)   | Unique, Not Null                      | Name of the role (e.g., Student, Worker, Admin) |
-| `description`  | TEXT          | Nullable                              | Description of the role             |
+Stores information specific to staff users within the system.
+
+| **Field**             | **Data Type** | **Constraints**                          | **Description**                                   |
+|-----------------------|---------------|------------------------------------------|---------------------------------------------------|
+| `user_id`             | UUID          | Primary Key, Default: UUID_GENERATE()    | Unique identifier for each staff member            |
+| `username`            | VARCHAR(50)   | Unique, Not Null                         | Username for login                                |
+| `password_hash`       | VARCHAR(255)  | Not Null                                 | Hashed password for authentication                |
+| `email`               | VARCHAR(100)  | Unique, Not Null                         | Staff member's email address                      |
+| `full_name`           | VARCHAR(100)  | Not Null                                 | Staff member's full name                          |
+| `phone_number`        | VARCHAR(15)   | Nullable                                 | Staff member's contact number                     |
+| `department`          | VARCHAR(100)  | Nullable                                 | Department the staff belongs to                   |
+| `language_preference` | VARCHAR(20)   | Default: 'English'                       | Preferred language for communication             |
+| `created_at`          | TIMESTAMP     | Default: CURRENT_TIMESTAMP               | Timestamp of account creation                     |
+| `updated_at`          | TIMESTAMP     | Default: CURRENT_TIMESTAMP, On Update: CURRENT_TIMESTAMP | Timestamp of last update          |
+| `is_active`           | BOOLEAN       | Default: TRUE                            | Indicates if the staff account is active           |
+
+---
+
+## Admins
+
+Stores information specific to administrator users within the system.
+
+| **Field**             | **Data Type** | **Constraints**                          | **Description**                                   |
+|-----------------------|---------------|------------------------------------------|---------------------------------------------------|
+| `user_id`             | UUID          | Primary Key, Default: UUID_GENERATE()    | Unique identifier for each administrator           |
+| `username`            | VARCHAR(50)   | Unique, Not Null                         | Username for login                                |
+| `password_hash`       | VARCHAR(255)  | Not Null                                 | Hashed password for authentication                |
+| `email`               | VARCHAR(100)  | Unique, Not Null                         | Administrator's email address                     |
+| `full_name`           | VARCHAR(100)  | Not Null                                 | Administrator's full name                         |
+| `phone_number`        | VARCHAR(15)   | Nullable                                 | Administrator's contact number                    |
+| `hostel_number`       | VARCHAR(20)   | Nullable                                 | Hostel number for administrators                  |
+| `language_preference` | VARCHAR(20)   | Default: 'English'                       | Preferred language for communication             |
+| `created_at`          | TIMESTAMP     | Default: CURRENT_TIMESTAMP               | Timestamp of account creation                     |
+| `updated_at`          | TIMESTAMP     | Default: CURRENT_TIMESTAMP, On Update: CURRENT_TIMESTAMP | Timestamp of last update          |
+| `is_active`           | BOOLEAN       | Default: TRUE                            | Indicates if the admin account is active           |
 
 ---
 
@@ -337,23 +364,27 @@ Below is a simplified representation of the relationships between the main entit
 
 ```mermaid
 erDiagram
-    Users ||--o{ Grievances : submits
-    Users ||--o{ Assignments : assigned_to
-    Users ||--o{ Messages : sends
-    Roles ||--o{ Users : has
-    Departments ||--o{ Users : belongs_to
+    Students ||--o{ Grievances : submits
+    Staff ||--o{ Assignments : assigned_to
+    Staff ||--o{ Messages : sends
+    Admins ||--o{ Assignments : oversees
+    Departments ||--o{ Staff : belongs_to
     Grievances ||--|{ Messages : has
     Grievances ||--o{ Assignments : involves
     Grievances ||--o{ Chatrooms : has
     Chatrooms ||--|{ Messages : contains
     Grievances ||--o{ SentimentAnalysis : analyzed_by
     Messages ||--o{ ConversationLogs : logs
-    Users ||--o{ Notifications : receives
-    Users ||--o{ UserFeedback : provides
+    Students ||--o{ Notifications : receives
+    Staff ||--o{ Notifications : receives
+    Admins ||--o{ Notifications : receives
+    Students ||--o{ UserFeedback : provides
     Grievances ||--o{ UserFeedback : receives
-    Users ||--o{ WorkerPerformance : has
+    Staff ||--o{ WorkerPerformance : has
 ```
 
 ---
+
+
 
 
