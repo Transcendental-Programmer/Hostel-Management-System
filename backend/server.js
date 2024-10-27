@@ -7,6 +7,7 @@ import client from './config/redisClient.js';
 // import studentRoutes from './routes/studentRoutes.js';
 // import wardenRoutes from './routes/wardenRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import grievanceRoutes from './routes/grievanceRoutes.js';
 
 const app = express();
 MongoDB();
@@ -14,7 +15,7 @@ MongoDB();
 app.use(cors());
 app.use(express.json());
 
-// app.use("/", complaintRoutes);
+app.use("/", grievanceRoutes);
 // app.use("/", studentRoutes);
 // app.use("/", wardenRoutes);
 app.use("/users/", userRoutes);
