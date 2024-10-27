@@ -9,12 +9,71 @@ function Register() {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [role, setRole] = useState(Roles.STUDENT);
-  const [block_id, setBlock_id] = useState("");
-  const [usn, setUsn] = useState("");
+  const [hostel, setHostel] = useState("");//for waden and student
+  const [roll_no, setRoll_no] = useState("");
   const [room, setRoom] = useState("");
+
+  const [errors, setErrors] = useState({});//for realtime-validation
+
+
+  const validateEmail = (email) => {
+    const iiitmEmailRegex = /^[^\s@]+@iiitm\.ac\.in$/;
+    return iiitmEmailRegex.test(email);
+  };
+
+  const validatePhone = (phone) => {
+    const phoneRegex = /^[0-9]{10}$/;
+    return phoneRegex.test(phone);
+  };
+
+  const validatePassword = (password) => {
+    return password.length >= 8;
+  };
+
+  const handleInputChange = (field, value) => {
+    if (field === "email") {
+      setEmail(value);
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: validateEmail(value)
+          ? ""
+          : "Please enter a valid @iiitm.ac.in email address",
+      }));
+    } else if (field === "phone") {
+      setPhone(value);
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        phone: validatePhone(value)
+          ? ""
+          : "Please enter a valid 10-digit phone number",
+      }));
+    } else if (field === "password") {
+      setPassword(value);
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: validatePassword(value)
+          ? ""
+          : "Password must be at least 8 characters",
+      }));
+    }
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
+
+  
+    if (!validateEmail(email) || !validatePhone(phone) || !validatePassword(password)) {
+      alert("Please fix the errors before submitting the form");
+      return;
+    }
+
+  //   const iiitmEmailRegex = /^[^\s@]+@iiitm\.ac\.in$/;
+  // if (!iiitmEmailRegex.test(email)) {
+  //   alert("Please enter a valid email address ending with @iiitm.ac.in");
+  //   return;
+  // }
+  
     try {
       let body;
       if (role === Roles.WARDEN) {
@@ -24,7 +83,7 @@ function Register() {
           password,
           phone,
           type: role,
-          block_id,
+          hostel,
         };
       } else {
         body = {
@@ -33,8 +92,8 @@ function Register() {
           password,
           phone,
           type: role,
-          block_id,
-          usn,
+          hostel,
+          roll_no,
           room,
         };
       }
@@ -208,7 +267,7 @@ function Register() {
                       htmlFor="email"
                       className="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
                     >
-                      Block ID
+                      Hostel
                     </label>
                     <input
                       type="text"
@@ -217,9 +276,9 @@ function Register() {
                       }`}
                       id="email"
                       name="email-username"
-                      placeholder="Enter your Block ID"
+                      placeholder="Enter your hostel"
                       autoFocus
-                      onChange={(e) => setBlock_id(e.target.value)}
+                      onChange={(e) => setHostel(e.target.value)}
                     />
                   </div>
                   {role === Roles.WARDEN ? null : (
@@ -253,15 +312,15 @@ function Register() {
                           htmlFor="email"
                           className="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
                         >
-                          USN
+                          Roll no.
                         </label>
                         <input
                           type="text"
                           className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
                           name="email-username"
-                          placeholder="Enter your USN"
+                          placeholder="Enter your roll no."
                           autoFocus
-                          onChange={(e) => setUsn(e.target.value)}
+                          onChange={(e) => setRoll_no(e.target.value)}
                         />
                       </>
                     )}
@@ -305,6 +364,15 @@ function Register() {
                         }`}
                       >
                         Student
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setRole(Roles.Worker)}
+                        className={`rounded-md p-2 my-1 transition-all text-black ${
+                          role === Roles.WORKER && "bg-indigo-500 text-white"
+                        }`}
+                      >
+                        Worker
                       </button>
                     </div>
                   </div>
