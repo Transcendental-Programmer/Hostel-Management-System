@@ -1,7 +1,7 @@
-# Directory Structure for AI Module
+# Directory Structure
 
 ```
-ai/
+project_root/
 ├── config/
 │   ├── __init__.py
 │   └── config.py
@@ -43,11 +43,7 @@ ai/
 │   └── logger.py
 ├── tests/
 │   ├── __init__.py
-│   └── test_models/
-│       ├── test_intelligent_routing.py
-│       ├── test_sentiment_analysis.py
-│       ├── test_multilingual_translation.py
-│       └── test_job_recommendation.py
+│   └── test_models.py
 ├── requirements.txt
 └── app.py
 ```

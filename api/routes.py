@@ -1,88 +1,66 @@
-from flask import Blueprint, request, jsonify
-from ..models.intelligent_routing.model import IntelligentRoutingModel
-from ..models.intelligent_routing.preprocessor import GrievancePreprocessor
-from ..config.config import Config
-import torch
-import datetime
+from flask import Blueprint, jsonify, request
+from utils.logger import get_logger
+from models.intelligent_routing.model import IntelligentRoutingModel
 
-routing_bp = Blueprint('routing', __name__)
+# Create logger instance
+logger = get_logger(__name__)
 
-# Initialize model and preprocessor
-config = Config()
-preprocessor = GrievancePreprocessor()
-model = IntelligentRoutingModel(
-    input_size=preprocessor._calculate_input_size(),
-    hidden_size=128,
-    num_staff=50
-)
-
-# Load trained model
-checkpoint = torch.load(config.MODEL_DIR / "trained_model.pth")
-model.load_state_dict(checkpoint['model_state_dict'])
-model.eval()
-
-@routing_bp.route('/api/intelligent-routing', methods=['POST'])
-def route_grievance():
-    try:
-        # Get grievance data from request
-        grievance_data = request.get_json()
-        
-        # Validate input
-        if not _validate_grievance_data(grievance_data):
-            return jsonify({
-                'error': 'Invalid grievance data format'
-            }), 400
-            
-        # Preprocess grievance
-        grievance_features = preprocessor.preprocess_grievance(grievance_data)
-        grievance_tensor = torch.FloatTensor(grievance_features)
-        
-        # Get model prediction
-        with torch.no_grad():
-            action_probs = model(grievance_tensor)
-        
-        # Get assigned staff ID
-        assigned_staff_id = torch.argmax(action_probs).item()
-        
-        # Prepare response
-        response = {
-            'grievance_id': grievance_data['grievance_id'],
-            'assigned_staff_id': f"S{assigned_staff_id:05d}",
-            'assignment_timestamp': datetime.now().isoformat(),
-            'expected_resolution_time': '1 hour',  # This could be dynamic
-            'floor_number': grievance_data['floor_number'],
-            'hostel_name': grievance_data['hostel_name'],
-            'student_room_no': grievance_data['student_room_no']
-        }
-        
-        return jsonify(response), 200
-        
-    except Exception as e:
-        return jsonify({
-            'error': str(e)
-        }), 500
-
-def _validate_grievance_data(data):
-    """Validate incoming grievance data"""
-    required_fields = [
-        'grievance_id', 'category', 'floor_number',
-        'hostel_name', 'student_room_no'
-    ]
+def register_routes(app):
+    """Register all API routes"""
     
-    # Check required fields
-    if not all(field in data for field in required_fields):
-        return False
-        
-    # Validate category
-    if data['category'] not in Config.VALID_CATEGORIES:
-        return False
-        
-    # Validate floor number
-    if data['floor_number'] not in Config.VALID_FLOOR_NUMBERS:
-        return False
-        
-    # Validate hostel name
-    if data['hostel_name'] not in Config.VALID_HOSTELS:
-        return False
-        
-    return True
+    # Intelligent Routing routes
+    @app.route(app.config['INTELLIGENT_ROUTING_ENDPOINT'], methods=['POST'])
+    def intelligent_routing():
+        try:
+            data = request.get_json()
+            
+            # Initialize model
+            intelligent_routing_model = IntelligentRoutingModel()
+            intelligent_routing_model.load_model('models/intelligent_routing/model/intelligent_routing_model')
+            
+            # Make prediction
+            result = intelligent_routing_model.predict(data)
+            
+            if result is None:
+                return jsonify({
+                    'error': 'No suitable staff found for the given grievance'
+                }), 400
+                
+            return jsonify(result), 200
+            
+        except Exception as e:
+            logger.error(f"Error in intelligent routing: {str(e)}")
+            return jsonify({'error': str(e)}), 500
+
+    # Sentiment Analysis routes
+    @app.route(app.config['SENTIMENT_ANALYSIS_ENDPOINT'], methods=['POST'])
+    def sentiment_analysis():
+        try:
+            data = request.get_json()
+            # Implementation will be added later
+            return jsonify({'message': 'Sentiment analysis endpoint'}), 200
+        except Exception as e:
+            logger.error(f"Error in sentiment analysis: {str(e)}")
+            return jsonify({'error': str(e)}), 500
+
+    # Multilingual Translation routes
+    @app.route(app.config['MULTILINGUAL_TRANSLATION_ENDPOINT'], methods=['POST'])
+    def multilingual_translation():
+        try:
+            data = request.get_json()
+            # Implementation will be added later
+            return jsonify({'message': 'Multilingual translation endpoint'}), 200
+        except Exception as e:
+            logger.error(f"Error in multilingual translation: {str(e)}")
+            return jsonify({'error': str(e)}), 500
+
+    # Job Recommendation routes
+    @app.route(app.config['JOB_RECOMMENDATION_ENDPOINT'], methods=['POST'])
+    def job_recommendation():
+        try:
+            data = request.get_json()
+            # Implementation will be added later
+            return jsonify({'message': 'Job recommendation endpoint'}), 200
+        except Exception as e:
+            logger.error(f"Error in job recommendation: {str(e)}")
+            return jsonify({'error': str(e)}), 500

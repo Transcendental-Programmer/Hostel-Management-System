@@ -1,72 +1,138 @@
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
+import tensorflow as tf
+import numpy as np
+from datetime import datetime
+import json
 
-class IntelligentRoutingModel(nn.Module):
-    def __init__(self, input_size, hidden_size, num_staff):
-        super(IntelligentRoutingModel, self).__init__()
-        
-        self.fc1 = nn.Linear(input_size, hidden_size)
-        self.fc2 = nn.Linear(hidden_size, hidden_size // 2)
-        self.fc3 = nn.Linear(hidden_size // 2, num_staff)
-        
-        self.dropout = nn.Dropout(0.2)
-        
-    def forward(self, x):
-        x = F.relu(self.fc1(x))
-        x = self.dropout(x)
-        x = F.relu(self.fc2(x))
-        x = self.dropout(x)
-        x = self.fc3(x)
-        return F.softmax(x, dim=1)
-
-class RoutingEnvironment:
+class IntelligentRoutingModel:
     def __init__(self):
-        self.reset()
+        self.model = None
+        self.feature_columns = [
+            'category_encoded',
+            'floor_number',
+            'current_workload',
+            'past_resolution_rate',
+            'number_of_requests',
+            'total_delays'
+        ]
         
-    def reset(self):
-        self.current_assignments = {}
-        self.staff_workload = {}
-        return self._get_state()
+        # Category encoding
+        self.categories = ['electricity', 'internet', 'plumber', 'water_cooler', 'sweeper', 'carpenter']
+        self.category_encoding = {cat: i for i, cat in enumerate(self.categories)}
+
+    def preprocess_data(self, data):
+        """Preprocess input data for model"""
+        features = []
+        for sample in data:
+            # Encode category
+            category_encoded = [0] * len(self.categories)
+            category_idx = self.category_encoding[sample['category']]
+            category_encoded[category_idx] = 1
+            
+            # Get staff with matching department
+            matching_staff = None
+            for staff in sample['current_staff_status']:
+                if staff['department'] == sample['category']:
+                    matching_staff = staff
+                    break
+            
+            if not matching_staff:
+                continue
+                
+            feature = np.array([
+                *category_encoded,
+                sample['floor_number'],
+                matching_staff['current_workload'],
+                matching_staff['past_resolution_rate'],
+                sample['floor_metrics']['number_of_requests'],
+                sample['floor_metrics']['total_delays']
+            ])
+            features.append(feature)
+            
+        return np.array(features)
+
+    def build_model(self):
+        """Build the neural network model"""
+        model = tf.keras.Sequential([
+            tf.keras.layers.Dense(64, activation='relu', input_shape=(len(self.categories) + 5,)),
+            tf.keras.layers.Dropout(0.2),
+            tf.keras.layers.Dense(32, activation='relu'),
+            tf.keras.layers.Dropout(0.2),
+            tf.keras.layers.Dense(16, activation='relu'),
+            tf.keras.layers.Dense(1, activation='sigmoid')
+        ])
         
-    def step(self, action, grievance):
-        # Implement the environment step logic
-        reward = self._calculate_reward(action, grievance)
-        next_state = self._get_state()
-        done = self._is_episode_done()
+        model.compile(
+            optimizer='adam',
+            loss='binary_crossentropy',
+            metrics=['accuracy']
+        )
         
-        return next_state, reward, done
+        self.model = model
+        return model
+
+    def train(self, train_data_path, epochs=10, batch_size=32):
+        """Train the model"""
+        # Load training data
+        with open(train_data_path) as f:
+            train_data = json.load(f)
         
-    def _calculate_reward(self, action, grievance):
-        # Implement reward calculation based on assignment quality
-        base_reward = 10
+        # Preprocess data
+        X = self.preprocess_data(train_data)
         
-        # Penalize for overloaded staff
-        workload_penalty = -2 * self.staff_workload.get(action, 0)
+        # Simple target: 1 if staff should be assigned, 0 otherwise
+        y = np.array([1 if sample['current_staff_status'][0]['availability_status'] == 'Available' 
+                     else 0 for sample in train_data])
         
-        # Reward for matching department
-        department_match = 5 if self._check_department_match(action, grievance) else 0
+        # Build and train model
+        self.build_model()
+        history = self.model.fit(
+            X, y,
+            epochs=epochs,
+            batch_size=batch_size,
+            validation_split=0.2
+        )
         
-        # Consider proximity
-        proximity_reward = self._calculate_proximity_reward(action, grievance)
+        return history
+
+    def predict(self, input_data):
+        """Make predictions for input data"""
+        # Preprocess input
+        X = self.preprocess_data([input_data])
         
-        return base_reward + workload_penalty + department_match + proximity_reward
+        # Make prediction
+        prediction = self.model.predict(X)[0][0]
         
-    def _get_state(self):
-        # Return the current state of the environment
+        # Find best matching staff
+        best_staff = None
+        highest_score = -1
+        
+        for staff in input_data['current_staff_status']:
+            if staff['department'] == input_data['category']:
+                score = prediction * staff['past_resolution_rate'] * (1 / (staff['current_workload'] + 1))
+                if score > highest_score:
+                    highest_score = score
+                    best_staff = staff
+        
+        if not best_staff:
+            return None
+            
+        # Generate response
+        assignment_time = datetime.utcnow()
+        
         return {
-            'current_assignments': self.current_assignments.copy(),
-            'staff_workload': self.staff_workload.copy()
+            "grievance_id": input_data['grievance_id'],
+            "assigned_staff_id": best_staff['staff_id'],
+            "assignment_timestamp": assignment_time.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "expected_resolution_time": "1 hour",
+            "floor_number": input_data['floor_number'],
+            "hostel_name": input_data['hostel_name'],
+            "student_room_no": input_data['student_room_no']
         }
-        
-    def _is_episode_done(self):
-        # Define episode completion criteria
-        return len(self.current_assignments) >= 100  # Example threshold
-        
-    def _check_department_match(self, staff_id, grievance):
-        # Implement department matching logic
-        return True  # Placeholder
-        
-    def _calculate_proximity_reward(self, staff_id, grievance):
-        # Implement proximity calculation
-        return 0  # Placeholder
+
+    def save_model(self, path):
+        """Save the trained model"""
+        self.model.save(path)
+
+    def load_model(self, path):
+        """Load a trained model"""
+        self.model = tf.keras.models.load_model(path)
