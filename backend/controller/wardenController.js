@@ -1,20 +1,17 @@
-const express = require("express");
-const cors = require("cors");
-const app = express();
-const db = require("../db");
+// import express from 'express';
+// import cors from 'cors';
+// import db from '../db';
 
-app.use(cors());
-app.use(express.json());
+// const app = express();
+// app.use(cors());
+// app.use(express.json());
 
-exports.getWardenByid = async(req, res)=> {
-    try {
-        const {warden_id} = req.params;
-        const warden = await db.pool.query(
-          "select * from warden where warden_id = $1",
-          [warden_id]
-        );
-        res.json(warden.rows)
-      } catch (err) {
-        console.log(err.message);
-      }
-};
+// export const getWardenByid = async (req, res) => {
+//   try {
+//     const { warden_id } = req.params;
+//     const warden = await db.pool.query('SELECT * FROM warden WHERE warden_id = $1', [warden_id]);
+//     res.json(warden.rows);
+//   } catch (err) {
+//     console.log(err.message);
+//   }
+// };

@@ -1,7 +1,8 @@
-const express = require('express');
-const wardenRoutes = express.Router()
-const {  getWardenByid } = require('../controller/wardenController');
+// import express from 'express';
+// import { getWardenByid } from '../controller/wardenController.js';
 
-wardenRoutes.get("/warden/:warden_id",getWardenByid);
+// const wardenRoutes = express.Router();
 
-module.exports = wardenRoutes
+// wardenRoutes.get("/warden/:warden_id", getWardenByid);
+
+// export default wardenRoutes;
