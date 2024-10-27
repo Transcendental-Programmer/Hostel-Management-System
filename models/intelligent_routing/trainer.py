@@ -5,10 +5,12 @@ import numpy as np
 from typing import List, Dict, Tuple
 import json
 from pathlib import Path
+from datetime import datetime
 
-from .model import IntelligentRoutingModel, RoutingEnvironment
-from .preprocessor import GrievancePreprocessor
-from ...config.config import Config
+# Change relative imports to absolute imports
+from ai.models.intelligent_routing.model import IntelligentRoutingModel, RoutingEnvironment
+from ai.models.intelligent_routing.preprocessor import GrievancePreprocessor
+from ai.config.config import Config
 
 class IntelligentRoutingTrainer:
     def __init__(self):
@@ -44,7 +46,7 @@ class IntelligentRoutingTrainer:
         with open(self.config.TEST_DATA_PATH) as f:
             test_data = json.load(f)
             
-        return train_data, test_data
+        return train_data['grievances'], test_data['grievances']
         
     def train(self, num_episodes: int = 1000):
         """Train the model using reinforcement learning"""
@@ -124,3 +126,9 @@ class IntelligentRoutingTrainer:
         checkpoint = torch.load(path)
         self.model.load_state_dict(checkpoint['model_state_dict'])
         self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+
+# Add this if you want to run the trainer directly
+if __name__ == "__main__":
+    trainer = IntelligentRoutingTrainer()
+    trainer.train()
+    trainer.save_model('trained_model.pth')
