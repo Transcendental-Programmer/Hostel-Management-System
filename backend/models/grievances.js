@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
+import User from './users.js';
 
 const GrievanceSchema = new mongoose.Schema({
   grievance_id: {
