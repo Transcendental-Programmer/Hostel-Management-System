@@ -42,7 +42,11 @@ class SocketService {
         };
 
         console.log('New Message Received:', message.messageText);
+        console.log('Sender Type:', socket.senderType);
+        console.log('Sender user id :', socket.userId);
+        // console.log('Socket:', socket);
 
+        
         // Emit the message to the specific chatroom
         io.to(chatroomId).emit('message', data);
 
@@ -56,6 +60,7 @@ class SocketService {
             // Store user_id or staff_id based on sender type
             user_id: socket.senderType === 'student' ? socket.userId : null,
             staff_id: socket.senderType === 'staff' ? socket.userId : null,
+            sender_type: socket.senderType,
           };
 
           const savedMessage = await Messages.create(messageData);
