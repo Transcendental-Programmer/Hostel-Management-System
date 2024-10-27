@@ -1,0 +1,2 @@
+worker_id,department,current_workload,availability_status,job_success_rate
+W67890,Electrical,3,Available,0.95

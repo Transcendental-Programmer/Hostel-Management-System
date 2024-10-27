@@ -1,0 +1,2 @@
+job_id,worker_id,assignment_timestamp,resolution_time,outcome,hostel_name,floor_number,room_number
+J12340,W67885,2023-09-25T09:00:00Z,2 hours,Resolved Successfully,Hostel A,1,101
