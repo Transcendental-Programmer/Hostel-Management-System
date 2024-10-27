@@ -1,2 +1,0 @@
-job_id,type,description,urgency_level,submission_timestamp,hostel_name,floor_number,room_number
-J12345,Electrical,"Fan not working in room 204.",High,2023-10-02T08:15:00Z,Hostel A,2,204
