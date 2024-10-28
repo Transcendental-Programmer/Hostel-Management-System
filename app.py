@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify
 from routes import api_bp
 import logging
@@ -8,7 +9,6 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('app.log', encoding='utf-8'),
         logging.StreamHandler()
     ]
 )
@@ -22,7 +22,6 @@ def create_app():
     # Home route
     @app.route('/')
     def home():
-        logging.info('Home route accessed')  # Add debug logging
         return jsonify({
             'status': 'online',
             'timestamp': datetime.utcnow().isoformat(),
@@ -31,7 +30,9 @@ def create_app():
     
     return app
 
+# This is for both local and production
+app = create_app()
+
 if __name__ == '__main__':
-    app = create_app()
-    logging.info('Starting Flask application')  
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    port = int(os.environ.get('PORT', 8000))
+    app.run(host='0.0.0.0', port=port)

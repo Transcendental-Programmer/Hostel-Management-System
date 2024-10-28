@@ -1,49 +1,82 @@
 # Directory Structure
 
 ```
-project_root/
-├── config/
-│   ├── __init__.py
-│   └── config.py
-├── models/
-│   ├── __init__.py
-│   ├── intelligent_routing/
-│   │   ├── __init__.py
-│   │   ├── model.py
-│   │   ├── train_data/
-│   │   │   └── training_data.json
-│   │   └── test_data/
-│   │       └── test_data.json
-│   ├── sentiment_analysis/
-│   │   ├── __init__.py
-│   │   ├── model.py
-│   │   ├── train_data/
-│   │   │   └── training_data.json
-│   │   └── test_data/
-│   │       └── test_data.json
-│   ├── multilingual_translation/
-│   │   ├── __init__.py
-│   │   ├── model.py
-│   │   ├── train_data/
-│   │   │   └── training_data.json
-│   │   └── test_data/
-│   │       └── test_data.json
-│   └── job_recommendation/
-│       ├── __init__.py
-│       ├── model.py
-│       ├── train_data/
-│       │   └── training_data.json
-│       └── test_data/
-│           └── test_data.json
-├── api/
-│   ├── __init__.py
-│   └── routes.py
-├── utils/
-│   ├── __init__.py
-│   └── logger.py
-├── tests/
-│   ├── __init__.py
-│   └── test_models.py
-├── requirements.txt
-└── app.py
+Directory Structure:
+📁 config
+  📄 __init__.py
+  📄 config.py
+📁 docs
+  📄 README.md
+  📄 ai_plan.md
+  📄 data_plan.md
+  📄 plan.md
+📁 models
+  📁 intelligent_routing
+    📁 saved_model
+      📄 model.keras
+    📁 test_data
+      📄 __init__.py
+      📄 test_data.json
+    📁 test_results
+      📄 confusion_matrix.png
+      📄 roc_curve.png
+      📄 test_report.json
+    📁 train_data
+      📄 __init__.py
+      📄 training_data.json
+    📄 generate_data.py
+    📄 model.py
+    📄 test_model.py
+    📄 train.py
+  📁 job_recommendation
+    📁 saved_model
+      📄 model.keras
+    📁 test_data
+      📄 __init__.py
+      📄 test_data.json
+    📁 test_results
+      📄 test_report.json
+    📁 train_data
+      📄 __init__.py
+      📄 training_data.json
+    📄 generate_data.py
+    📄 model.py
+    📄 test.py
+    📄 train.py
+  📁 multilingual_translation
+    📁 test_data
+      📄 __init__.py
+      📄 test_data.json
+    📁 test_results
+      📄 test_report.json
+    📁 train_data
+      📄 __init__.py
+      📄 training_data.json
+    📄 model.py
+    📄 test_model.py
+  📁 sentiment_analysis
+    📁 test_data
+      📄 __init__.py
+      📄 test_data.json
+    📁 test_results
+      📄 test_report.json
+    📁 train_data
+      📄 __init__.py
+      📄 training_data.json
+    📄 model.py
+    📄 test_model.py
+📁 test_results
+  📄 endpoint_test_results.json
+📁 utils
+  📄 __init__.py
+  📄 logger.py
+📄 .env
+📄 .gitignore
+📄 A.py
+📄 app.py
+📄 dir_structure.md
+📄 readme.md
+📄 requirements.txt
+📄 routes.py
+📄 test_endpoints.py
 ```

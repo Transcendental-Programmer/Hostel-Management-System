@@ -1,34 +1,33 @@
+# Web Framework
 flask
 flask-cors
-python-dotenv
+gunicorn
+uvicorn
+
+# ML & Data Science
 tensorflow
-transformers
 torch
+transformers
 scikit-learn
 pandas
 numpy
-pytest
+matplotlib
+seaborn
+
+# Translation
+deep-translator
+langdetect
+
+# Authentication & API
 python-jose
 python-multipart
 pydantic
-uvicorn
-gunicorn
-scikit-learn
-matplotlib
-seaborn
-transformers
-torch
-python-dotenv
-tf-keras
+
+
+
+# Testing
+pytest
 requests
-googletrans
-deep-translator
-langdetect
-logging
-datetime
-json
-os
-sys
-random
-seaborn
-sklearn
+
+# Environment & Utils
+python-dotenv

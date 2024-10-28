@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 *.so
 .Python
+env/
 build/
 develop-eggs/
 dist/
@@ -21,33 +22,22 @@ wheels/
 *.egg
 
 # Virtual Environment
+venv/
 myenv/
-ENV/
-env/
 
 # IDE
 .idea/
 .vscode/
-*.swp
-*.swo
-
-# OS
-.DS_Store
-Thumbs.db
 
 # Logs
 *.log
+test_results/
+models/*/test_results/
 
-# Local development settings
+# Environment variables
 .env
 .env.local
 
-# Model files
-*.h5
-*.pkl
-*.model
-
-# Data files
-*.csv
-*.xlsx
-*.xls
+# Google Cloud
+app.yaml
+credentials.json
