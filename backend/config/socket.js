@@ -1,6 +1,7 @@
 import { Server } from 'socket.io';
 import MongoDB from './MongoDB.js';
 import Messages from '../models/messages.js';
+import Chatroom from '../models/chatroom.js';
 
 class SocketService {
   constructor() {
@@ -65,6 +66,14 @@ class SocketService {
 
           const savedMessage = await Messages.create(messageData);
           console.log('Message saved to MongoDB:', savedMessage._id);
+
+          // Update chatroom with the new message's _id
+          await Chatroom.findByIdAndUpdate(
+            chatroomId,
+            { $push: { message_ids: savedMessage._id } },
+            { new: true }
+          );
+          console.log(`Message ID ${savedMessage._id} added to Chatroom ${chatroomId}`);
         } catch (error) {
           console.error('Error saving message to MongoDB:', error);
         }
