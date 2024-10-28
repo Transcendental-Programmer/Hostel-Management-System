@@ -65,9 +65,9 @@
 
 ---
 
-# Backend Components
+### **Backend Components**
 
-## API Routes
+#### **API Routes**
 1. **Authentication Routes**
    - [x] POST `/api/auth/login`
    - [x] POST `/api/auth/signup`
@@ -96,7 +96,7 @@
    - [ ] GET `/api/dashboard/performance`
    - [ ] GET `/api/dashboard/analytics`
 
-## Controllers
+#### **Controllers**
 1. **authController**
    - [x] `login()`
    - [x] `signup()`
@@ -125,7 +125,7 @@
    - [ ] `getPerformanceMetrics()`
    - [ ] `getAnalytics()`
 
-## Middleware
+#### **Middleware**
 - [ ] `authMiddleware`
 - [ ] `errorHandler`
 - [ ] `requestValidator`
@@ -134,7 +134,7 @@
 
 ---
 
-## Database Schema
+#### **Database Schema**
 - [x] Database schemas for all major entities:
   - Users (including roles like student, warden)
   - Grievances
