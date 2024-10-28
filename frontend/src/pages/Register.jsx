@@ -27,8 +27,10 @@ function Register() {
     return phoneRegex.test(phone);
   };
 
-  const validatePassword = (password) => {
-    return password.length >= 8;
+   // Updated password validation function
+   const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordRegex.test(password);
   };
 
   const handleInputChange = (field, value) => {
@@ -54,7 +56,7 @@ function Register() {
         ...prevErrors,
         password: validatePassword(value)
           ? ""
-          : "Password must be at least 8 characters",
+          : "Password must be at least 8 characters, with uppercase, lowercase, a digit, and a special character",
       }));
     } else if (field === "username") {
       setUsername(value);

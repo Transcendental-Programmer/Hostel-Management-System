@@ -5,7 +5,7 @@ import { RoutesPathName } from "./constants";
 import PrivateRoute from "./utils/PrivateRoute";
 import AccountPage from "./pages/AccountPage";
 import Chat from "./components/chat";
-
+import VerifyOTP from "./pages/VerifyOTP"
 
 
 const routes = createBrowserRouter([
@@ -29,6 +29,10 @@ const routes = createBrowserRouter([
   {
     path: RoutesPathName.CHAT_PAGE, // Define the route for the chat page
     element: <Chat />,
+  },
+  {
+    path: RoutesPathName.VERIFY_OTP,
+    element: <VerifyOTP />,
   },
 ]);
 

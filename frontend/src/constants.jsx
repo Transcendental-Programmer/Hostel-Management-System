@@ -8,5 +8,6 @@ export const Roles = {
     LOGIN_PAGE : '/login',
     DASHBOARD_PAGE : '/',
     ACCOUNT : "/account",
-    CHAT_PAGE: "/chat"
+    CHAT_PAGE: "/chat",
+    VERIFY_OTP: "/verify-otp",
 }
