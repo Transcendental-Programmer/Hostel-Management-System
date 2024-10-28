@@ -1,10 +1,15 @@
-const express = require("express");
+import express from 'express';
+import { registerUser, userLogin, verifyOtpAndRegister,createStaff,
+    updateUserDetails, getUserDetailsById
+ } from '../controller/userController.js';
+
 const userRoutes = express.Router();
 
-const { userRegister, userLogin } = require('../controller/userController');
-
-userRoutes.post("/register", userRegister);
-
+userRoutes.post("/register", registerUser);
 userRoutes.post("/login", userLogin);
+userRoutes.post("/verify-otp", verifyOtpAndRegister);
+userRoutes.post("/createStaff", createStaff);
+userRoutes.put("/updateUserDetails/:user_id", updateUserDetails);
+userRoutes.get("/getUserDetailsById/:user_id", getUserDetailsById);
 
-module.exports = userRoutes;
+export default userRoutes;

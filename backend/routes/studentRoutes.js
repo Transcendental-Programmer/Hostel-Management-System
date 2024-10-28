@@ -1,7 +1,8 @@
-const express = require('express');
-const studentRoutes = express.Router()
-const { getStudentByid } = require('../controller/studentController');
+// import express from 'express';
+// import { getStudentByid } from '../controller/studentController.js';
 
-studentRoutes.get("/student/:student_id",getStudentByid);
+// const studentRoutes = express.Router();
 
-module.exports = studentRoutes
+// studentRoutes.get("/student/:student_id", getStudentByid);
+
+// export default studentRoutes;
