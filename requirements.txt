@@ -21,3 +21,4 @@ torch
 python-dotenv
 tf-keras
 requests
+googletrans

@@ -1,0 +1,253 @@
+{
+  "timestamp": "2024-10-28T09:15:11.253769",
+  "health_check": {
+    "status_code": 200,
+    "response": {
+      "services": {
+        "intelligent_routing": "up",
+        "job_recommendation": "up",
+        "sentiment_analysis": "up",
+        "translation": "up"
+      },
+      "status": "healthy",
+      "timestamp": "2024-10-28T09:15:11.249777"
+    }
+  },
+  "translation_tests": [
+    {
+      "test_case": {
+        "user_message": "toilet me paani nahi aa rha hain",
+        "target_language": "en"
+      },
+      "status_code": 200,
+      "response": {
+        "confidence": 0.9,
+        "error": null,
+        "language_name": "English",
+        "original_message": "toilet me paani nahi aa rha hain",
+        "source_language": "hi",
+        "target_language": "en",
+        "timestamp": "2024-10-28T09:15:13.597802",
+        "translated_message": "There is no water in the toilet"
+      }
+    },
+    {
+      "test_case": {
+        "user_message": "AC not working properly",
+        "target_language": "hi"
+      },
+      "status_code": 200,
+      "response": {
+        "confidence": 0.9,
+        "error": null,
+        "language_name": "Hindi",
+        "original_message": "AC not working properly",
+        "source_language": "af",
+        "target_language": "hi",
+        "timestamp": "2024-10-28T09:15:18.165904",
+        "translated_message": "एसी ठीक से काम नहीं कर रहा है"
+      }
+    },
+    {
+      "test_case": {
+        "user_message": "ਪੱਖਾ ਕੰਮ ਨਹੀਂ ਕਰ ਰਿਹਾ",
+        "target_language": "en"
+      },
+      "status_code": 200,
+      "response": {
+        "confidence": 0.9,
+        "error": null,
+        "language_name": "English",
+        "original_message": "ਪੱਖਾ ਕੰਮ ਨਹੀਂ ਕਰ ਰਿਹਾ",
+        "source_language": "pa",
+        "target_language": "en",
+        "timestamp": "2024-10-28T09:15:21.468320",
+        "translated_message": "The fan is not working"
+      }
+    }
+  ],
+  "sentiment_analysis_tests": [
+    {
+      "test_case": {
+        "grievance_id": "G12347",
+        "text": "I am extremely frustrated with the constant power outages in my room."
+      },
+      "status_code": 200,
+      "response": {
+        "confidence": 0.98044353723526,
+        "emotional_label": "Frustration",
+        "grievance_id": "G12347",
+        "timestamp": "2024-10-28T09:15:25.244488"
+      }
+    },
+    {
+      "test_case": {
+        "grievance_id": "G12348",
+        "text": "Thank you for quickly fixing the water issue."
+      },
+      "status_code": 200,
+      "response": {
+        "confidence": 0.938926100730896,
+        "emotional_label": "Satisfaction",
+        "grievance_id": "G12348",
+        "timestamp": "2024-10-28T09:15:29.063167"
+      }
+    },
+    {
+      "test_case": {
+        "grievance_id": "G12349",
+        "text": "The AC has been making strange noises all night."
+      },
+      "status_code": 200,
+      "response": {
+        "confidence": 0.8782024383544922,
+        "emotional_label": "Frustration",
+        "grievance_id": "G12349",
+        "timestamp": "2024-10-28T09:15:32.859259"
+      }
+    }
+  ],
+  "routing_tests": [
+    {
+      "test_case": {
+        "grievance_id": "G67890",
+        "category": "carpenter",
+        "submission_timestamp": "2024-10-28T04:24:24Z",
+        "student_room_no": "224",
+        "hostel_name": "ivh",
+        "floor_number": 1,
+        "current_staff_status": [
+          {
+            "staff_id": "S94032",
+            "department": "carpenter",
+            "current_workload": 2,
+            "availability_status": "Unavailable",
+            "past_resolution_rate": 0.97
+          },
+          {
+            "staff_id": "S92059",
+            "department": "carpenter",
+            "current_workload": 4,
+            "availability_status": "Available",
+            "past_resolution_rate": 0.99
+          }
+        ],
+        "floor_metrics": {
+          "number_of_requests": 30,
+          "total_delays": 3
+        },
+        "availability_data": {
+          "staff_availability": [
+            {
+              "staff_id": "S94032",
+              "time_slot": "12:00-16:00",
+              "availability_status": "Unavailable"
+            }
+          ],
+          "student_availability": [
+            {
+              "student_id": "STU200",
+              "time_slot": "12:00-16:00",
+              "availability_status": "Available"
+            }
+          ]
+        }
+      },
+      "status_code": 200,
+      "response": {
+        "assigned_staff_id": "S94032",
+        "assignment_timestamp": "2024-10-28T09:15:36Z",
+        "confidence_score": 0.0,
+        "estimated_resolution_time": null,
+        "grievance_id": "G67890"
+      }
+    },
+    {
+      "test_case": {
+        "grievance_id": "G67891",
+        "category": "internet",
+        "submission_timestamp": "2024-10-28T04:22:24Z",
+        "student_room_no": "461",
+        "hostel_name": "bh2",
+        "floor_number": 0,
+        "current_staff_status": [
+          {
+            "staff_id": "S63515",
+            "department": "internet",
+            "current_workload": 3,
+            "availability_status": "Available",
+            "past_resolution_rate": 0.99
+          }
+        ],
+        "floor_metrics": {
+          "number_of_requests": 15,
+          "total_delays": 0
+        }
+      },
+      "status_code": 200,
+      "response": {
+        "assigned_staff_id": "S63515",
+        "assignment_timestamp": "2024-10-28T09:15:39Z",
+        "confidence_score": 0.0,
+        "estimated_resolution_time": null,
+        "grievance_id": "G67891"
+      }
+    }
+  ],
+  "job_recommendation_tests": [
+    {
+      "test_case": {
+        "job_id": "J60000",
+        "type": "IT",
+        "description": "IT issue in room 358.",
+        "urgency_level": "Low",
+        "location": {
+          "hostel_name": "Hostel B",
+          "floor_number": 3,
+          "room_number": "358"
+        },
+        "workers": [
+          {
+            "worker_id": "W97053",
+            "department": "IT",
+            "current_workload": 3,
+            "availability_status": "Available",
+            "job_success_rate": 0.95,
+            "current_location": {
+              "hostel_name": "Hostel A",
+              "floor_number": 3,
+              "room_number": "468"
+            }
+          },
+          {
+            "worker_id": "W97054",
+            "department": "IT",
+            "current_workload": 1,
+            "availability_status": "Available",
+            "job_success_rate": 0.92,
+            "current_location": {
+              "hostel_name": "Hostel B",
+              "floor_number": 3,
+              "room_number": "360"
+            }
+          }
+        ]
+      },
+      "status_code": 200,
+      "response": {
+        "alternative_workers": [
+          {
+            "confidence_score": 0.92,
+            "current_workload": 1,
+            "worker_id": "W97054"
+          }
+        ],
+        "confidence_score": 0.95,
+        "job_id": "J60000",
+        "predicted_completion_time": "2024-10-28T21:48:42Z",
+        "recommendation_timestamp": "2024-10-28T09:15:42Z",
+        "recommended_worker_id": "W97053"
+      }
+    }
+  ]
+}

@@ -1,0 +1,452 @@
+{
+  "test_timestamp": "2024-10-28T08:22:11.402211",
+  "translation_tests": {
+    "total": 25,
+    "successful": 25,
+    "good_quality": 12,
+    "detailed_results": [
+      {
+        "original_message": "toilet me paani nahi aa rha hain",
+        "translated_message": "There is no water in the toilet",
+        "source_language": "hi",
+        "target_language": "en",
+        "language_name": "English",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:24.283525",
+        "error": null,
+        "expected_contains": [
+          "toilet",
+          "water",
+          "not",
+          "coming"
+        ],
+        "translation_quality": "Check needed"
+      },
+      {
+        "original_message": "AC ka temperature control kharab ho gaya hai",
+        "translated_message": "The AC's temperature control has gone bad",
+        "source_language": "hi",
+        "target_language": "en",
+        "language_name": "English",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:25.616462",
+        "error": null,
+        "expected_contains": [
+          "AC",
+          "temperature",
+          "control",
+          "broken"
+        ],
+        "translation_quality": "Check needed"
+      },
+      {
+        "original_message": "fan ki speed kam ho gayi hai",
+        "translated_message": "the fan speed has decreased",
+        "source_language": "hi",
+        "target_language": "en",
+        "language_name": "English",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:27.322432",
+        "error": null,
+        "expected_contains": [
+          "fan",
+          "speed",
+          "reduced"
+        ],
+        "translation_quality": "Check needed"
+      },
+      {
+        "original_message": "The water heater is not working",
+        "translated_message": "वॉटर हीटर काम नहीं कर रहा है",
+        "source_language": "en",
+        "target_language": "hi",
+        "language_name": "Hindi",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:29.078712",
+        "error": null,
+        "expected_contains": [
+          "पानी",
+          "हीटर",
+          "काम"
+        ],
+        "translation_quality": "Check needed"
+      },
+      {
+        "original_message": "Light bulb needs to be replaced",
+        "translated_message": "लाइट बल्ब को बदलने की जरूरत है",
+        "source_language": "en",
+        "target_language": "hi",
+        "language_name": "Hindi",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:30.443182",
+        "error": null,
+        "expected_contains": [
+          "लाइट",
+          "बल्ब",
+          "बदलना"
+        ],
+        "translation_quality": "Check needed"
+      },
+      {
+        "original_message": "ਪੱਖਾ ਕੰਮ ਨਹੀਂ ਕਰ ਰਿਹਾ",
+        "translated_message": "The fan is not working",
+        "source_language": "pa",
+        "target_language": "en",
+        "language_name": "English",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:31.906421",
+        "error": null,
+        "expected_contains": [
+          "fan",
+          "not",
+          "working"
+        ],
+        "translation_quality": "Good"
+      },
+      {
+        "original_message": "The sink is clogged",
+        "translated_message": "ਇਹ ਸਿੰਕ ਬੰਦ ਹੈ",
+        "source_language": "en",
+        "target_language": "pa",
+        "language_name": "Punjabi",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:33.219467",
+        "error": null,
+        "expected_contains": [
+          "ਸਿੰਕ",
+          "ਬੰਦ"
+        ],
+        "translation_quality": "Good"
+      },
+      {
+        "original_message": "বাথরুমে জল নেই",
+        "translated_message": "There is no water in the bathroom",
+        "source_language": "bn",
+        "target_language": "en",
+        "language_name": "English",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:34.677501",
+        "error": null,
+        "expected_contains": [
+          "bathroom",
+          "no",
+          "water"
+        ],
+        "translation_quality": "Good"
+      },
+      {
+        "original_message": "Electricity is not working",
+        "translated_message": "বিদ্যুৎ কাজ করছে না",
+        "source_language": "en",
+        "target_language": "bn",
+        "language_name": "Bengali",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:36.352254",
+        "error": null,
+        "expected_contains": [
+          "বিদ্যুৎ",
+          "কাজ"
+        ],
+        "translation_quality": "Good"
+      },
+      {
+        "original_message": "వాష్ బేసిన్ లో నీరు పోవడం లేదు",
+        "translated_message": "The wash basin is not draining",
+        "source_language": "te",
+        "target_language": "en",
+        "language_name": "English",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:37.799256",
+        "error": null,
+        "expected_contains": [
+          "washbasin",
+          "water",
+          "not",
+          "draining"
+        ],
+        "translation_quality": "Check needed"
+      },
+      {
+        "original_message": "Door lock is broken",
+        "translated_message": "డోర్ లాక్ పగిలింది",
+        "source_language": "nl",
+        "target_language": "te",
+        "language_name": "Telugu",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:41.792885",
+        "error": null,
+        "expected_contains": [
+          "తలుపు",
+          "తాళం",
+          "పగిలిపోయింది"
+        ],
+        "translation_quality": "Check needed"
+      },
+      {
+        "original_message": "குளியலறையில் தண்ணீர் கசிகிறது",
+        "translated_message": "The bathroom is leaking",
+        "source_language": "ta",
+        "target_language": "en",
+        "language_name": "English",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:43.430409",
+        "error": null,
+        "expected_contains": [
+          "bathroom",
+          "water",
+          "leaking"
+        ],
+        "translation_quality": "Check needed"
+      },
+      {
+        "original_message": "Window is stuck",
+        "translated_message": "ஜன்னல் ஒட்டிக்கொண்டது",
+        "source_language": "en",
+        "target_language": "ta",
+        "language_name": "Tamil",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:44.834890",
+        "error": null,
+        "expected_contains": [
+          "ஜன்னல்",
+          "சிக்கி"
+        ],
+        "translation_quality": "Check needed"
+      },
+      {
+        "original_message": "room me light nahi chal rahi hai",
+        "translated_message": "the light is not working in the room",
+        "source_language": "hi",
+        "target_language": "en",
+        "language_name": "English",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:46.485422",
+        "error": null,
+        "expected_contains": [
+          "room",
+          "light",
+          "not",
+          "working"
+        ],
+        "translation_quality": "Good"
+      },
+      {
+        "original_message": "bathroom ka tap leak ho raha hai",
+        "translated_message": "The bathroom tap is leaking",
+        "source_language": "hi",
+        "target_language": "en",
+        "language_name": "English",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:48.863942",
+        "error": null,
+        "expected_contains": [
+          "bathroom",
+          "tap",
+          "leaking"
+        ],
+        "translation_quality": "Good"
+      },
+      {
+        "original_message": "AC remote not working",
+        "translated_message": "एसी रिमोट काम नहीं कर रहा है",
+        "source_language": "af",
+        "target_language": "hi",
+        "language_name": "Hindi",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:50.191489",
+        "error": null,
+        "expected_contains": [
+          "एसी",
+          "रिमोट",
+          "काम"
+        ],
+        "translation_quality": "Good"
+      },
+      {
+        "original_message": "ਬਾਥਰੂਮ ਦਾ ਸ਼ਾਵਰ ਖਰਾਬ ਹੈ",
+        "translated_message": "The shower in the bathroom is broken",
+        "source_language": "pa",
+        "target_language": "en",
+        "language_name": "English",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:51.667261",
+        "error": null,
+        "expected_contains": [
+          "bathroom",
+          "shower",
+          "broken"
+        ],
+        "translation_quality": "Good"
+      },
+      {
+        "original_message": "Geyser is not heating properly",
+        "translated_message": "ਗੀਜ਼ਰ ਠੀਕ ਤਰ੍ਹਾਂ ਗਰਮ ਨਹੀਂ ਹੋ ਰਿਹਾ ਹੈ",
+        "source_language": "en",
+        "target_language": "pa",
+        "language_name": "Punjabi",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:53.018953",
+        "error": null,
+        "expected_contains": [
+          "ਗੀਜ਼ਰ",
+          "ਗਰਮ"
+        ],
+        "translation_quality": "Good"
+      },
+      {
+        "original_message": "এসি থেকে পানি পড়ছে",
+        "translated_message": "AC is leaking water",
+        "source_language": "bn",
+        "target_language": "en",
+        "language_name": "English",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:54.527996",
+        "error": null,
+        "expected_contains": [
+          "AC",
+          "water",
+          "dripping"
+        ],
+        "translation_quality": "Check needed"
+      },
+      {
+        "original_message": "Ceiling fan making noise",
+        "translated_message": "সিলিং ফ্যানের আওয়াজ",
+        "source_language": "tl",
+        "target_language": "bn",
+        "language_name": "Bengali",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:55.890860",
+        "error": null,
+        "expected_contains": [
+          "সিলিং",
+          "ফ্যান",
+          "আওয়াজ"
+        ],
+        "translation_quality": "Good"
+      },
+      {
+        "original_message": "కిటికీ తెరవడం లేదు",
+        "translated_message": "The window won't open",
+        "source_language": "te",
+        "target_language": "en",
+        "language_name": "English",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:57.289322",
+        "error": null,
+        "expected_contains": [
+          "window",
+          "not",
+          "opening"
+        ],
+        "translation_quality": "Check needed"
+      },
+      {
+        "original_message": "Bed frame is broken",
+        "translated_message": "బెడ్ ఫ్రేమ్ విరిగిపోయింది",
+        "source_language": "da",
+        "target_language": "te",
+        "language_name": "Telugu",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:21:59.077242",
+        "error": null,
+        "expected_contains": [
+          "మంచం",
+          "ఫ్రేమ్",
+          "విరిగింది"
+        ],
+        "translation_quality": "Check needed"
+      },
+      {
+        "original_message": "மின்விசிறி வேகம் குறைந்துள்ளது",
+        "translated_message": "Fan speed is reduced",
+        "source_language": "ta",
+        "target_language": "en",
+        "language_name": "English",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:22:00.546313",
+        "error": null,
+        "expected_contains": [
+          "fan",
+          "speed",
+          "reduced"
+        ],
+        "translation_quality": "Good"
+      },
+      {
+        "original_message": "TV not turning on",
+        "translated_message": "டிவி ஆன் ஆகவில்லை",
+        "source_language": "en",
+        "target_language": "ta",
+        "language_name": "Tamil",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:22:01.869379",
+        "error": null,
+        "expected_contains": [
+          "டிவி",
+          "ஆன்",
+          "ஆகவில்லை"
+        ],
+        "translation_quality": "Good"
+      },
+      {
+        "original_message": "balcony ka darwaza band ho gaya hai",
+        "translated_message": "the balcony door is closed",
+        "source_language": "hi",
+        "target_language": "en",
+        "language_name": "English",
+        "confidence": 0.9,
+        "timestamp": "2024-10-28T08:22:04.373322",
+        "error": null,
+        "expected_contains": [
+          "balcony",
+          "door",
+          "stuck"
+        ],
+        "translation_quality": "Check needed"
+      }
+    ]
+  },
+  "detection_tests": {
+    "total": 6,
+    "successful": 6,
+    "detailed_results": [
+      {
+        "text": "This is English text",
+        "detected_language": "en",
+        "expected_language": "en",
+        "is_correct": true
+      },
+      {
+        "text": "यह हिंदी टेक्स्ट है",
+        "detected_language": "hi",
+        "expected_language": "hi",
+        "is_correct": true
+      },
+      {
+        "text": "ਇਹ ਪੰਜਾਬੀ ਟੈਕਸਟ ਹੈ",
+        "detected_language": "pa",
+        "expected_language": "pa",
+        "is_correct": true
+      },
+      {
+        "text": "এটি বাংলা টেক্সট",
+        "detected_language": "bn",
+        "expected_language": "bn",
+        "is_correct": true
+      },
+      {
+        "text": "ఇది తెలుగు టెక్స్ట్",
+        "detected_language": "te",
+        "expected_language": "te",
+        "is_correct": true
+      },
+      {
+        "text": "இது தமிழ் உரை",
+        "detected_language": "ta",
+        "expected_language": "ta",
+        "is_correct": true
+      }
+    ]
+  }
+}

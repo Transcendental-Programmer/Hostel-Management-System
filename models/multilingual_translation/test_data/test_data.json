@@ -1,7 +1,156 @@
 {
-    "data": [],
-    "metadata": {
-        "version": "1.0",
-        "created_at": "2024-03-20"
+  "translation_tests": [
+    {
+      "user_message": "toilet me paani nahi aa rha hain",
+      "target_language": "en",
+      "expected_contains": ["toilet", "water", "not", "coming"]
+    },
+    {
+      "user_message": "AC ka temperature control kharab ho gaya hai",
+      "target_language": "en",
+      "expected_contains": ["AC", "temperature", "control", "broken"]
+    },
+    {
+      "user_message": "fan ki speed kam ho gayi hai",
+      "target_language": "en",
+      "expected_contains": ["fan", "speed", "reduced"]
+    },
+    {
+      "user_message": "The water heater is not working",
+      "target_language": "hi",
+      "expected_contains": ["पानी", "हीटर", "काम"]
+    },
+    {
+      "user_message": "Light bulb needs to be replaced",
+      "target_language": "hi",
+      "expected_contains": ["लाइट", "बल्ब", "बदलना"]
+    },
+    {
+      "user_message": "ਪੱਖਾ ਕੰਮ ਨਹੀਂ ਕਰ ਰਿਹਾ",
+      "target_language": "en",
+      "expected_contains": ["fan", "not", "working"]
+    },
+    {
+      "user_message": "The sink is clogged",
+      "target_language": "pa",
+      "expected_contains": ["ਸਿੰਕ", "ਬੰਦ"]
+    },
+    {
+      "user_message": "বাথরুমে জল নেই",
+      "target_language": "en",
+      "expected_contains": ["bathroom", "no", "water"]
+    },
+    {
+      "user_message": "Electricity is not working",
+      "target_language": "bn",
+      "expected_contains": ["বিদ্যুৎ", "কাজ"]
+    },
+    {
+      "user_message": "వాష్ బేసిన్ లో నీరు పోవడం లేదు",
+      "target_language": "en",
+      "expected_contains": ["washbasin", "water", "not", "draining"]
+    },
+    {
+      "user_message": "Door lock is broken",
+      "target_language": "te",
+      "expected_contains": ["తలుపు", "తాళం", "పగిలిపోయింది"]
+    },
+    {
+      "user_message": "குளியலறையில் தண்ணீர் கசிகிறது",
+      "target_language": "en",
+      "expected_contains": ["bathroom", "water", "leaking"]
+    },
+    {
+      "user_message": "Window is stuck",
+      "target_language": "ta",
+      "expected_contains": ["ஜன்னல்", "சிக்கி"]
+    },
+    {
+      "user_message": "room me light nahi chal rahi hai",
+      "target_language": "en",
+      "expected_contains": ["room", "light", "not", "working"]
+    },
+    {
+      "user_message": "bathroom ka tap leak ho raha hai",
+      "target_language": "en",
+      "expected_contains": ["bathroom", "tap", "leaking"]
+    },
+    {
+      "user_message": "AC remote not working",
+      "target_language": "hi",
+      "expected_contains": ["एसी", "रिमोट", "काम"]
+    },
+    {
+      "user_message": "ਬਾਥਰੂਮ ਦਾ ਸ਼ਾਵਰ ਖਰਾਬ ਹੈ",
+      "target_language": "en",
+      "expected_contains": ["bathroom", "shower", "broken"]
+    },
+    {
+      "user_message": "Geyser is not heating properly",
+      "target_language": "pa",
+      "expected_contains": ["ਗੀਜ਼ਰ", "ਗਰਮ"]
+    },
+    {
+      "user_message": "এসি থেকে পানি পড়ছে",
+      "target_language": "en",
+      "expected_contains": ["AC", "water", "dripping"]
+    },
+    {
+      "user_message": "Ceiling fan making noise",
+      "target_language": "bn",
+      "expected_contains": ["সিলিং", "ফ্যান", "আওয়াজ"]
+    },
+    {
+      "user_message": "కిటికీ తెరవడం లేదు",
+      "target_language": "en",
+      "expected_contains": ["window", "not", "opening"]
+    },
+    {
+      "user_message": "Bed frame is broken",
+      "target_language": "te",
+      "expected_contains": ["మంచం", "ఫ్రేమ్", "విరిగింది"]
+    },
+    {
+      "user_message": "மின்விசிறி வேகம் குறைந்துள்ளது",
+      "target_language": "en",
+      "expected_contains": ["fan", "speed", "reduced"]
+    },
+    {
+      "user_message": "TV not turning on",
+      "target_language": "ta",
+      "expected_contains": ["டிவி", "ஆன்", "ஆகவில்லை"]
+    },
+    {
+      "user_message": "balcony ka darwaza band ho gaya hai",
+      "target_language": "en",
+      "expected_contains": ["balcony", "door", "stuck"]
     }
+  ],
+  "language_detection_tests": [
+    {
+      "text": "This is English text",
+      "expected_language": "en"
+    },
+    {
+      "text": "यह हिंदी टेक्स्ट है",
+      "expected_language": "hi"
+    },
+    {
+      "text": "ਇਹ ਪੰਜਾਬੀ ਟੈਕਸਟ ਹੈ",
+      "expected_language": "pa"
+    },
+    {
+      "text": "এটি বাংলা টেক্সট",
+      "expected_language": "bn"
+    },
+    {
+      "text": "ఇది తెలుగు టెక్స్ట్",
+      "expected_language": "te"
+    },
+    {
+      "text": "இது தமிழ் உரை",
+      "expected_language": "ta"
+    }
+  ]
 }
+
