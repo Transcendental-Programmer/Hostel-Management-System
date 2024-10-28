@@ -17,7 +17,7 @@ const chatroomSchema = new mongoose.Schema({
     default: null,
   },
   message_ids: [{
-    type: mongoose.Schema.Types.UUID,
+    type: mongoose.Schema.Types.ObjectId, // Changed to ObjectId
     ref: 'Message',
   }],
 }, {
