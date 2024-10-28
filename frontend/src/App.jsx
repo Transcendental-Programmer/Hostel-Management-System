@@ -5,6 +5,8 @@ import { RoutesPathName } from "./constants";
 import PrivateRoute from "./utils/PrivateRoute";
 import AccountPage from "./pages/AccountPage";
 
+
+
 const routes = createBrowserRouter([
   {
     path: RoutesPathName.SIGNUP_PAGE,

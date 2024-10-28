@@ -2,6 +2,11 @@ import { useNavigate, Link } from "react-router-dom";
 import { Roles } from "../constants";
 import { useState } from "react";
 
+// 28/10
+
+import { toast } from "react-toastify";
+
+
 function Register() {
   const navigate = useNavigate()
   const [fullname, setFullname] = useState("");
@@ -64,7 +69,9 @@ function Register() {
 
   
     if (!validateEmail(email) || !validatePhone(phone) || !validatePassword(password)) {
-      alert("Please fix the errors before submitting the form");
+      // alert("Please fix the errors before submitting the form");
+
+      toast.error("Please fix the errors before submitting the form");
       return;
     }
 
@@ -106,10 +113,10 @@ function Register() {
       const data = await response.json();
       console.log(data);
       if (data.jwtToken) {
-        alert("User registered successfully,login to proceed");
+        toast.error("User registered successfully,login to proceed");
         navigate('/login')
       } else {
-        alert("user already exists");
+        toast.error("user already exists");
       }
     } catch (err) {
       console.log(err.message);
