@@ -22,3 +22,13 @@ python-dotenv
 tf-keras
 requests
 googletrans
+deep-translator
+langdetect
+logging
+datetime
+json
+os
+sys
+random
+seaborn
+sklearn
