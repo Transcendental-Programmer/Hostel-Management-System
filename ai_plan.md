@@ -599,7 +599,7 @@ The Multilingual Translation feature aims to facilitate seamless communication b
         "location": "Toilet"
       },
       "bot_response": "There is no water coming in the toilet.",
-      "source_language": "Hindi",
+      "detected_language": "Hindi",
       "target_language": "English"
     }
     ```
@@ -621,7 +621,6 @@ The Multilingual Translation feature aims to facilitate seamless communication b
   ```json
   {
     "user_message": "toilet me paani nahi aa rha hain",
-    "source_language": "Hindi",
     "target_language": "English"
   }
   ```

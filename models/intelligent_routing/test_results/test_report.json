@@ -1,0 +1,67 @@
+{
+  "metrics": {
+    "accuracy": 0.993375,
+    "precision": 0.960075329566855,
+    "recall": 1.0,
+    "f1": 0.9796310530361261
+  },
+  "specific_case_results": [
+    {
+      "case": "G_TEST_1",
+      "prediction": {
+        "grievance_id": "G_TEST_1",
+        "assigned_staff_id": "S_TEST_1",
+        "assignment_timestamp": "2024-10-28T04:40:23Z",
+        "expected_resolution_time": "1 hour",
+        "floor_number": 1,
+        "hostel_name": "bh1",
+        "student_room_no": "101"
+      },
+      "analysis": {
+        "assigned_staff": "S_TEST_1",
+        "response_time": 1.0,
+        "same_floor_assignment": true
+      }
+    },
+    {
+      "case": "G_TEST_2",
+      "prediction": {
+        "grievance_id": "G_TEST_2",
+        "assigned_staff_id": "S_TEST_2",
+        "assignment_timestamp": "2024-10-28T04:40:23Z",
+        "expected_resolution_time": "1 hour",
+        "floor_number": 2,
+        "hostel_name": "bh2",
+        "student_room_no": "201"
+      },
+      "analysis": {
+        "assigned_staff": "S_TEST_2",
+        "response_time": 1.0,
+        "same_floor_assignment": false
+      }
+    },
+    {
+      "case": "G_TEST_3",
+      "prediction": {
+        "grievance_id": "G_TEST_3",
+        "assigned_staff_id": "S_TEST_3B",
+        "assignment_timestamp": "2024-10-28T04:40:23Z",
+        "expected_resolution_time": "1 hour",
+        "floor_number": 3,
+        "hostel_name": "bh3",
+        "student_room_no": "301"
+      },
+      "analysis": {
+        "assigned_staff": "S_TEST_3B",
+        "response_time": 1.0,
+        "same_floor_assignment": false
+      }
+    }
+  ],
+  "test_timestamp": "2024-10-28T04:40:23Z",
+  "detailed_analysis": {
+    "false_positives": 106,
+    "false_negatives": 0,
+    "average_prediction_confidence": 0.16552230715751648
+  }
+}

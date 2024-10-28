@@ -1,7 +1,773 @@
-{
-    "data": [],
-    "metadata": {
-        "version": "1.0",
-        "created_at": "2024-03-20"
+[
+    {
+        "grievance_id": "G12347",
+        "text": "I am extremely frustrated with the constant power outages in my room.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12348",
+        "text": "Thank you for resolving my issue so quickly! Great service!",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12349",
+        "text": "Why hasn't the maintenance team fixed the leaking roof yet? This is unacceptable!",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12350",
+        "text": "The water pressure is slightly low today.",
+        "expected_emotion": "Indifference"
+    },
+    {
+        "grievance_id": "G12351",
+        "text": "The geyser in the toilet is not working properly.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12352",
+        "text": "I am happy with the new cleaning schedule.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12353",
+        "text": "The food quality in the mess has improved significantly.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12354",
+        "text": "There is no AC in my room, and it's very uncomfortable.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12355",
+        "text": "The heater is not available in the hostel, and it's freezing.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12356",
+        "text": "The new warden is very approachable and helpful.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12357",
+        "text": "The internet speed is too slow for my online classes.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12358",
+        "text": "The library hours have been extended, which is great!",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12359",
+        "text": "The water cooler is not dispensing cold water.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12360",
+        "text": "The maintenance team fixed the broken window quickly.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12361",
+        "text": "The noise from the construction is unbearable.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12362",
+        "text": "The new gym equipment is fantastic!",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12363",
+        "text": "The laundry service is often delayed.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12364",
+        "text": "The hostel garden is well-maintained and beautiful.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12365",
+        "text": "The security staff is very vigilant and polite.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12366",
+        "text": "The room cleaning service is inconsistent.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12367",
+        "text": "The study room is too crowded during exam times.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12368",
+        "text": "The hostel management is very responsive to our needs.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12369",
+        "text": "The fire alarm went off without any reason.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12370",
+        "text": "The new recreational area is a great addition.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12371",
+        "text": "The water supply is often interrupted.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12372",
+        "text": "The hostel events are well-organized and fun.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12373",
+        "text": "The room furniture is old and needs replacement.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12374",
+        "text": "The hostel staff is very courteous and helpful.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12375",
+        "text": "The parking area is too small for all residents.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12376",
+        "text": "The hostel is very clean and well-maintained.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12377",
+        "text": "The room keys are often misplaced by the staff.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12378",
+        "text": "The hostel location is very convenient for commuting.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12379",
+        "text": "The hostel rules are too strict and inflexible.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12380",
+        "text": "The hostel provides a very safe environment.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12381",
+        "text": "The room walls are too thin, and noise is a problem.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12382",
+        "text": "The hostel has a very friendly community.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12383",
+        "text": "The hostel Wi-Fi is often down during peak hours.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12384",
+        "text": "The hostel provides excellent study facilities.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12385",
+        "text": "The hostel's emergency response is very slow.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12386",
+        "text": "The hostel has a great view of the city.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12387",
+        "text": "The hostel's maintenance requests take too long to process.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12388",
+        "text": "The hostel's cultural events are very enriching.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12389",
+        "text": "The hostel's dining area is too small for all residents.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12390",
+        "text": "The hostel's sports facilities are top-notch.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12391",
+        "text": "The hostel's laundry machines are often out of order.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12392",
+        "text": "The hostel's location is very peaceful and quiet.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12393",
+        "text": "The hostel's fire drills are not conducted regularly.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12394",
+        "text": "The hostel's common areas are very well-decorated.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12395",
+        "text": "The hostel's check-in process is very cumbersome.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12396",
+        "text": "The hostel's staff is very efficient and friendly.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12397",
+        "text": "The hostel's maintenance team is not responsive.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12398",
+        "text": "The hostel's environment is very conducive to studying.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12399",
+        "text": "The hostel's food menu lacks variety.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12400",
+        "text": "The hostel's management is very proactive.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12401",
+        "text": "The hostel's water supply is often contaminated.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12402",
+        "text": "The hostel's cultural diversity is very enriching.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12403",
+        "text": "The hostel's room allocation process is very slow.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12404",
+        "text": "The hostel's community events are very engaging.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12405",
+        "text": "The hostel's maintenance requests are often ignored.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12406",
+        "text": "The hostel's location is very convenient for shopping.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12407",
+        "text": "The hostel's room cleaning is not thorough.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12408",
+        "text": "The hostel's staff is very attentive to our needs.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12409",
+        "text": "The hostel's Wi-Fi is often unreliable.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12410",
+        "text": "The hostel's facilities are very modern and up-to-date.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12411",
+        "text": "The hostel's maintenance team is very slow to respond.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12412",
+        "text": "The hostel's environment is very welcoming.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12413",
+        "text": "The hostel's dining area is often overcrowded.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12414",
+        "text": "The hostel's recreational facilities are excellent.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12415",
+        "text": "The hostel's laundry service is often delayed.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12416",
+        "text": "The hostel's location is very scenic.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12417",
+        "text": "The hostel's fire safety measures are inadequate.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12418",
+        "text": "The hostel's common areas are very spacious.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12419",
+        "text": "The hostel's check-out process is very tedious.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12420",
+        "text": "The hostel's staff is very professional.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12421",
+        "text": "The hostel's maintenance requests are often mishandled.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12422",
+        "text": "The hostel's environment is very conducive to relaxation.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12423",
+        "text": "The hostel's food quality is inconsistent.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12424",
+        "text": "The hostel's management is very supportive.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12425",
+        "text": "The hostel's water supply is often interrupted.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12426",
+        "text": "The hostel's cultural events are very inclusive.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12427",
+        "text": "The hostel's room allocation is often delayed.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12428",
+        "text": "The hostel's community is very vibrant.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12429",
+        "text": "The hostel's maintenance team is not efficient.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12430",
+        "text": "The hostel's location is very convenient for public transport.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12431",
+        "text": "The hostel's room cleaning is not up to standard.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12432",
+        "text": "The hostel's staff is very accommodating.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12433",
+        "text": "The hostel's Wi-Fi is often down.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12434",
+        "text": "The hostel's facilities are very well-maintained.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12435",
+        "text": "The hostel's maintenance team is very slow.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12436",
+        "text": "The hostel's environment is very peaceful.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12437",
+        "text": "The hostel's dining area is too small.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12438",
+        "text": "The hostel's recreational facilities are very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12439",
+        "text": "The hostel's laundry service is often late.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12440",
+        "text": "The hostel's location is very beautiful.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12441",
+        "text": "The hostel's fire safety is not adequate.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12442",
+        "text": "The hostel's common areas are very nice.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12443",
+        "text": "The hostel's check-out process is very slow.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12444",
+        "text": "The hostel's staff is very helpful.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12445",
+        "text": "The hostel's maintenance requests are often ignored.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12446",
+        "text": "The hostel's environment is very relaxing.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12447",
+        "text": "The hostel's food is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12448",
+        "text": "The hostel's management is very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12449",
+        "text": "The hostel's water supply is not reliable.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12450",
+        "text": "The hostel's cultural events are very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12451",
+        "text": "The hostel's room allocation is not fast.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12452",
+        "text": "The hostel's community is very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12453",
+        "text": "The hostel's maintenance team is not fast.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12454",
+        "text": "The hostel's location is very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12455",
+        "text": "The hostel's room cleaning is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12456",
+        "text": "The hostel's staff is very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12457",
+        "text": "The hostel's Wi-Fi is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12458",
+        "text": "The hostel's facilities are very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12459",
+        "text": "The hostel's maintenance team is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12460",
+        "text": "The hostel's environment is very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12461",
+        "text": "The hostel's dining area is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12462",
+        "text": "The hostel's recreational facilities are very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12463",
+        "text": "The hostel's laundry service is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12464",
+        "text": "The hostel's location is very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12465",
+        "text": "The hostel's fire safety is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12466",
+        "text": "The hostel's common areas are very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12467",
+        "text": "The hostel's check-out process is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12468",
+        "text": "The hostel's staff is very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12469",
+        "text": "The hostel's maintenance requests are not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12470",
+        "text": "The hostel's environment is very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12471",
+        "text": "The hostel's food is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12472",
+        "text": "The hostel's management is very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12473",
+        "text": "The hostel's water supply is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12474",
+        "text": "The hostel's cultural events are very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12475",
+        "text": "The hostel's room allocation is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12476",
+        "text": "The hostel's community is very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12477",
+        "text": "The hostel's maintenance team is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12478",
+        "text": "The hostel's location is very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12479",
+        "text": "The hostel's room cleaning is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12480",
+        "text": "The hostel's staff is very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12481",
+        "text": "The hostel's Wi-Fi is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12482",
+        "text": "The hostel's facilities are very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12483",
+        "text": "The hostel's maintenance team is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12484",
+        "text": "The hostel's environment is very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12485",
+        "text": "The hostel's dining area is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12486",
+        "text": "The hostel's recreational facilities are very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12487",
+        "text": "The hostel's laundry service is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12488",
+        "text": "The hostel's location is very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12489",
+        "text": "The hostel's fire safety is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12490",
+        "text": "The hostel's common areas are very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12491",
+        "text": "The hostel's check-out process is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12492",
+        "text": "The hostel's staff is very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12493",
+        "text": "The hostel's maintenance requests are not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12494",
+        "text": "The hostel's environment is very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12495",
+        "text": "The hostel's food is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12496",
+        "text": "The hostel's management is very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12497",
+        "text": "The hostel's water supply is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12498",
+        "text": "The hostel's cultural events are very good.",
+        "expected_emotion": "Satisfaction"
+    },
+    {
+        "grievance_id": "G12499",
+        "text": "The hostel's room allocation is not good.",
+        "expected_emotion": "Frustration"
+    },
+    {
+        "grievance_id": "G12500",
+        "text": "The hostel's community is very good.",
+        "expected_emotion": "Satisfaction"
     }
-}
+]
+

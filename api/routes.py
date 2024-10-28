@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from utils.logger import get_logger
 from models.intelligent_routing.model import IntelligentRoutingModel
+from models.sentiment_analysis.model import SentimentAnalysisModel
 
 # Create logger instance
 logger = get_logger(__name__)
@@ -34,11 +35,12 @@ def register_routes(app):
 
     # Sentiment Analysis routes
     @app.route(app.config['SENTIMENT_ANALYSIS_ENDPOINT'], methods=['POST'])
-    def sentiment_analysis():
+    def analyze_sentiment():
         try:
             data = request.get_json()
-            # Implementation will be added later
-            return jsonify({'message': 'Sentiment analysis endpoint'}), 200
+            result = sentiment_model.predict(data)
+            return jsonify(result), 200
+            
         except Exception as e:
             logger.error(f"Error in sentiment analysis: {str(e)}")
             return jsonify({'error': str(e)}), 500

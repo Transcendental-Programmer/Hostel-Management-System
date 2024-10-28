@@ -1,6 +1,11 @@
 import random
 import json
 from datetime import datetime, timedelta
+import logging
+import os
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class IntelligentRoutingDataGenerator:
     def __init__(self):
@@ -12,15 +17,18 @@ class IntelligentRoutingDataGenerator:
             "08:00-12:00", "12:00-16:00", "16:00-20:00"
         ]
 
-    def generate_staff_member(self, staff_id):
-        category = random.choice(self.categories)
-        return {
-            "staff_id": f"S{staff_id}",
-            "department": category,
-            "current_workload": random.randint(0, 5),
-            "availability_status": random.choice(self.availability_statuses),
-            "past_resolution_rate": round(random.uniform(0.85, 0.99), 2)
-        }
+    def generate_staff_members(self, category):
+        """Generate 2 staff members for a specific category"""
+        return [
+            {
+                "staff_id": f"S{random.randint(10000, 99999)}",
+                "department": category,  # Ensure staff department matches grievance category
+                "current_workload": random.randint(0, 5),
+                "availability_status": random.choice(self.availability_statuses),
+                "past_resolution_rate": round(random.uniform(0.85, 0.99), 2)
+            }
+            for _ in range(2)
+        ]
 
     def generate_availability_data(self, staff_id, student_id):
         return {
@@ -42,8 +50,11 @@ class IntelligentRoutingDataGenerator:
 
     def generate_sample(self, index):
         grievance_id = f"G{67890 + index}"
-        staff_id = f"S{67890 + index}"
         student_id = f"STU{200 + index}"
+        
+        # First select category, then generate matching staff
+        selected_category = random.choice(self.categories)
+        staff_members = self.generate_staff_members(selected_category)
         
         # Generate base timestamp
         base_time = datetime.utcnow()
@@ -52,19 +63,20 @@ class IntelligentRoutingDataGenerator:
         # Generate sample data
         sample = {
             "grievance_id": grievance_id,
-            "category": random.choice(self.categories),
+            "category": selected_category,
             "submission_timestamp": submission_time.strftime("%Y-%m-%dT%H:%M:%SZ"),
             "student_room_no": str(random.randint(100, 499)),
             "hostel_name": random.choice(self.hostel_names),
             "floor_number": random.choice(self.floor_numbers),
-            "current_staff_status": [
-                self.generate_staff_member(staff_id) for _ in range(2)
-            ],
+            "current_staff_status": staff_members,
             "floor_metrics": {
                 "number_of_requests": random.randint(0, 30),
                 "total_delays": random.randint(0, 5)
             },
-            "availability_data": self.generate_availability_data(staff_id, student_id)
+            "availability_data": self.generate_availability_data(
+                staff_members[0]["staff_id"], 
+                student_id
+            )
         }
         
         return sample
@@ -75,10 +87,14 @@ class IntelligentRoutingDataGenerator:
             sample = self.generate_sample(i)
             dataset.append(sample)
         
+        # Create directory if it doesn't exist
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        
         # Save to JSON file
         with open(output_path, 'w') as f:
             json.dump(dataset, f, indent=2)
         
+        logger.info(f"Generated {len(dataset)} samples and saved to {output_path}")
         return dataset
 
 def main():
@@ -86,13 +102,13 @@ def main():
     
     # Generate training data
     train_samples = generator.generate_dataset(
-        1000, 
+        40000, 
         'models/intelligent_routing/train_data/training_data.json'
     )
     
     # Generate test data
     test_samples = generator.generate_dataset(
-        200, 
+        8000, 
         'models/intelligent_routing/test_data/test_data.json'
     )
     

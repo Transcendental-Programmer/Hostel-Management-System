@@ -13,3 +13,11 @@ python-multipart
 pydantic
 uvicorn
 gunicorn
+scikit-learn
+matplotlib
+seaborn
+transformers
+torch
+python-dotenv
+tf-keras
+requests
