@@ -1,25 +1,21 @@
 import { useNavigate, Link } from "react-router-dom";
 import { Roles } from "../constants";
 import { useState } from "react";
-
-// 28/10
-
 import { toast } from "react-toastify";
 
-
 function Register() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [role, setRole] = useState(Roles.STUDENT);
-  const [hostel, setHostel] = useState("");//for waden and student
+  const [hostel, setHostel] = useState("");
   const [roll_no, setRoll_no] = useState("");
   const [room, setRoom] = useState("");
-
-  const [errors, setErrors] = useState({});//for realtime-validation
-
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validateEmail = (email) => {
     const iiitmEmailRegex = /^[^\s@]+@iiitm\.ac\.in$/;
@@ -60,33 +56,62 @@ function Register() {
           ? ""
           : "Password must be at least 8 characters",
       }));
+    } else if (field === "username") {
+      setUsername(value);
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        username: ""
+      }));
     }
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
-
-  
-    // if (!validateEmail(email) || !validatePhone(phone) || !validatePassword(password)) {
-    //   // alert("Please fix the errors before submitting the form");
-
-    //   toast.error("Please fix the errors before submitting the form");
-    //   return;
-    // }
-
-  //   const iiitmEmailRegex = /^[^\s@]+@iiitm\.ac\.in$/;
-  // if (!iiitmEmailRegex.test(email)) {
-  //   alert("Please enter a valid email address ending with @iiitm.ac.in");
-  //   return;
-  // }
-  
     try {
+      if (!validateEmail(email)) {
+        toast.error("Email must be a valid @iiitm.ac.in address");
+        return;
+      }
+
+      if (!validatePhone(phone)) {
+        toast.error("Phone number must be exactly 10 digits");
+        return;
+      }
+
+      if (!validatePassword(password)) {
+        toast.error("Password must be at least 8 characters long");
+        return;
+      }
+
+      if (!fullname.trim()) {
+        toast.error("Full name is required");
+        return;
+      }
+
+      if (!hostel.trim()) {
+        toast.error("Hostel field is required");
+        return;
+      }
+
+      if (role === Roles.STUDENT) {
+        if (!roll_no.trim()) {
+          toast.error("Roll number is required for students");
+          return;
+        }
+        if (!room.trim()) {
+          toast.error("Room number is required for students");
+          return;
+        }
+      }
+
       let body;
       if (role === Roles.WARDEN) {
         body = {
           full_name: fullname,
           email,
+          username,
           password,
           phone,
           type: role,
@@ -96,6 +121,7 @@ function Register() {
         body = {
           full_name: fullname,
           email,
+          username,
           password,
           phone,
           type: role,
@@ -104,22 +130,34 @@ function Register() {
           room,
         };
       }
-      const response = await fetch("http://localhost:3000/register", {
+
+      const response = await fetch("http://localhost:3000/users/register", {
         method: "POST",
-        headers: { "content-type": "application/json " },
+        headers: { "content-type": "application/json" },
         body: JSON.stringify(body),
       });
-      console.log(response);
+
       const data = await response.json();
-      console.log(data);
-      if (data.jwtToken) {
-        toast.error("User registered successfully,login to proceed");
-        navigate('/login')
-      } else {
-        toast.error("user already exists");
+
+      // if (data.jwtToken) {
+      //   toast.success("Registration successful! Please login to continue.");
+      //   navigate('/login');
+      // }
+      if (response && response.ok) {
+        toast.success("OTP sent successfully! Please verify your email.");
+        navigate('/verify-email');
+      }
+       else {
+        console.log(response);
+        
+        toast.error(data);
+        console.error(data);
       }
     } catch (err) {
-      console.log(err.message);
+      toast.error("Registration failed. Please try again.");
+      console.error(err.message);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -199,7 +237,7 @@ function Register() {
                   href="#"
                   className="flex cursor-pointer items-center gap-2 text-indigo-500 no-underline hover:text-indigo-500"
                 >
-                  <span className="flex-shrink-0 text-3xl font-black  tracking-tight opacity-100">
+                  <span className="flex-shrink-0 text-3xl font-black tracking-tight opacity-100">
                     Signup.
                   </span>
                 </a>
@@ -209,7 +247,7 @@ function Register() {
                 Welcome!
               </h4>
               <p className="mb-6 text-gray-500">
-                Please sign-in to access your account
+                Please fill in your details to create an account
               </p>
 
               <form className="mb-4" action="#" method="POST">
@@ -217,7 +255,7 @@ function Register() {
                   <div className="flex justify-between">
                     <label
                       className="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
-                      htmlFor="password"
+                      htmlFor="fullname"
                     >
                       Full Name
                     </label>
@@ -246,14 +284,16 @@ function Register() {
                       className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
                       id="email"
                       name="email-username"
-                      placeholder="Enter your email "
-                      autoFocus
-                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your email"
+                      onChange={(e) => handleInputChange("email", e.target.value)}
                     />
+                    {errors.email && (
+                      <span className="text-xs text-red-500">{errors.email}</span>
+                    )}
                   </div>
                   <div className="flex-1">
                     <label
-                      htmlFor="password"
+                      htmlFor="phone"
                       className="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
                     >
                       Phone Number
@@ -261,37 +301,77 @@ function Register() {
                     <input
                       type="text"
                       className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
-                      name="password"
+                      name="phone"
                       placeholder="Enter your phone number"
-                      onChange={(e) => setPhone(e.target.value)}
+                      onChange={(e) => handleInputChange("phone", e.target.value)}
                     />
+                    {errors.phone && (
+                      <span className="text-xs text-red-500">{errors.phone}</span>
+                    )}
                   </div>
                 </div>
+                <div className="mb-4 flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
+                  <div className={role === Roles.STUDENT ? "flex-1" : "w-full"}>
+                    <label
+                      htmlFor="username"
+                      className="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
+                    >
+                      Username
+                    </label>
+                    <input
+                      type="text"
+                      className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
+                      id="username"
+                      name="username"
+                      placeholder="Enter your username"
+                      onChange={(e) => handleInputChange("username", e.target.value)}
+                    />
+                    {errors.username && (
+                      <span className="text-xs text-red-500">{errors.username}</span>
+                    )}
+                  </div>
+                  {role === Roles.STUDENT && (
+                    <div className="flex-1">
+                      <label
+                        htmlFor="roll_no"
+                        className="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
+                      >
+                        Roll no.
+                      </label>
+                      <input
+                        type="text"
+                        className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
+                        name="roll_no"
+                        placeholder="Enter your roll no."
+                        onChange={(e) => setRoll_no(e.target.value)}
+                      />
+                    </div>
+                  )}
+                </div>
+
 
                 <div className="mb-4 flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
                   <div className="flex-1">
                     <label
-                      htmlFor="email"
+                      htmlFor="hostel"
                       className="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
                     >
                       Hostel
                     </label>
                     <input
                       type="text"
-                      className={`block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow ${
-                        role === Roles.WARDEN && "w-full"
-                      }`}
-                      id="email"
-                      name="email-username"
+                      className={`block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow ${role === Roles.WARDEN && "w-full"
+                        }`}
+                      id="hostel"
+                      name="hostel"
                       placeholder="Enter your hostel"
-                      autoFocus
                       onChange={(e) => setHostel(e.target.value)}
                     />
                   </div>
                   {role === Roles.WARDEN ? null : (
                     <div className="flex-1">
                       <label
-                        htmlFor="password"
+                        htmlFor="room"
                         className="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
                       >
                         Room
@@ -299,7 +379,7 @@ function Register() {
                       <input
                         type="text"
                         className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
-                        name="password"
+                        name="room"
                         placeholder="Enter your Room"
                         onChange={(e) => setRoom(e.target.value)}
                       />
@@ -309,28 +389,8 @@ function Register() {
 
                 <div className="mb-4 flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
                   <div
-                    className={
-                      role === Roles.STUDENT ? "flex-1 w-full" : "flex-1"
-                    }
+                    className="flex-1"
                   >
-                    {role === Roles.STUDENT && (
-                      <>
-                        <label
-                          htmlFor="email"
-                          className="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
-                        >
-                          Roll no.
-                        </label>
-                        <input
-                          type="text"
-                          className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
-                          name="email-username"
-                          placeholder="Enter your roll no."
-                          autoFocus
-                          onChange={(e) => setRoll_no(e.target.value)}
-                        />
-                      </>
-                    )}
                     <label
                       htmlFor="password"
                       className="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
@@ -343,8 +403,11 @@ function Register() {
                       className="relative block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
                       name="password"
                       placeholder="············"
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e) => handleInputChange("password", e.target.value)}
                     />
+                    {errors.password && (
+                      <span className="text-xs text-red-500">{errors.password}</span>
+                    )}
                   </div>
                   <div className="flex-1">
                     <label
@@ -357,22 +420,20 @@ function Register() {
                       <button
                         type="button"
                         onClick={() => setRole(Roles.WARDEN)}
-                        className={`rounded-md p-2 my-1 transition-all text-black ${
-                          role === Roles.WARDEN && " bg-indigo-500 text-white"
-                        }`}
+                        className={`rounded-md p-2 my-1 transition-all text-black ${role === Roles.WARDEN && " bg-indigo-500 text-white"
+                          }`}
                       >
                         Warden
                       </button>
                       <button
                         type="button"
                         onClick={() => setRole(Roles.STUDENT)}
-                        className={`rounded-md p-2 my-1 transition-all text-black ${
-                          role === Roles.STUDENT && "bg-indigo-500 text-white"
-                        }`}
+                        className={`rounded-md p-2 my-1 transition-all text-black ${role === Roles.STUDENT && "bg-indigo-500 text-white"
+                          }`}
                       >
                         Student
                       </button>
-                      
+
                     </div>
                   </div>
                 </div>
