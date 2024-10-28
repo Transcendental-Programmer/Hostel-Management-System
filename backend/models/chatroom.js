@@ -11,7 +11,7 @@ const chatroomSchema = new mongoose.Schema({
     ref: 'Student',
     required: true,
   },
-  worker_id: {
+  staff_id: {
     type: mongoose.Schema.Types.UUID,
     ref: 'Staff',
     default: null,

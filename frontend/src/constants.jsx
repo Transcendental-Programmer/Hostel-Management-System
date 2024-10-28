@@ -7,5 +7,6 @@ export const Roles = {
     SIGNUP_PAGE : '/signup',
     LOGIN_PAGE : '/login',
     DASHBOARD_PAGE : '/',
-    ACCOUNT : "/account"
+    ACCOUNT : "/account",
+    CHAT_PAGE: "/chat"
 }

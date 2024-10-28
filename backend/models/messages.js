@@ -1,14 +1,25 @@
+
 import mongoose from 'mongoose';
 
 const messageSchema = new mongoose.Schema({
   chatroom_id: {
-    type: mongoose.Schema.Types.UUID,
+    type: mongoose.Schema.Types.ObjectId, // Change to ObjectId
     ref: 'Chatroom',
     required: true,
   },
-  sender_id: {
-    type: mongoose.Schema.Types.UUID,
-    ref: 'Student',
+  user_id: {
+    type: mongoose.Schema.Types.UUID, // For students
+    ref: 'User', // Assuming you have a User model for students
+    default: null, // Set to null if the sender is staff
+  },
+  staff_id: {
+    type: mongoose.Schema.Types.UUID, // For staff
+    ref: 'Staff', // Assuming you have a separate Staff model
+    default: null, // Set to null if the sender is a user (student)
+  },
+  sender_type: {
+    type: String,
+    enum: ['student', 'staff'],
     required: true,
   },
   message_content: {
@@ -23,13 +34,8 @@ const messageSchema = new mongoose.Schema({
     type: String,
     default: 'English',
   },
-  role: {
-    type: String,
-    enum: ['student', 'staff', 'admin'],
-    required: true,
-  },
 }, {
-  timestamps: true, // Adds `createdAt` and `updatedAt` fields
+  timestamps: true, // Automatically adds createdAt and updatedAt fields
 });
 
 export default mongoose.model('Message', messageSchema);
