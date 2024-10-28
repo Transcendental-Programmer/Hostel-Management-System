@@ -68,12 +68,12 @@ function Register() {
 
 
   
-    if (!validateEmail(email) || !validatePhone(phone) || !validatePassword(password)) {
-      // alert("Please fix the errors before submitting the form");
+    // if (!validateEmail(email) || !validatePhone(phone) || !validatePassword(password)) {
+    //   // alert("Please fix the errors before submitting the form");
 
-      toast.error("Please fix the errors before submitting the form");
-      return;
-    }
+    //   toast.error("Please fix the errors before submitting the form");
+    //   return;
+    // }
 
   //   const iiitmEmailRegex = /^[^\s@]+@iiitm\.ac\.in$/;
   // if (!iiitmEmailRegex.test(email)) {
@@ -372,15 +372,7 @@ function Register() {
                       >
                         Student
                       </button>
-                      <button
-                        type="button"
-                        onClick={() => setRole(Roles.Worker)}
-                        className={`rounded-md p-2 my-1 transition-all text-black ${
-                          role === Roles.WORKER && "bg-indigo-500 text-white"
-                        }`}
-                      >
-                        Worker
-                      </button>
+                      
                     </div>
                   </div>
                 </div>
