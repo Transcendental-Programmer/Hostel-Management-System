@@ -65,26 +65,26 @@
 
 ---
 
-### **Backend Components**
+# Backend Components
 
-#### **API Routes**
+## API Routes
 1. **Authentication Routes**
-   - [ ] POST `/api/auth/login`
-   - [ ] POST `/api/auth/signup`
+   - [x] POST `/api/auth/login`
+   - [x] POST `/api/auth/signup`
    - [ ] POST `/api/auth/forgot-password`
    - [ ] POST `/api/auth/reset-password`
 
 2. **User Routes**
-   - [ ] GET `/api/users/profile`
-   - [ ] PUT `/api/users/profile`
+   - [x] GET `/api/users/profile`
+   - [x] PUT `/api/users/profile`
    - [ ] GET `/api/users/notifications`
 
 3. **Grievance Routes**
-   - [ ] POST `/api/grievances`
-   - [ ] GET `/api/grievances`
-   - [ ] GET `/api/grievances/:id`
-   - [ ] PUT `/api/grievances/:id`
-   - [ ] DELETE `/api/grievances/:id`
+   - [x] POST `/api/grievances`
+   - [x] GET `/api/grievances`
+   - [x] GET `/api/grievances/:id`
+   - [x] PUT `/api/grievances/:id`
+   - [x] DELETE `/api/grievances/:id`
 
 4. **Chat Routes**
    - [ ] GET `/api/chat/:grievanceId/messages`
@@ -96,24 +96,24 @@
    - [ ] GET `/api/dashboard/performance`
    - [ ] GET `/api/dashboard/analytics`
 
-#### **Controllers**
+## Controllers
 1. **authController**
-   - [ ] `login()`
-   - [ ] `signup()`
+   - [x] `login()`
+   - [x] `signup()`
    - [ ] `forgotPassword()`
    - [ ] `resetPassword()`
 
 2. **userController**
-   - [ ] `getProfile()`
-   - [ ] `updateProfile()`
+   - [x] `getProfile()`
+   - [x] `updateProfile()`
    - [ ] `getNotifications()`
 
 3. **grievanceController**
-   - [ ] `createGrievance()`
-   - [ ] `getGrievances()`
-   - [ ] `getGrievanceById()`
-   - [ ] `updateGrievance()`
-   - [ ] `deleteGrievance()`
+   - [x] `createGrievance()`
+   - [x] `getGrievances()`
+   - [x] `getGrievanceById()`
+   - [x] `updateGrievance()`
+   - [x] `deleteGrievance()`
 
 4. **chatController**
    - [ ] `getMessages()`
@@ -125,7 +125,7 @@
    - [ ] `getPerformanceMetrics()`
    - [ ] `getAnalytics()`
 
-#### **Middleware**
+## Middleware
 - [ ] `authMiddleware`
 - [ ] `errorHandler`
 - [ ] `requestValidator`
@@ -134,12 +134,13 @@
 
 ---
 
-### **Database Schema**
-- [ ] Database schemas for all major entities:
+## Database Schema
+- [x] Database schemas for all major entities:
   - Users (including roles like student, warden)
   - Grievances
   - Notifications
   - Messages (for chat)
+
 
 ---
 
