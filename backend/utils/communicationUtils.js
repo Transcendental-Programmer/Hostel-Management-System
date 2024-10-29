@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-export const sendOtp = (email, otp) => {
-    console.log(`Sending OTP ${otp} to email: ${email}`);
-=======
 import nodemailer from "nodemailer";
 
 // Sends OTP email for signing up to the Hostel Management System
@@ -31,5 +27,4 @@ export const sendOtp = async (email, otp, name) => {
   } catch (error) {
     console.error("Failed to send OTP email:", error);
   }
->>>>>>> d9f5190202f74e21b65c61e05193f26624aa95c7
 };
