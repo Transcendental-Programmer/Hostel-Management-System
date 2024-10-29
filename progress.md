@@ -1,6 +1,4 @@
-Here’s the checklist with the task assignments updated according to the roles provided:
 
----
 
 ## **Hostel Grievance Redressal System - Project Checklist**
 
