@@ -146,9 +146,9 @@
 
 ### **AI/ML Components**
 1. **Models** (completed by @priyansh)
-   - [ ] Model for grievance categorization or sentiment analysis
+   - [X] Model for grievance categorization or sentiment analysis
 2. **Deployment** (completed by @priyansh)
-   - [ ] Deploy AI/ML model
+   - [X] Deploy AI/ML model
 
 ---
 
