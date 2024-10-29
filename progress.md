@@ -65,8 +65,8 @@
 
 | **API Routes**             | **Endpoint**                              | **Assigned To**       | **Status** |
 |----------------------------|-------------------------------------------|------------------------|------------|
-| Authentication Routes      | POST `/api/auth/login`                    | @ankesh                | [x]        |
-|                            | POST `/api/auth/signup`                   | @ankesh                | [x]        |
+| Authentication Routes      | POST `/api/auth/login`                    | @shreshtha                | [x]        |
+|                            | POST `/api/auth/signup`                   | @shreshtha                | [x]        |
 |                            | POST `/api/auth/forgot-password`          | @shreshtha             | [ ]        |
 |                            | POST `/api/auth/reset-password`           | @shreshtha             | [ ]        |
 | User Routes                | GET `/api/users/profile`                  | @shreshtha             | [x]        |
