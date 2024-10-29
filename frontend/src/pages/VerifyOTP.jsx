@@ -95,7 +95,7 @@ const DemoVerifyOTP = () => {
             Verify your email
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            We've sent a verification code to your email
+            We`&#39;`ve sent a verification code to your email
           </p>
         </div>
 
@@ -127,7 +127,7 @@ const DemoVerifyOTP = () => {
           </div>
 
           <div className="flex items-center justify-center space-x-1 text-sm">
-            <p className="text-gray-500">Didn't receive the code?</p>
+            <p className="text-gray-500">Didn`&#39;`t receive the code?</p>
             {timer > 0 ? (
               <p className="text-indigo-600">Resend in {timer}s</p>
             ) : (
