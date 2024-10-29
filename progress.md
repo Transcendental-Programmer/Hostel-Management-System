@@ -3,159 +3,106 @@
 
 ## **Hostel Grievance Redressal System - Project Checklist**
 
-### **Frontend Components**
+---
 
-#### **Pages**
-1. **Authentication Pages**
-   - [ ] Login Page
-   - [ ] Signup Page
-   - [ ] Forgot Password Page
+### **Task Assignments**
 
-2. **Student Pages**
-   - [ ] Student Dashboard
-   - [ ] Student Profile
-   - [ ] Submit Grievance
-   - [ ] View Grievances List
-   - [ ] Grievance Details/Chat
-   - [ ] Performance History
-
-3. **Warden Pages**
-   - [ ] Warden Dashboard
-   - [ ] Manage Grievances
-   - [ ] Resolve Grievance
-   - [ ] Performance Dashboard
-   - [ ] Staff Management
-
-#### **Reusable Components**
-1. **Common Components**
-   - [ ] Navigation Bar
-   - [ ] Sidebar
-   - [ ] Footer
-   - [ ] Notification System
-   - [ ] Loading Spinner
-   - [ ] Error Boundary
-   - [ ] Modal
-
-2. **Form Components**
-   - [ ] Login Form
-   - [ ] Signup Form
-   - [ ] Profile Form
-   - [ ] Grievance Form
-   - [ ] Resolution Form
-
-3. **Dashboard Components**
-   - [ ] Recent Grievances
-   - [ ] Statistics Overview
-   - [ ] Quick Submit Button
-   - [ ] Performance Metrics
-   - [ ] Charts/Graphs
-
-4. **Grievance Components**
-   - [ ] Grievance List
-   - [ ] Grievance Card
-   - [ ] Grievance Details
-   - [ ] Grievance Filter
-   - [ ] Grievance Search
-
-5. **Chat Components**
-   - [ ] Chatroom
-   - [ ] Message List
-   - [ ] Message Input
-   - [ ] Chat Bubble
+| **Component**              | **Sub-component/Task**                    | **Assigned To**       | **Status** |
+|----------------------------|-------------------------------------------|------------------------|------------|
+| **Frontend Components**    | **Authentication Pages**                  | Team Frontend          | Pending    |
+|                            | Login Page                                | @john                  | [ ]        |
+|                            | Signup Page                               | @john                  | [ ]        |
+|                            | Forgot Password Page                      | @lily                  | [ ]        |
+|                            | **Student Pages**                         | Team Frontend          | Pending    |
+|                            | Student Dashboard                         | @lily                  | [ ]        |
+|                            | Student Profile                           | @lily                  | [ ]        |
+|                            | Submit Grievance                          | @mike                  | [ ]        |
+|                            | View Grievances List                      | @mike                  | [ ]        |
+|                            | Grievance Details/Chat                    | @alex                  | [ ]        |
+|                            | Performance History                       | @alex                  | [ ]        |
+|                            | **Warden Pages**                          | Team Frontend          | Pending    |
+|                            | Warden Dashboard                          | @mike                  | [ ]        |
+|                            | Manage Grievances                         | @mike                  | [ ]        |
+|                            | Resolve Grievance                         | @mike                  | [ ]        |
+|                            | Performance Dashboard                     | @alex                  | [ ]        |
+|                            | Staff Management                          | @alex                  | [ ]        |
+|                            | **Reusable Components**                   | Team Frontend          | Pending    |
+|                            | Navigation Bar                            | @john                  | [ ]        |
+|                            | Sidebar                                   | @john                  | [ ]        |
+|                            | Footer                                    | @john                  | [ ]        |
+|                            | Notification System                       | @lily                  | [ ]        |
+|                            | Loading Spinner                           | @lily                  | [ ]        |
+|                            | Error Boundary                            | @alex                  | [ ]        |
+|                            | Modal                                     | @alex                  | [ ]        |
+|                            | **Form Components**                       | Team Frontend          | Pending    |
+|                            | Login Form                                | @john                  | [ ]        |
+|                            | Signup Form                               | @john                  | [ ]        |
+|                            | Profile Form                              | @lily                  | [ ]        |
+|                            | Grievance Form                            | @mike                  | [ ]        |
+|                            | Resolution Form                           | @mike                  | [ ]        |
+|                            | **Dashboard Components**                  | Team Frontend          | Pending    |
+|                            | Recent Grievances                         | @alex                  | [ ]        |
+|                            | Statistics Overview                       | @alex                  | [ ]        |
+|                            | Quick Submit Button                       | @lily                  | [ ]        |
+|                            | Performance Metrics                       | @lily                  | [ ]        |
+|                            | Charts/Graphs                             | @alex                  | [ ]        |
+|                            | **Grievance Components**                  | Team Frontend          | Pending    |
+|                            | Grievance List                            | @mike                  | [ ]        |
+|                            | Grievance Card                            | @mike                  | [ ]        |
+|                            | Grievance Details                         | @john                  | [ ]        |
+|                            | Grievance Filter                          | @john                  | [ ]        |
+|                            | Grievance Search                          | @alex                  | [ ]        |
+|                            | **Chat Components**                       | Team Frontend          | Pending    |
+|                            | Chatroom                                  | @alex                  | [ ]        |
+|                            | Message List                              | @alex                  | [ ]        |
+|                            | Message Input                             | @lily                  | [ ]        |
+|                            | Chat Bubble                               | @lily                  | [ ]        |
 
 ---
 
 ### **Backend Components**
 
-#### **API Routes**
-1. **Authentication Routes**
-   - [x] POST `/api/auth/login`
-   - [x] POST `/api/auth/signup`
-   - [ ] POST `/api/auth/forgot-password`
-   - [ ] POST `/api/auth/reset-password`
+| **API Routes**            | **Endpoint**                               | **Assigned To**       | **Status** |
+|---------------------------|--------------------------------------------|------------------------|------------|
+| Authentication Routes     | POST `/api/auth/login`                     | @anna                  | [x]        |
+|                           | POST `/api/auth/signup`                    | @anna                  | [x]        |
+|                           | POST `/api/auth/forgot-password`           | @matt                  | [ ]        |
+|                           | POST `/api/auth/reset-password`            | @matt                  | [ ]        |
+| User Routes               | GET `/api/users/profile`                   | @anna                  | [x]        |
+|                           | PUT `/api/users/profile`                   | @anna                  | [x]        |
+|                           | GET `/api/users/notifications`             | @jane                  | [ ]        |
+| Grievance Routes          | POST `/api/grievances`                     | @jane                  | [x]        |
+|                           | GET `/api/grievances`                      | @jane                  | [x]        |
+|                           | GET `/api/grievances/:id`                  | @jane                  | [x]        |
+|                           | PUT `/api/grievances/:id`                  | @jane                  | [x]        |
+|                           | DELETE `/api/grievances/:id`               | @jane                  | [x]        |
+| Chat Routes               | GET `/api/chat/:grievanceId/messages`      | @matt                  | [ ]        |
+|                           | POST `/api/chat/:grievanceId/messages`     | @matt                  | [ ]        |
+|                           | PUT `/api/chat/message/:id`                | @matt                  | [ ]        |
+| Dashboard Routes          | GET `/api/dashboard/statistics`            | @jane                  | [ ]        |
+|                           | GET `/api/dashboard/performance`           | @jane                  | [ ]        |
+|                           | GET `/api/dashboard/analytics`             | @jane                  | [ ]        |
 
-2. **User Routes**
-   - [x] GET `/api/users/profile`
-   - [x] PUT `/api/users/profile`
-   - [ ] GET `/api/users/notifications`
-
-3. **Grievance Routes**
-   - [x] POST `/api/grievances`
-   - [x] GET `/api/grievances`
-   - [x] GET `/api/grievances/:id`
-   - [x] PUT `/api/grievances/:id`
-   - [x] DELETE `/api/grievances/:id`
-
-4. **Chat Routes**
-   - [ ] GET `/api/chat/:grievanceId/messages`
-   - [ ] POST `/api/chat/:grievanceId/messages`
-   - [ ] PUT `/api/chat/message/:id`
-
-5. **Dashboard Routes**
-   - [ ] GET `/api/dashboard/statistics`
-   - [ ] GET `/api/dashboard/performance`
-   - [ ] GET `/api/dashboard/analytics`
-
-#### **Controllers**
-1. **authController**
-   - [x] `login()`
-   - [x] `signup()`
-   - [ ] `forgotPassword()`
-   - [ ] `resetPassword()`
-
-2. **userController**
-   - [x] `getProfile()`
-   - [x] `updateProfile()`
-   - [ ] `getNotifications()`
-
-3. **grievanceController**
-   - [x] `createGrievance()`
-   - [x] `getGrievances()`
-   - [x] `getGrievanceById()`
-   - [x] `updateGrievance()`
-   - [x] `deleteGrievance()`
-
-4. **chatController**
-   - [ ] `getMessages()`
-   - [ ] `sendMessage()`
-   - [ ] `updateMessage()`
-
-5. **dashboardController**
-   - [ ] `getStatistics()`
-   - [ ] `getPerformanceMetrics()`
-   - [ ] `getAnalytics()`
-
-#### **Middleware**
-- [ ] `authMiddleware`
-- [ ] `errorHandler`
-- [ ] `requestValidator`
-- [ ] `rateLimiter`
-- [ ] `fileUploadMiddleware`
+| **Controllers**           | **Method**                                 | **Assigned To**       | **Status** |
+|---------------------------|--------------------------------------------|------------------------|------------|
+| authController            | login()                                    | @anna                  | [x]        |
+|                           | signup()                                   | @anna                  | [x]        |
+|                           | forgotPassword()                           | @matt                  | [ ]        |
+|                           | resetPassword()                            | @matt                  | [ ]        |
+| userController            | getProfile()                               | @anna                  | [x]        |
+|                           | updateProfile()                            | @anna                  | [x]        |
+|                           | getNotifications()                         | @jane                  | [ ]        |
+| grievanceController       | createGrievance()                          | @jane                  | [x]        |
+|                           | getGrievances()                            | @jane                  | [x]        |
+|                           | getGrievanceById()                         | @jane                  | [x]        |
+|                           | updateGrievance()                          | @jane                  | [x]        |
+|                           | deleteGrievance()                          | @jane                  | [x]        |
+| chatController            | getMessages()                              | @matt                  | [ ]        |
+|                           | sendMessage()                              | @matt                  | [ ]        |
+|                           | updateMessage()                            | @matt                  | [ ]        |
+| dashboardController       | getStatistics()                            | @jane                  | [ ]        |
+|                           | getPerformanceMetrics()                    | @jane                  | [ ]        |
+|                           | getAnalytics()                             | @jane                  | [ ]        |
 
 ---
-
-#### **Database Schema**
-- [x] Database schemas for all major entities:
-  - Users (including roles like student, warden)
-  - Grievances
-  - Notifications
-  - Messages (for chat)
-
-
----
-
-### **AI/ML Components**
-1. **Models** (completed by @priyansh)
-   - [X] Model for grievance categorization or sentiment analysis
-2. **Deployment** (completed by @priyansh)
-   - [X] Deploy AI/ML model
-
----
-
-### **Tasks in Progress or Pending**
-1. **Auth Routes**: Forgot password route is pending.
-2. **User Routes**: `getNotifications` function is pending.
-3. **Chat Controller**: All functions pending.
-4. **Dashboard Controller**: All functions pending.
-5. **Middlewares**: All middleware components are pending and will be created in the final phase. 
 
