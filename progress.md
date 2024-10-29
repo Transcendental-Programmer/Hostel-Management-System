@@ -67,11 +67,11 @@
 |----------------------------|-------------------------------------------|------------------------|------------|
 | Authentication Routes      | POST `/api/auth/login`                    | @ankesh                | [x]        |
 |                            | POST `/api/auth/signup`                   | @ankesh                | [x]        |
-|                            | POST `/api/auth/forgot-password`          | @ankesh                | [ ]        |
-|                            | POST `/api/auth/reset-password`           | @ankesh                | [ ]        |
-| User Routes                | GET `/api/users/profile`                  | @ankesh                | [x]        |
-|                            | PUT `/api/users/profile`                  | @ankesh                | [x]        |
-|                            | GET `/api/users/notifications`            | @ankesh                | [ ]        |
+|                            | POST `/api/auth/forgot-password`          | @shreshtha             | [ ]        |
+|                            | POST `/api/auth/reset-password`           | @shreshtha             | [ ]        |
+| User Routes                | GET `/api/users/profile`                  | @shreshtha             | [x]        |
+|                            | PUT `/api/users/profile`                  | @shreshtha             | [x]        |
+|                            | GET `/api/users/notifications`            | @shreshtha             | [ ]        |
 | Grievance Routes           | POST `/api/grievances`                    | @ankesh                | [x]        |
 |                            | GET `/api/grievances`                     | @ankesh                | [x]        |
 |                            | GET `/api/grievances/:id`                 | @ankesh                | [x]        |
@@ -86,13 +86,13 @@
 
 | **Controllers**            | **Method**                                | **Assigned To**       | **Status** |
 |----------------------------|-------------------------------------------|------------------------|------------|
-| authController             | login()                                   | @ankesh                | [x]        |
-|                            | signup()                                  | @ankesh                | [x]        |
-|                            | forgotPassword()                          | @ankesh                | [ ]        |
-|                            | resetPassword()                           | @ankesh                | [ ]        |
-| userController             | getProfile()                              | @ankesh                | [x]        |
-|                            | updateProfile()                           | @ankesh                | [x]        |
-|                            | getNotifications()                        | @ankesh                | [ ]        |
+| authController             | login()                                   | @shreshtha             | [x]        |
+|                            | signup()                                  | @shreshtha             | [x]        |
+|                            | forgotPassword()                          | @shreshtha             | [ ]        |
+|                            | resetPassword()                           | @shreshtha             | [ ]        |
+| userController             | getProfile()                              | @shreshtha             | [x]        |
+|                            | updateProfile()                           | @shreshtha             | [x]        |
+|                            | getNotifications()                        | @shreshtha             | [ ]        |
 | grievanceController        | createGrievance()                         | @ankesh                | [x]        |
 |                            | getGrievances()                           | @ankesh                | [x]        |
 |                            | getGrievanceById()                        | @ankesh                | [x]        |
