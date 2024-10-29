@@ -11,53 +11,53 @@
 | **Component**              | **Sub-component/Task**                    | **Assigned To**       | **Status** |
 |----------------------------|-------------------------------------------|------------------------|------------|
 | **Frontend Components**    | **Authentication Pages**                  |                        | Pending    |
-|                            | Login Page                                | @yash                  | [ ]        |
-|                            | Signup Page                               | @dhakad                | [ ]        |
-|                            | Forgot Password Page                      | @yash                  | [ ]        |
+|                            | Login Page                                | @dhakd                  | [X]        |
+|                            | Signup Page                               | @dhakad                | [X]        |
+|                            | Forgot Password Page                      | @dhakad                 | [ ]        |
 |                            | **Student Pages**                         |                        | Pending    |
 |                            | Student Dashboard                         | @dhakad                | [ ]        |
-|                            | Student Profile                           | @yash                  | [ ]        |
+|                            | Student Profile                           | @dhakad                | [ ]        |
 |                            | Submit Grievance                          | @dhakad                | [ ]        |
-|                            | View Grievances List                      | @yash                  | [ ]        |
+|                            | View Grievances List                      | @dhakad                  | [ ]        |
 |                            | Grievance Details/Chat                    | @dhakad                | [ ]        |
-|                            | Performance History                       | @yash                  | [ ]        |
+|                            | Performance History                       | @dhakad                  | [ ]        |
 |                            | **Warden Pages**                          |                        | Pending    |
 |                            | Warden Dashboard                          | @dhakad                | [ ]        |
-|                            | Manage Grievances                         | @yash                  | [ ]        |
+|                            | Manage Grievances                         | @dhakad                  | [ ]        |
 |                            | Resolve Grievance                         | @dhakad                | [ ]        |
-|                            | Performance Dashboard                     | @yash                  | [ ]        |
+|                            | Performance Dashboard                     | @dhakad                  | [ ]        |
 |                            | Staff Management                          | @dhakad                | [ ]        |
 |                            | **Reusable Components**                   |                        | Pending    |
 |                            | Navigation Bar                            | @yash                  | [ ]        |
-|                            | Sidebar                                   | @dhakad                | [ ]        |
+|                            | Sidebar                                   | @yash                | [ ]        |
 |                            | Footer                                    | @yash                  | [ ]        |
-|                            | Notification System                       | @dhakad                | [ ]        |
+|                            | Notification System                       | @yash               | [ ]        |
 |                            | Loading Spinner                           | @yash                  | [ ]        |
-|                            | Error Boundary                            | @dhakad                | [ ]        |
+|                            | Error Boundary                            | @yash                | [ ]        |
 |                            | Modal                                     | @yash                  | [ ]        |
 |                            | **Form Components**                       |                        | Pending    |
-|                            | Login Form                                | @dhakad                | [ ]        |
-|                            | Signup Form                               | @yash                  | [ ]        |
-|                            | Profile Form                              | @dhakad                | [ ]        |
+|                            | Login Form                                | @dhakad                | [X]        |
+|                            | Signup Form                               | @dhakad                  | [X]        |
+|                            | Profile Form                              | @yash                | [ ]        |
 |                            | Grievance Form                            | @yash                  | [ ]        |
-|                            | Resolution Form                           | @dhakad                | [ ]        |
+|                            | Resolution Form                           | @yash                | [ ]        |
 |                            | **Dashboard Components**                  |                        | Pending    |
-|                            | Recent Grievances                         | @yash                  | [ ]        |
+|                            | Recent Grievances                         | @dhakad                  | [ ]        |
 |                            | Statistics Overview                       | @dhakad                | [ ]        |
-|                            | Quick Submit Button                       | @yash                  | [ ]        |
+|                            | Quick Submit Button                       | @dhakad                  | [ ]        |
 |                            | Performance Metrics                       | @dhakad                | [ ]        |
-|                            | Charts/Graphs                             | @yash                  | [ ]        |
+|                            | Charts/Graphs                             | @dhakad                  | [ ]        |
 |                            | **Grievance Components**                  |                        | Pending    |
-|                            | Grievance List                            | @dhakad                | [ ]        |
+|                            | Grievance List                            | @yash                | [ ]        |
 |                            | Grievance Card                            | @yash                  | [ ]        |
-|                            | Grievance Details                         | @dhakad                | [ ]        |
+|                            | Grievance Details                         | @yash               | [ ]        |
 |                            | Grievance Filter                          | @yash                  | [ ]        |
-|                            | Grievance Search                          | @dhakad                | [ ]        |
+|                            | Grievance Search                          | @yash               | [ ]        |
 |                            | **Chat Components**                       |                        | Pending    |
 |                            | Chatroom                                  | @yash                  | [ ]        |
-|                            | Message List                              | @dhakad                | [ ]        |
-|                            | Message Input                             | @yash                  | [ ]        |
-|                            | Chat Bubble                               | @dhakad                | [ ]        |
+|                            | Message List                              | @yash                | [ ]        |
+|                            | Message Input                             | @yash                 | [ ]        |
+|                            | Chat Bubble                               | @yash               | [ ]        |
 
 ---
 
