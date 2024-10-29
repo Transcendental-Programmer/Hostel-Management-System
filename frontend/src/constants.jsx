@@ -6,7 +6,7 @@ export const Roles = {
  export const RoutesPathName = {
     SIGNUP_PAGE : '/signup',
     LOGIN_PAGE : '/login',
-    DASHBOARD_PAGE : '/',
+    DASHBOARD_PAGE : '/dashboard',
     ACCOUNT : "/account",
     CHAT_PAGE: "/chat",
     VERIFY_OTP: "/verify-otp",

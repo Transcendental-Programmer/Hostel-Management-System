@@ -8,10 +8,10 @@ function AccountPage() {
   const [userName, setUserName] = useState("");
   const [useremail, setemail] = useState("");
   const [userphone, setphone] = useState("");
-  const [userUsn, setUsn] = useState("");
+  const [userUsername, setUsername] = useState("");
   const [userRoom, setRoom] = useState("");
-  const [userblockID, setblockID] = useState("");
-  const [userblockname, setblockname] = useState("");
+  const [userRollno, setRollno] = useState("");
+  const [userHostel, setHostel] = useState("");
   const [userType, setUserType] = useState(null);
 
   useEffect(() => {
@@ -51,10 +51,10 @@ function AccountPage() {
       setUserName(data[0].full_name);
       setemail(data[0].email);
       setphone(data[0].phone);
-      setUsn(data[0].usn);
+      setUsername(data[0].userName);
       setRoom(data[0].room);
-      setblockID(data[0].block_id);
-      setblockname(data[0].block_name);
+      setRollno(data[0].Rollno);
+      setHostel(data[0].Hostel);
     } catch (err) {
       console.error(err.message);
     }
@@ -92,20 +92,20 @@ function AccountPage() {
           <>
             <li className="lg:w-1/3  sm:w-full inline-flex items-center gap-x-2 py-3 px-4 text-sm border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg">
               <div className="flex items-center justify-between w-full">
-                <span>USN</span>
-                <span>{userUsn}</span>
+                <span>Username</span>
+                <span>{userUsername}</span>
               </div>
             </li>
             <li className="lg:w-1/3  sm:w-full inline-flex items-center gap-x-2 py-3 px-4 text-sm border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg">
               <div className="flex items-center justify-between w-full">
-                <span>Block ID</span>
-                <span>{userblockID}</span>
+                <span>Roll no.</span>
+                <span>{userRollno}</span>
               </div>
             </li>
             <li className="lg:w-1/3  sm:w-full inline-flex items-center gap-x-2 py-3 px-4 text-sm border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg">
               <div className="flex items-center justify-between w-full">
-                <span>Block Name</span>
-                <span>{userblockname}</span>
+                <span>Hostel</span>
+                <span>{userHostel}</span>
               </div>
             </li>
             <li className="lg:w-1/3 sm:w-full inline-flex items-center gap-x-2 py-3 px-4 text-sm border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg">
