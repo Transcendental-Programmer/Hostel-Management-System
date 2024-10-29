@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import { toast } from "react-toastify"
+
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -11,7 +13,7 @@ function Login() {
 
     try {
       const body = { email, password };
-      const response = await fetch("http://localhost:3000/login", {
+      const response = await fetch("http://localhost:3000/users/login", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(body),
@@ -24,7 +26,7 @@ function Login() {
         localStorage.setItem("jwtToken", data.jwtToken);
         navigate("/");
       } else {
-        alert("Invalid credentials. Please check your email and password.");
+        toast.error("Invalid credentials. Please check your email and password.");
       }
     } catch (err) {
       console.log(err.message);

@@ -1,9 +1,12 @@
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { RoutesPathName } from "./constants";
 import PrivateRoute from "./utils/PrivateRoute";
 import AccountPage from "./pages/AccountPage";
+import Chat from "./components/chat";
+import VerifyOTP from "./pages/VerifyOTP"
+
 
 const routes = createBrowserRouter([
   {
@@ -22,6 +25,14 @@ const routes = createBrowserRouter([
   {
     path: RoutesPathName.DASHBOARD_PAGE,
     element: <PrivateRoute />,
+  },
+  {
+    path: RoutesPathName.CHAT_PAGE, // Define the route for the chat page
+    element: <Chat />,
+  },
+  {
+    path: RoutesPathName.VERIFY_OTP,
+    element: <VerifyOTP />,
   },
 ]);
 
