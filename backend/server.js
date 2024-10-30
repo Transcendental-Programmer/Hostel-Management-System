@@ -17,7 +17,7 @@ MongoDB();
 app.use(cors());
 app.use(express.json());
 
-app.use("/", grievanceRoutes);
+app.use("/grievances", grievanceRoutes);
 // app.use("/", studentRoutes);
 // app.use("/", wardenRoutes);
 app.use("/users/", userRoutes);
@@ -33,6 +33,11 @@ const server = http.createServer(app);
 
 server.listen(3000, () => {
   console.log("Application is running on port 3000");
+});
+
+// default route
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to Grievance Portal" });
 });
 
 // Initialize Socket.io
