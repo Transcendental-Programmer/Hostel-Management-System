@@ -147,7 +147,7 @@ function Register() {
       // }
       if (response && response.ok) {
         toast.success("OTP sent successfully! Please verify your email.");
-        navigate('/verify-email');
+        navigate('/verify-otp');
       }
        else {
         console.log(response);
