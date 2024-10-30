@@ -133,7 +133,7 @@ const VerifyOTP = () => {
             Verify your email
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            We`&#39;`ve sent a verification code to your email
+            We've sent a verification code to your email
           </p>
         </div>
 
