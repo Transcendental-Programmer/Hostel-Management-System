@@ -48,11 +48,11 @@
 |                            | Performance Metrics                       | @dhakad                | [ ]        |
 |                            | Charts/Graphs                             | @dhakad                  | [ ]        |
 |                            | **Grievance Components**                  |                        | Pending    |
-|                            | Grievance List                            | @yash                | [ ]        |
-|                            | Grievance Card                            | @yash                  | [ ]        |
-|                            | Grievance Details                         | @yash               | [ ]        |
-|                            | Grievance Filter                          | @yash                  | [ ]        |
-|                            | Grievance Search                          | @yash               | [ ]        |
+|                            | Grievance List                            | @dhakad               | [ x]        |
+|                            | Grievance Card                            | @dhakad                  | [ x]        |
+|                            | Grievance Details                         |@dhakad | [x ]        |
+|                            | Grievance Filter                          | @dhakad                | [ x]        |
+|                            | Grievance Search                          | @dhakad               | [ x]        |
 |                            | **Chat Components**                       |                        | Pending    |
 |                            | Chatroom                                  | @yash                  | [ ]        |
 |                            | Message List                              | @yash                | [ ]        |
