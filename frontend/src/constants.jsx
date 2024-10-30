@@ -10,4 +10,5 @@ export const Roles = {
     ACCOUNT : "/account",
     CHAT_PAGE: "/chat",
     VERIFY_OTP: "/verify-otp",
+    GRIEVANCE:"/grievance",
 }
