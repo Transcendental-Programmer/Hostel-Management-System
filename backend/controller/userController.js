@@ -12,6 +12,7 @@ const emailPattern = /^[a-zA-Z0-9._%+-]+@iiitm\.ac\.in$/;
 // Updated registerUser function
 export const registerUser = async (req, res) => {
   const { full_name, email, username, phone_number, password, role, roll_number, hostel_number } = req.body;
+  console.log(req.body);
   if(!email || !full_name || !username) {
     return res.status(400).json("Full name, email, and username are required");
   }
@@ -65,6 +66,7 @@ export const verifyOtpAndRegister = async (req, res) => {
 
   // Retrieve OTP and temp user data from cache
   const cachedData = await client.get(`otp:${email}`);
+  console.log(cachedData);
   if (!cachedData) return res.status(400).json("Invalid OTP or session expired");
 
   const { otp: cachedOtp, tempUserData } = JSON.parse(cachedData);
@@ -108,6 +110,9 @@ export const verifyOtpAndRegister = async (req, res) => {
       });
     }
 
+    if (!newUser) {
+      return res.status(400).json("Invalid user role");
+    }
     // Save the new user
     await newUser.save();
 

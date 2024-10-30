@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
-const DemoVerifyOTP = () => {
+const VerifyOTP = () => {
+  const location = useLocation();
+  const {email,password} = location.state || {};
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [timer, setTimer] = useState(60);
   const [isResending, setIsResending] = useState(false);
@@ -66,6 +69,39 @@ const DemoVerifyOTP = () => {
     }, 1500);
   };
 
+  // verify OTP and register user
+  const handleVerifyOTP = async () => {
+    const otpValue = otp.join('');
+    if (otpValue.length !== 6) {
+      showNotification('error', 'Invalid OTP');
+      return;
+    }
+
+    setIsVerifying(true);
+    try {
+      const response = await fetch("http://localhost:3000/users/verify-otp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+          otp: otpValue,
+          email:email,
+          password:password
+         }),
+      });
+      const data = await response.json();
+      console.log(data);
+      if (data.jwtToken) {
+        showNotification('success', response.data.message);
+        setIsVerifying(false);
+      }
+    } catch (error) {
+      showNotification('error', error.response.data.message);
+      setIsVerifying(false);
+  };
+}
+
   const handleDemoResend = () => {
     setIsResending(true);
     setTimeout(() => {
@@ -118,7 +154,7 @@ const DemoVerifyOTP = () => {
 
           <div>
             <button
-              onClick={handleDemoVerify}
+              onClick={handleVerifyOTP}
               disabled={isVerifying || otp.join('').length !== 6}
               className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50"
             >
@@ -145,5 +181,4 @@ const DemoVerifyOTP = () => {
     </div>
   );
 };
-
-export default DemoVerifyOTP;
+export default VerifyOTP;
