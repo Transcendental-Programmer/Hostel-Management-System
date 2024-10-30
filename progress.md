@@ -22,11 +22,11 @@
 |                            | Grievance Details/Chat                    | @dhakad                | [ ]        |
 |                            | Performance History                       | @dhakad                  | [ ]        |
 |                            | **Warden Pages**                          |                        | Pending    |
-|                            | Warden Dashboard                          | @dhakad                | [ ]        |
-|                            | Manage Grievances                         | @dhakad                  | [ ]        |
-|                            | Resolve Grievance                         | @dhakad                | [ ]        |
-|                            | Performance Dashboard                     | @dhakad                  | [ ]        |
-|                            | Staff Management                          | @dhakad                | [ ]        |
+|                            | Warden Dashboard                          | @dhakad                | [ x]        |
+|                            | Manage Grievances                         | @dhakad                  | [x ]        |
+|                            | Resolve Grievance                         | @dhakad                | [x ]        |
+|                            | Performance Dashboard                     | @dhakad                  | [x ]        |
+|                            | Staff Management                          | @dhakad                | [x ]        |
 |                            | **Reusable Components**                   |                        | Pending    |
 |                            | Navigation Bar                            | @yash                  | [ ]        |
 |                            | Sidebar                                   | @yash                | [ ]        |
