@@ -165,12 +165,14 @@ export const userLogin = async (req, res) => {
     // Validate the password
     const validPassword = await bcrypt.compare(password, user.password_hash);
     if (!validPassword) return res.status(401).json("Invalid Credentials");
+  
 
     // Generate the JWT token with user ID and assigned role
     const jwtToken = jwtGenerator(user.user_id, role);
     return res.json({ 
       jwtToken,
-      user:user
+      user:user,
+      role:role
      })
      .status(200);
   } catch (err) {
@@ -230,7 +232,7 @@ export const getUserDetailsById = async (req, res) => {
     const { user_id } = req.params; // Assume user_id is extracted from decoded JWT token
 
     // Search across User, Staff, and Admin tables
-    let user = await Student.findOne({ user_id });
+    let user = await Student.findOne({ user_id:user_id });
     let role = "student"; // Default role if found in User table
 
     if (!user) {
@@ -253,7 +255,7 @@ export const getUserDetailsById = async (req, res) => {
       email: user.email,
       username: user.username,
       phone_number: user.phone_number,
-      // role, // Set based on table found
+      role, // Set based on table found
       language_preference: user.language_preference,
     };
 
