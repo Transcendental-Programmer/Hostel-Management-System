@@ -77,8 +77,9 @@
 |                            | GET `/api/grievances/:id`                 | @ankesh                | [x]        |
 |                            | PUT `/api/grievances/:id`                 | @ankesh                | [x]        |
 |                            | DELETE `/api/grievances/:id`              | @ankesh                | [x]        |
-| Chat Routes                | GET `/api/chat/:grievanceId/messages`     | @shreshtha             | [ ]        |
-|                            | POST `/api/chat/:grievanceId/messages`    | @shreshtha             | [ ]        |
+| Chat Routes                | GET `/api/chat/:grievanceId/messages`     | @shreshtha             | [x]        |
+|                            | POST `/api/chat/:grievanceId/messages`    | @shreshtha             | [x]        |
+|                            | POST `/api/chat/createChatroom`           | @shreshtha             | [x]        |
 |                            | PUT `/api/chat/message/:id` (rejected)    | @shreshtha             | [x]        |
 | Dashboard Routes           | GET `/api/dashboard/statistics`           | @ankesh                | [ ]        |
 |                            | GET `/api/dashboard/performance`          | @ankesh                | [ ]        |
@@ -98,8 +99,9 @@
 |                            | getGrievanceById()                        | @ankesh                | [x]        |
 |                            | updateGrievance()                         | @ankesh                | [x]        |
 |                            | deleteGrievance()                         | @ankesh                | [x]        |
-| chatController             | getMessages()                             | @shreshtha             | [ ]        |
-|                            | sendMessage()                             | @shreshtha             | [ ]        |
+| chatController             | getMessages()                             | @shreshtha             | [x]        |
+|                            | sendMessage()                             | @shreshtha             | [x]        |
+|                            | createChatroom()                          | @shreshtha             | [x]        |
 |                            | updateMessage()      (rejected)           | @shreshtha             | [x]        |
 | dashboardController        | getStatistics()                           | @ankesh                | [ ]        |
 |                            | getPerformanceMetrics()                   | @ankesh                | [ ]        |
