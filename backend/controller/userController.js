@@ -168,7 +168,11 @@ export const userLogin = async (req, res) => {
 
     // Generate the JWT token with user ID and assigned role
     const jwtToken = jwtGenerator(user.user_id, role);
-    return res.json({ jwtToken });
+    return res.json({ 
+      jwtToken,
+      user:user
+     })
+     .status(200);
   } catch (err) {
     console.error(err.message);
     res.status(500).json("Server error");
