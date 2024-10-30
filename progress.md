@@ -79,7 +79,7 @@
 |                            | DELETE `/api/grievances/:id`              | @ankesh                | [x]        |
 | Chat Routes                | GET `/api/chat/:grievanceId/messages`     | @shreshtha             | [ ]        |
 |                            | POST `/api/chat/:grievanceId/messages`    | @shreshtha             | [ ]        |
-|                            | PUT `/api/chat/message/:id`               | @shreshtha             | [ ]        |
+|                            | PUT `/api/chat/message/:id` (rejected)    | @shreshtha             | [x]        |
 | Dashboard Routes           | GET `/api/dashboard/statistics`           | @ankesh                | [ ]        |
 |                            | GET `/api/dashboard/performance`          | @ankesh                | [ ]        |
 |                            | GET `/api/dashboard/analytics`            | @ankesh                | [ ]        |
@@ -100,7 +100,7 @@
 |                            | deleteGrievance()                         | @ankesh                | [x]        |
 | chatController             | getMessages()                             | @shreshtha             | [ ]        |
 |                            | sendMessage()                             | @shreshtha             | [ ]        |
-|                            | updateMessage()                           | @shreshtha             | [ ]        |
+|                            | updateMessage()      (rejected)           | @shreshtha             | [x]        |
 | dashboardController        | getStatistics()                           | @ankesh                | [ ]        |
 |                            | getPerformanceMetrics()                   | @ankesh                | [ ]        |
 |                            | getAnalytics()                            | @ankesh                | [ ]        |
