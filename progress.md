@@ -13,7 +13,7 @@
 | **Frontend Components**    | **Authentication Pages**                  |                        | Pending    |
 |                            | Login Page                                | @dhakd                  | [X]        |
 |                            | Signup Page                               | @dhakad                | [X]        |
-|                            | Forgot Password Page                      | @dhakad                 | [ ]        |
+|                            | Forgot Password Page                      | @dhakad                 | [x ]        |
 |                            | **Student Pages**                         |                        | Pending    |
 |                            | Student Dashboard                         | @dhakad                | [ ]        |
 |                            | Student Profile                           | @dhakad                | [ ]        |
