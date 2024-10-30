@@ -5,37 +5,30 @@ import WardenComplaints from "./WardenComplaint";
 import { GetAuthHeader } from "../testing/Headers";
 
 function Dashboard() {
-  const [userType, setUserType] = useState(null);
-
-  
+  const [user_role, setUser_role] = useState(localStorage.getItem("user")?.user_role||null);
   useEffect(() => {
    
-    const fetchUserType = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/userType", {
-          method: "GET",
-          headers: GetAuthHeader(),
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          setUserType(data.userType);
-        } else {
-          console.error('Failed to fetch user type');
-        }
-      } catch (error) {
-        console.error(error.message);
+    const fetchUser_role = async () => {
+      const user_role = localStorage.getItem("user_role");
+      console.log(user_role);
+      if(!user_role){
+        console.log("User not logged in");
       }
+        setUser_role(user_role);
+        console.log(user_role);
     };
 
-    fetchUserType();
+    fetchUser_role();
   }, []); 
 
   return (
     <>
       <Navbar />
-      {userType === "student" ? <Complaint /> : null}
-      {userType === "warden" ? <WardenComplaints /> : null}
+      {user_role === "student" ? (
+        <Complaint />
+      ) : user_role === "warden" ? (
+        <WardenComplaints />
+      ) : null}
     </>
   );
 }

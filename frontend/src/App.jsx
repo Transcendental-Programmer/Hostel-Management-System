@@ -6,6 +6,8 @@ import PrivateRoute from "./utils/PrivateRoute";
 import AccountPage from "./pages/AccountPage";
 import Chat from "./components/chat";
 import VerifyOTP from "./pages/VerifyOTP"
+import GrievanceManagement from "./pages/GrievanceManagement"
+import WardenDashboard from "./pages/WardenDashboard";
 
 
 const routes = createBrowserRouter([
@@ -33,6 +35,14 @@ const routes = createBrowserRouter([
   {
     path: RoutesPathName.VERIFY_OTP,
     element: <VerifyOTP />,
+  },
+  {
+    path: RoutesPathName.GRIEVANCE,
+    element: <GrievanceManagement />,
+  },
+  {
+    path: RoutesPathName.WARDEN_DASHBOARD,
+    element: <WardenDashboard />,
   },
 ]);
 

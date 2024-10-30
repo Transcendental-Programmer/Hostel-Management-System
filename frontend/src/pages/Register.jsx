@@ -11,8 +11,8 @@ function Register() {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [role, setRole] = useState(Roles.STUDENT);
-  const [hostel, setHostel] = useState("");
-  const [roll_no, setRoll_no] = useState("");
+  const [hostel_number, setHostelNumber] = useState("");
+  const [roll_number, setRoll_number] = useState("");
   const [room, setRoom] = useState("");
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -92,13 +92,13 @@ function Register() {
         return;
       }
 
-      if (!hostel.trim()) {
+      if (!hostel_number.trim()) {
         toast.error("Hostel field is required");
         return;
       }
 
       if (role === Roles.STUDENT) {
-        if (!roll_no.trim()) {
+        if (!roll_number.trim()) {
           toast.error("Roll number is required for students");
           return;
         }
@@ -115,9 +115,9 @@ function Register() {
           email,
           username,
           password,
-          phone,
-          type: role,
-          hostel,
+          phone_number:phone,
+          role: role,
+          hostel_number,
         };
       } else {
         body = {
@@ -125,10 +125,10 @@ function Register() {
           email,
           username,
           password,
-          phone,
-          type: role,
-          hostel,
-          roll_no,
+          phone_number:phone,
+          role: role,
+          hostel_number,
+          roll_number,
           room,
         };
       }
@@ -147,7 +147,7 @@ function Register() {
       // }
       if (response && response.ok) {
         toast.success("OTP sent successfully! Please verify your email.");
-        navigate('/verify-email');
+        navigate('/verify-otp',{state: {email: email, password: password}});
       }
        else {
         console.log(response);
@@ -335,7 +335,7 @@ function Register() {
                   {role === Roles.STUDENT && (
                     <div className="flex-1">
                       <label
-                        htmlFor="roll_no"
+                        htmlFor="roll_number"
                         className="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
                       >
                         Roll no.
@@ -343,9 +343,9 @@ function Register() {
                       <input
                         type="text"
                         className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
-                        name="roll_no"
+                        name="roll_number"
                         placeholder="Enter your roll no."
-                        onChange={(e) => setRoll_no(e.target.value)}
+                        onChange={(e) => setRoll_number(e.target.value)}
                       />
                     </div>
                   )}
@@ -355,19 +355,19 @@ function Register() {
                 <div className="mb-4 flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
                   <div className="flex-1">
                     <label
-                      htmlFor="hostel"
+                      htmlFor="hostel_number"
                       className="mb-2 inline-block text-xs font-medium uppercase text-gray-700"
                     >
-                      Hostel
+                      hostel_number
                     </label>
                     <input
                       type="text"
                       className={`block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow ${role === Roles.WARDEN && "w-full"
                         }`}
-                      id="hostel"
-                      name="hostel"
+                      id="hostel_number"
+                      name="hostel_number"
                       placeholder="Enter your hostel"
-                      onChange={(e) => setHostel(e.target.value)}
+                      onChange={(e) => setHostelNumber(e.target.value)}
                     />
                   </div>
                   {role === Roles.WARDEN ? null : (

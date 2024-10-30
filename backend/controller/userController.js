@@ -12,6 +12,7 @@ const emailPattern = /^[a-zA-Z0-9._%+-]+@iiitm\.ac\.in$/;
 // Updated registerUser function
 export const registerUser = async (req, res) => {
   const { full_name, email, username, phone_number, password, role, roll_number, hostel_number } = req.body;
+  console.log(req.body);
   if(!email || !full_name || !username) {
     return res.status(400).json("Full name, email, and username are required");
   }
@@ -65,6 +66,7 @@ export const verifyOtpAndRegister = async (req, res) => {
 
   // Retrieve OTP and temp user data from cache
   const cachedData = await client.get(`otp:${email}`);
+  console.log(cachedData);
   if (!cachedData) return res.status(400).json("Invalid OTP or session expired");
 
   const { otp: cachedOtp, tempUserData } = JSON.parse(cachedData);
@@ -108,6 +110,9 @@ export const verifyOtpAndRegister = async (req, res) => {
       });
     }
 
+    if (!newUser) {
+      return res.status(400).json("Invalid user role");
+    }
     // Save the new user
     await newUser.save();
 
@@ -190,10 +195,16 @@ export const userLogin = async (req, res) => {
     // Validate the password
     const validPassword = await bcrypt.compare(password, user.password_hash);
     if (!validPassword) return res.status(401).json("Invalid Credentials");
+  
 
     // Generate the JWT token with user ID and assigned role
     const jwtToken = jwtGenerator(user.user_id, role);
-    return res.json({ jwtToken });
+    return res.json({ 
+      jwtToken,
+      user:user,
+      role:role
+     })
+     .status(200);
   } catch (err) {
     console.error(err.message);
     res.status(500).json("Server error");
@@ -251,7 +262,7 @@ export const getUserDetailsById = async (req, res) => {
     const { user_id } = req.params; // Assume user_id is extracted from decoded JWT token
 
     // Search across User, Staff, and Admin tables
-    let user = await Student.findOne({ user_id });
+    let user = await Student.findOne({ user_id:user_id });
     let role = "student"; // Default role if found in User table
 
     if (!user) {
@@ -274,7 +285,7 @@ export const getUserDetailsById = async (req, res) => {
       email: user.email,
       username: user.username,
       phone_number: user.phone_number,
-      // role, // Set based on table found
+      role, // Set based on table found
       language_preference: user.language_preference,
     };
 

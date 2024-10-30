@@ -24,6 +24,9 @@ function Login() {
 
       if (data.jwtToken) {
         localStorage.setItem("jwtToken", data.jwtToken);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("user_role", data.role);
+        toast.success(`Welcome back, ${data.user.full_name}!`);
         navigate("/");
       } else {
         toast.error("Invalid credentials. Please check your email and password.");
