@@ -1,6 +1,6 @@
 import express from 'express';
 import { registerUser, userLogin, verifyOtpAndRegister,createStaff,
-    updateUserDetails, getUserDetailsById, resendOtp
+    updateUserDetails, getUserDetailsById, resendOtp, forgotPassword, resendPasswordResetOtp, verifyOtp, updatePassword,verifyOldPassword, resetPassword
  } from '../controller/userController.js';
 
 const userRoutes = express.Router();
@@ -12,5 +12,11 @@ userRoutes.post("/createStaff", createStaff);
 userRoutes.put("/updateUserDetails/:user_id", updateUserDetails);
 userRoutes.get("/getUserDetailsById/:user_id", getUserDetailsById);
 userRoutes.post("/resend-otp", resendOtp);
+userRoutes.post("/forgot-password",forgotPassword);
+userRoutes.post("/resend-password-reset-otp", resendPasswordResetOtp);
+userRoutes.post("/verify-password-reset-otp", verifyOtp);
+userRoutes.post("/update-password", updatePassword);
+userRoutes.post("/verify-old-password", verifyOldPassword);
+userRoutes.post("/reset-password", resetPassword);
 
 export default userRoutes;

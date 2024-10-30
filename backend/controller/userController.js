@@ -4,7 +4,7 @@ import Staff from "../models/staff.js";
 import Admin from "../models/admin.js";
 import { jwtGenerator, jwtDecoder } from "../utils/jwtToken.js";
 import { otpGenerator } from "../utils/otpUtils.js";
-import { sendOtp } from "../utils/communicationUtils.js"; // Send OTP via email/SMS
+import { sendOtp,sendResetOtp } from "../utils/communicationUtils.js"; // Send OTP via email/SMS
 import client from "../config/redisClient.js";
 
 const emailPattern = /^[a-zA-Z0-9._%+-]+@iiitm\.ac\.in$/;
@@ -254,6 +254,159 @@ export const createStaff = async (req, res) => {
     res.status(500).json("Server error");
   }
 };
+
+// Forgot Password API
+
+export const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+  
+  try {
+    // Check if user exists in Student, Staff, or Admin collections
+    let user = await Student.findOne({ email }) || await Staff.findOne({ email }) || await Admin.findOne({ email });
+    if (!user) return res.status(404).json("User with this email not found");
+
+    // Generate and send OTP
+    const otp = otpGenerator().toString();
+    await sendResetOtp(email, otp, user.full_name);
+
+    // Cache OTP with expiration
+    await client.setEx(`forgot-password:${email}`, 300, otp);
+
+    res.json("OTP sent for password reset");
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Server error");
+  }
+};
+
+// Resend OTP for Password Reset API
+export const resendPasswordResetOtp = async (req, res) => {
+  const { email } = req.body;
+
+  // Validate email
+  if (!emailPattern.test(email)) {
+    return res.status(400).json("Only verified students, staff, and authorities of IIITM-Gwalior are allowed");
+  }
+
+  try {
+    // Retrieve cached OTP data if exists
+    const cachedOtp = await client.get(`forgot-password:${email}`);
+    if (!cachedOtp) return res.status(400).json("No pending password reset OTP request for this email");
+
+    // Generate and send new OTP
+    const newOtp = otpGenerator().toString();
+    const user = await Student.findOne({ email }) || await Staff.findOne({ email }) || await Admin.findOne({ email });
+    if (!user) return res.status(404).json("User with this email not found");
+
+    await sendResetOtp(email, newOtp, user.full_name);
+
+    // Update OTP in cache with expiration (e.g., 5 minutes)
+    await client.setEx(`forgot-password:${email}`, 300, newOtp);
+
+    res.json("Password reset OTP resent, please check your email");
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Server error");
+  }
+};
+
+
+// Verify OTP for Forgot Password API
+export const verifyOtp = async (req, res) => {
+  const { email, otp } = req.body;
+  
+  try {
+    const cachedOtp = await client.get(`forgot-password:${email}`);
+    if (!cachedOtp || cachedOtp !== otp) {
+      return res.status(400).json("Invalid OTP or session expired");
+    }
+
+    // OTP is valid
+    res.json("OTP verified, proceed to reset password");
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Server error");
+  }
+};
+
+
+// Update Password after Forgot Password API
+export const updatePassword = async (req, res) => {
+  const { email, newPassword } = req.body;
+
+  try {
+    // Hash the new password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    // Update password in the respective collection
+    let user = await Student.findOneAndUpdate({ email }, { password_hash: hashedPassword }) ||
+               await Staff.findOneAndUpdate({ email }, { password_hash: hashedPassword }) ||
+               await Admin.findOneAndUpdate({ email }, { password_hash: hashedPassword });
+    
+    if (!user) return res.status(404).json("User not found");
+
+    // Remove OTP from cache after password reset
+    await client.del(`forgot-password:${email}`);
+
+    res.json("Password updated successfully");
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Server error");
+  }
+};
+
+
+// Update Password APIs
+
+// Verify Old Password API
+export const verifyOldPassword = async (req, res) => {
+  const { email, oldPassword } = req.body;
+
+  try {
+    let user =
+      await Student.findOne({ email }) ||
+      await Staff.findOne({ email }) ||
+      await Admin.findOne({ email });
+
+    if (!user) return res.status(404).json("User not found");
+
+    const validPassword = await bcrypt.compare(oldPassword, user.password_hash);
+    if (!validPassword) return res.status(401).json("Incorrect old password");
+
+    res.json("Old password verified");
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Server error");
+  }
+};
+
+// Reset Password API
+export const resetPassword = async (req, res) => {
+  const { email, newPassword } = req.body;
+
+  try {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    const user =
+      await Student.findOneAndUpdate({ email }, { password_hash: hashedPassword }) ||
+      await Staff.findOneAndUpdate({ email }, { password_hash: hashedPassword }) ||
+      await Admin.findOneAndUpdate({ email }, { password_hash: hashedPassword });
+
+    if (!user) return res.status(404).json("User not found");
+
+    res.json("Password reset successfully");
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Server error");
+  }
+};
+
+
+
+
+//profile apis (might shift them in a new file)
 
 
 // Get User Details by ID (for profile page)

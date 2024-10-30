@@ -7,6 +7,7 @@ import SocketService from './config/socket.js';
 // import studentRoutes from './routes/studentRoutes.js';
 // import wardenRoutes from './routes/wardenRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import chatRoutes from './routes/chatRoutes.js';
 import grievanceRoutes from './routes/grievanceRoutes.js';
 import http from 'http';
 
@@ -21,6 +22,7 @@ app.use("/grievances", grievanceRoutes);
 // app.use("/", studentRoutes);
 // app.use("/", wardenRoutes);
 app.use("/users/", userRoutes);
+app.use("/chat/", chatRoutes);
 
 // Initialize the Redis connection
 await client.connect(
