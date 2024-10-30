@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const VerifyOTP = () => {
   const location = useLocation();
@@ -95,6 +96,7 @@ const VerifyOTP = () => {
       if (data.jwtToken) {
         showNotification('success', response.data.message);
         setIsVerifying(false);
+        toast.success("User registered successfully! Please login to continue.");
       }
     } catch (error) {
       showNotification('error', error.response.data.message);
