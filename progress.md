@@ -67,8 +67,8 @@
 |----------------------------|-------------------------------------------|------------------------|------------|
 | Authentication Routes      | POST `/api/auth/login`                    | @shreshtha                | [x]        |
 |                            | POST `/api/auth/signup`                   | @shreshtha                | [x]        |
-|                            | POST `/api/auth/forgot-password`          | @shreshtha             | [ ]        |
-|                            | POST `/api/auth/reset-password`           | @shreshtha             | [ ]        |
+|                            | POST `/api/auth/forgot-password`          | @shreshtha             | [x]        |
+|                            | POST `/api/auth/reset-password`           | @shreshtha             | [x]        |
 | User Routes                | GET `/api/users/profile`                  | @shreshtha             | [x]        |
 |                            | PUT `/api/users/profile`                  | @shreshtha             | [x]        |
 |                            | GET `/api/users/notifications`            | @shreshtha             | [ ]        |
@@ -88,8 +88,8 @@
 |----------------------------|-------------------------------------------|------------------------|------------|
 | authController             | login()                                   | @shreshtha             | [x]        |
 |                            | signup()                                  | @shreshtha             | [x]        |
-|                            | forgotPassword()                          | @shreshtha             | [ ]        |
-|                            | resetPassword()                           | @shreshtha             | [ ]        |
+|                            | forgotPassword()                          | @shreshtha             | [x]        |
+|                            | resetPassword()                           | @shreshtha             | [x]        |
 | userController             | getProfile()                              | @shreshtha             | [x]        |
 |                            | updateProfile()                           | @shreshtha             | [x]        |
 |                            | getNotifications()                        | @shreshtha             | [ ]        |
