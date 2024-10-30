@@ -124,6 +124,36 @@ export const verifyOtpAndRegister = async (req, res) => {
 };
 
 
+// Resend OTP API
+export const resendOtp = async (req, res) => {
+  const { email } = req.body;
+
+  // Validate email
+  if (!emailPattern.test(email)) {
+    return res.status(400).json("Only the verified students, staff and authorities of IIITM-Gwalior are allowed");
+  }
+
+  try {
+    // Retrieve cached data if exists
+    const cachedData = await client.get(`otp:${email}`);
+    if (!cachedData) return res.status(400).json("No pending OTP request for this email");
+
+    // Parse cached user data
+    const { tempUserData } = JSON.parse(cachedData);
+
+    // Generate and send new OTP
+    const newOtp = otpGenerator().toString();
+    await sendOtp(email, newOtp, tempUserData.full_name);
+
+    // Update OTP in cache with expiration (e.g., 5 minutes)
+    await client.setEx(`otp:${email}`, 300, JSON.stringify({ otp: newOtp, tempUserData }));
+
+    res.json("OTP resent, please check your email");
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Server error");
+  }
+};
 
 // Login API (common for Students, Wardens, Workers)
 export const userLogin = async (req, res) => {
