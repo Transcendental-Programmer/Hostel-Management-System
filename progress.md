@@ -54,9 +54,9 @@
 |                            | Grievance Filter                          | @dhakad                | [ x]        |
 |                            | Grievance Search                          | @dhakad               | [ x]        |
 |                            | **Chat Components**                       |                        | Pending    |
-|                            | Chatroom                                  | @yash                  | [ ]        |
+|                            | Chatroom                                  | @yash                  | [X]        |
 |                            | Message List                              | @yash                | [ ]        |
-|                            | Message Input                             | @yash                 | [ ]        |
+|                            | Message Input                             | @yash                 | [X]        |
 |                            | Chat Bubble                               | @yash               | [ ]        |
 
 ---
