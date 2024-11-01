@@ -38,7 +38,7 @@
 |                            | **Form Components**                       |                        | Pending    |
 |                            | Login Form                                | @dhakad                | [X]        |
 |                            | Signup Form                               | @dhakad                  | [X]        |
-|                            | Profile Form                              | @yash                | [ ]        |
+|                            | Profile Form                              | @yash                | [X]        |
 |                            | Grievance Form                            | @yash                  | [ ]        |
 |                            | Resolution Form                           | @yash                | [ ]        |
 |                            | **Dashboard Components**                  |                        | Pending    |
