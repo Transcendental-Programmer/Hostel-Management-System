@@ -7,7 +7,6 @@ const Chat = () => {
   const [chatroomId, setChatroomId] = useState('');
   const [userId, setUserId] = useState('');
   const [senderType, setSenderType] = useState('');
-  const [currentDate, setCurrentDate] = useState('');
 
   const formatDate = (date) => {
     return date.toLocaleDateString(undefined, {
@@ -21,20 +20,9 @@ const Chat = () => {
   const isChatEnabled = chatroomId && userId && senderType;
 
   useEffect(() => {
-
-    setCurrentDate(formatDate(new Date()));
-
     if (isChatEnabled) {
       socket.emit('joinChannel', { chatroomId, userId, senderType });
       socket.on('message', (message) => {
-
-        const messageDate = formatDate(new Date(message.timestamp));
-        
-        // Update the currentDate only if the message is from a new day
-        if (messageDate !== currentDate) {
-          setCurrentDate(messageDate);
-        }
-
         setMessages((prevMessages) => [...prevMessages, message]);
       });
       return () => {
@@ -50,30 +38,61 @@ const Chat = () => {
         hour: '2-digit',
         minute: '2-digit',
       });
+      const messageDate = new Date(); // Capture the current date for the message
 
       const newMessage = {
         senderId: userId,
         senderType,
         messageText: inputValue,
         timestamp,
+        messageDate: messageDate.toISOString(), // Store date as ISO string for consistency
       };
 
       socket.emit('event:message', { chatroomId, message: newMessage });
       setMessages((prevMessages) => [...prevMessages, newMessage]);
       setInputValue('');
-
-
-
-      // Check if the date has changed before updating currentDate
-      const messageDate = formatDate(now);
-      if (messageDate !== currentDate) {
-        setCurrentDate(messageDate);
-      }
     }
   };
 
+  const getMessageDate = (dateString) => {
+    return formatDate(new Date(dateString)); // Use the stored ISO string to create a Date object
+  };
+
+  const renderMessages = () => {
+    let lastDate = '';
+
+    return messages.map((msg, index) => {
+      const messageDate = getMessageDate(msg.messageDate);
+      const shouldRenderDate = messageDate !== lastDate;
+
+      if (shouldRenderDate) {
+        lastDate = messageDate;
+      }
+
+      return (
+        <div key={index}>
+          {shouldRenderDate && (
+            <div className="text-center mb-2 text-gray-600 font-semibold">
+              {messageDate}
+            </div>
+          )}
+          <div className={`flex ${msg.senderId === userId ? 'justify-end' : 'justify-start'}`}>
+            <div
+              className={`relative max-w-xs min-w-[120px] p-3 rounded-lg flex justify-between items-end ${
+                msg.senderId === userId ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+              }`}
+              style={{ wordWrap: 'break-word', wordBreak: 'break-word' }}
+            >
+              <p className="text-sm break-words flex-1 pr-4">{msg.messageText}</p>
+              <span className="text-xs text-gray-300 whitespace-nowrap">{msg.timestamp}</span>
+            </div>
+          </div>
+        </div>
+      );
+    });
+  };
+
   return (
-    
     <div className="flex flex-col h-screen bg-gray-100 p-4">
       <div className="mb-4">
         <input
@@ -99,31 +118,8 @@ const Chat = () => {
         />
       </div>
 
-      <div className="text-center mb-2 text-gray-600 font-semibold">
-        {currentDate}
-      </div>
-
       <div className="flex-1 overflow-y-auto mb-4 space-y-4">
-        {messages.map((msg, index) => (
-          <div
-            key={index}
-            className={`flex ${msg.senderId === userId ? 'justify-end' : 'justify-start'}`}
-          >
-            <div
-              className={`relative max-w-xs min-w-[120px] p-3 rounded-lg flex justify-between items-end ${
-                msg.senderId === userId ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
-              }`}
-              style={{ wordWrap: 'break-word', wordBreak: 'break-word' }}
-            >
-              <p className="text-sm break-words flex-1 pr-4">
-                {msg.messageText}
-              </p>
-              <span className="text-xs text-gray-300 whitespace-nowrap">
-                {msg.timestamp}
-              </span>
-            </div>
-          </div>
-        ))}
+        {renderMessages()}
       </div>
 
       <form onSubmit={sendMessage} className="flex items-center bg-white p-2 rounded-lg shadow">
