@@ -4,26 +4,39 @@ import socket from '../utils/socket';
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
-
-  // Input state for chatroomId, userId, and senderType
   const [chatroomId, setChatroomId] = useState('');
   const [userId, setUserId] = useState('');
   const [senderType, setSenderType] = useState('');
+  const [currentDate, setCurrentDate] = useState('');
 
-  // Only enable messages if all required fields are filled
+  const formatDate = (date) => {
+    return date.toLocaleDateString(undefined, {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+  };
+
   const isChatEnabled = chatroomId && userId && senderType;
 
   useEffect(() => {
-    if (isChatEnabled) {
-      // Join the chatroom once all required fields are filled
-      socket.emit('joinChannel', { chatroomId, userId, senderType });
 
-      // Listen for messages from the server
+    setCurrentDate(formatDate(new Date()));
+
+    if (isChatEnabled) {
+      socket.emit('joinChannel', { chatroomId, userId, senderType });
       socket.on('message', (message) => {
+
+        const messageDate = formatDate(new Date(message.timestamp));
+        
+        // Update the currentDate only if the message is from a new day
+        if (messageDate !== currentDate) {
+          setCurrentDate(messageDate);
+        }
+
         setMessages((prevMessages) => [...prevMessages, message]);
       });
-
-      // Clean up on unmount
       return () => {
         socket.off('message');
       };
@@ -33,32 +46,35 @@ const Chat = () => {
   const sendMessage = (e) => {
     e.preventDefault();
     if (inputValue.trim() && isChatEnabled) {
-      const currentDate = new Date();
-      const timestamp = currentDate.toLocaleString(); // Get formatted date and time
-
-      const newMessage = {
-        senderType, // Assuming senderType is either 'student' or 'staff'
-        messageText: inputValue,
-        timestamp, // Add timestamp to message
-      };
-
-      // Send message to server
-      socket.emit('event:message', {
-        chatroomId,
-        message: newMessage,
+      const timestamp = new Date().toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
       });
 
-      // Add the message to the local messages array immediately
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
+      const newMessage = {
+        senderId: userId,
+        senderType,
+        messageText: inputValue,
+        timestamp,
+      };
 
-      // Clear the input field
+      socket.emit('event:message', { chatroomId, message: newMessage });
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
       setInputValue('');
+
+
+
+      // Check if the date has changed before updating currentDate
+      const messageDate = formatDate(now);
+      if (messageDate !== currentDate) {
+        setCurrentDate(messageDate);
+      }
     }
   };
 
   return (
+    
     <div className="flex flex-col h-screen bg-gray-100 p-4">
-      {/* Input Section for Chatroom ID, User ID, and Sender Type */}
       <div className="mb-4">
         <input
           type="text"
@@ -83,63 +99,40 @@ const Chat = () => {
         />
       </div>
 
-      {/* Header */}
-      <div className="flex items-center justify-between py-3 px-4 bg-white shadow rounded-lg mb-4">
-        <button className="text-blue-500">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <h2 className="text-xl font-semibold text-gray-800">USER_NAME</h2>
+      <div className="text-center mb-2 text-gray-600 font-semibold">
+        {currentDate}
       </div>
 
-      {/* Chat Messages */}
       <div className="flex-1 overflow-y-auto mb-4 space-y-4">
         {messages.map((msg, index) => (
-          <div key={index}>
-            {/* Display the dynamic timestamp */}
-            <p className="text-center text-sm text-gray-500 my-2">
-              {msg.timestamp}
-            </p>
+          <div
+            key={index}
+            className={`flex ${msg.senderId === userId ? 'justify-end' : 'justify-start'}`}
+          >
             <div
-              className={`flex ${msg.senderType === 'student' ? 'justify-end' : 'justify-start'}`}
+              className={`relative max-w-xs min-w-[120px] p-3 rounded-lg flex justify-between items-end ${
+                msg.senderId === userId ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+              }`}
+              style={{ wordWrap: 'break-word', wordBreak: 'break-word' }}
             >
-              {msg.senderType !== 'student' && (
-                <img
-                  src="https://via.placeholder.com/40" // Placeholder avatar
-                  alt="User avatar"
-                  className="w-8 h-8 rounded-full mr-2"
-                />
-              )}
-              <div
-                className={`max-w-xs p-3 rounded-lg ${
-                  msg.senderType === 'student' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
-                }`}
-              >
-                <p className="text-sm">
-                  <strong>{msg.senderType === 'student' ? 'Student' : 'USER_NAME'}:</strong> {msg.messageText}
-                </p>
-              </div>
-              {msg.senderType === 'student' && (
-                <img
-                  src="https://via.placeholder.com/40" // Placeholder avatar
-                  alt="User avatar"
-                  className="w-8 h-8 rounded-full ml-2"
-                />
-              )}
+              <p className="text-sm break-words flex-1 pr-4">
+                {msg.messageText}
+              </p>
+              <span className="text-xs text-gray-300 whitespace-nowrap">
+                {msg.timestamp}
+              </span>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Input Area */}
       <form onSubmit={sendMessage} className="flex items-center bg-white p-2 rounded-lg shadow">
         <input
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           className="flex-1 p-2 text-gray-700 rounded-full focus:outline-none"
-          placeholder="send message"
+          placeholder="Send message"
           disabled={!isChatEnabled}
         />
         <button
