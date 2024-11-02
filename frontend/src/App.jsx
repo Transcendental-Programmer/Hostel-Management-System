@@ -8,7 +8,7 @@ import Chat from "./components/chat";
 import VerifyOTP from "./pages/VerifyOTP"
 import GrievanceManagement from "./pages/GrievanceManagement"
 import WardenDashboard from "./pages/WardenDashboard";
-import ForgotPassword from "./components/ForgotPassword";
+import ForgotPassword from "./pages/ForgotPassword";
 const routes = createBrowserRouter([
   {
     path: RoutesPathName.SIGNUP_PAGE,

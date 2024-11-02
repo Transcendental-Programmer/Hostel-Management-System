@@ -71,7 +71,7 @@ function ForgotPassword() {
   };
 
   return (
-    <div className="flex min-h-screen w-screen items-center justify-center text-gray-600 bg-gray-50">
+    <div className="flex min-h-screen w-full items-center justify-center text-gray-600 bg-gray-50">
       <div className="relative flex flex-col sm:w-[30rem] rounded-lg border-gray-400 bg-white shadow-lg px-4">
         <div className="flex-auto p-6">
           {step === 1 && (
