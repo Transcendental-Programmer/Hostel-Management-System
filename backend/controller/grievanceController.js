@@ -36,7 +36,7 @@ export const getAllGrievances = async (req, res) => {
 // Get all grievances submitted by a user
 export const getGrievancesByUser = async (req, res) => {
     try {
-        const { user_id } = req.body;
+        const { user_id } = req.params;
         const grievances = await Grievance.find({ user_id });
         res.json(grievances).status(200);
     } catch (err) {

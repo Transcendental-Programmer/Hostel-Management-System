@@ -9,6 +9,8 @@ import VerifyOTP from "./pages/VerifyOTP"
 import GrievanceManagement from "./pages/GrievanceManagement"
 import WardenDashboard from "./pages/WardenDashboard";
 import ForgotPassword from "./pages/ForgotPassword";
+import MyGrievances from "./pages/Student/MyGrievances";
+import SubmitGrievance from "./pages/Student/SubmitGrievance";
 const routes = createBrowserRouter([
   {
     path: RoutesPathName.SIGNUP_PAGE,
@@ -28,8 +30,12 @@ const routes = createBrowserRouter([
     element: <AccountPage />,
   },
   {
-    path: RoutesPathName.DASHBOARD_PAGE,
-    element: <PrivateRoute />,
+    path: RoutesPathName.MY_GRIEVANCES,
+    element: <MyGrievances />,
+  },
+  {
+    path: RoutesPathName.SUBMIT_GRIEVANCE,
+    element: <SubmitGrievance />,
   },
   {
     path: RoutesPathName.CHAT_PAGE, // Define the route for the chat page

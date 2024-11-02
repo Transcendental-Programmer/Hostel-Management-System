@@ -10,9 +10,9 @@ import { createGrievance,
 const grievanceRoutes = express.Router();
 
 grievanceRoutes.post("/new", createGrievance);
-grievanceRoutes.get("/grievance", getAllGrievances);
-grievanceRoutes.get("/grievance/:user_id", getGrievancesByUser);
-grievanceRoutes.get("/grievance/:grievance_id", getGrievanceById);
-grievanceRoutes.put("/grievance/:grievance_id", updateGrievanceById);
-grievanceRoutes.delete("/grievance/:grievance_id", deleteGrievanceById);
+grievanceRoutes.get("/", getAllGrievances);
+grievanceRoutes.get("/:user_id", getGrievancesByUser);
+grievanceRoutes.get("/:grievance_id", getGrievanceById);
+grievanceRoutes.put("/update/:grievance_id", updateGrievanceById);
+grievanceRoutes.delete("/delete/:grievance_id", deleteGrievanceById);
 export default grievanceRoutes;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
-import Complaint from "./Complaint";
+import MyGrievances from "./Student/MyGrievances";
 import WardenComplaints from "./WardenComplaint";
 import { GetAuthHeader } from "../testing/Headers";
 
@@ -25,7 +25,7 @@ function Dashboard() {
     <>
       <Navbar />
       {user_role === "student" ? (
-        <Complaint />
+        <MyGrievances />
       ) : user_role === "warden" ? (
         <WardenComplaints />
       ) : null}
