@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import UrgencyLabel from './UrgencyLabel';
 
 const GrievanceCard = ({ grievance }) => {
     const formatTimestamp = (timestamp) => {
@@ -7,6 +9,7 @@ const GrievanceCard = ({ grievance }) => {
     };
 
     return (
+        <NavLink to={`/grievance/${grievance.grievance_id}`} className="flex flex-col w-full h-full">
         <div className="relative flex h-full flex-col rounded-md border border-gray-300 shadow-sm hover:cursor-pointer bg-white p-2.5 hover:border-gray-400 sm:rounded-lg sm:p-5">
             <div className="text-lg mb-2 font-semibold text-gray-900 hover:text-black sm:mb-1.5 sm:text-2xl">
                 {grievance.title}
@@ -14,25 +17,7 @@ const GrievanceCard = ({ grievance }) => {
             {/* Urgency and category  */}
             <div className='flex flex-row gap-2 mb-2'>
                 <div>
-                    {
-                        grievance.urgency_level === 'Low' ? (
-                            <span className="px-2 py-1 text-xs font-semibold text-green-800 bg-green-200 rounded-full sm:text-sm sm:px-3 sm:py-1.5">
-                                Low
-                            </span>
-                        ) : grievance.urgency_level === 'Medium' ? (
-                            <span className="px-2 py-1 text-xs font-semibold text-yellow-800 bg-yellow-200 rounded-full sm:text-sm sm:px-3 sm:py-1.5">
-                                Medium
-                            </span>
-                        ) : grievance.urgency_level === "High" ? (
-                            <span className="px-2 py-1 text-xs font-semibold text-orange-600 bg-orange-200 rounded-full sm:text-sm sm:px-3 sm:py-1.5">
-                                High
-                            </span>
-                        ) : (
-                            <span className="px-2 py-1 text-xs font-semibold text-red-600 bg-red-200 rounded-full sm:text-sm sm:px-3 sm:py-1.5">
-                                Critical
-                            </span>
-                        )
-                    }
+                    <UrgencyLabel urgencyLevel={grievance.urgency_level} />
                 </div>
                 <div>
                     <span className="px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-200 rounded-full sm:text-sm sm:px-3 sm:py-1.5">
@@ -63,6 +48,7 @@ const GrievanceCard = ({ grievance }) => {
                 </span>
             </button>
         </div>
+        </NavLink>
     );
 };
 
