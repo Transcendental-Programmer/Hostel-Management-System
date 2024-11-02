@@ -8,7 +8,6 @@ import Chat from "./components/chat";
 import VerifyOTP from "./pages/VerifyOTP"
 import GrievanceManagement from "./pages/GrievanceManagement"
 import WardenDashboard from "./pages/WardenDashboard";
-import Login2 from "./pages/Login2";
 import ForgotPassword from "./components/ForgotPassword";
 const routes = createBrowserRouter([
   {
@@ -19,10 +18,6 @@ const routes = createBrowserRouter([
   {
     path: RoutesPathName.LOGIN_PAGE,
     element: <Login />,
-  },
-  {
-    path: RoutesPathName.LOGIN_PAGE2,
-    element: <Login2 />,
   },
   {
     path: RoutesPathName.FORGOT_PASSWORD,

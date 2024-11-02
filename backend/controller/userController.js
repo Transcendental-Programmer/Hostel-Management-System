@@ -153,7 +153,7 @@ export const resendOtp = async (req, res) => {
     // Update OTP in cache with expiration (e.g., 5 minutes)
     await client.setEx(`otp:${email}`, 300, JSON.stringify({ otp: newOtp, tempUserData }));
 
-    res.json("OTP resent, please check your email");
+    res.json("OTP resent, please check your email").status(200);
   } catch (err) {
     console.error(err);
     res.status(500).json("Server error");
@@ -272,7 +272,7 @@ export const forgotPassword = async (req, res) => {
     // Cache OTP with expiration
     await client.setEx(`forgot-password:${email}`, 300, otp);
 
-    res.json("OTP sent for password reset");
+    res.json("OTP sent for password reset").status(200);
   } catch (err) {
     console.error(err);
     res.status(500).json("Server error");
@@ -303,7 +303,7 @@ export const resendPasswordResetOtp = async (req, res) => {
     // Update OTP in cache with expiration (e.g., 5 minutes)
     await client.setEx(`forgot-password:${email}`, 300, newOtp);
 
-    res.json("Password reset OTP resent, please check your email");
+    res.json("Password reset OTP resent, please check your email").status(200);
   } catch (err) {
     console.error(err);
     res.status(500).json("Server error");
@@ -314,15 +314,14 @@ export const resendPasswordResetOtp = async (req, res) => {
 // Verify OTP for Forgot Password API
 export const verifyOtp = async (req, res) => {
   const { email, otp } = req.body;
-  
   try {
     const cachedOtp = await client.get(`forgot-password:${email}`);
     if (!cachedOtp || cachedOtp !== otp) {
-      return res.status(400).json("Invalid OTP or session expired");
+      return res.status(200).json("Invalid OTP or session expired");
     }
 
     // OTP is valid
-    res.json("OTP verified, proceed to reset password");
+    res.json("OTP verified, proceed to reset password").status(200);
   } catch (err) {
     console.error(err);
     res.status(500).json("Server error");
@@ -349,7 +348,7 @@ export const updatePassword = async (req, res) => {
     // Remove OTP from cache after password reset
     await client.del(`forgot-password:${email}`);
 
-    res.json("Password updated successfully");
+    res.json("Password updated successfully").status(200);
   } catch (err) {
     console.error(err);
     res.status(500).json("Server error");
@@ -374,7 +373,7 @@ export const verifyOldPassword = async (req, res) => {
     const validPassword = await bcrypt.compare(oldPassword, user.password_hash);
     if (!validPassword) return res.status(401).json("Incorrect old password");
 
-    res.json("Old password verified");
+    res.json("Old password verified").status(200);
   } catch (err) {
     console.error(err);
     res.status(500).json("Server error");
@@ -396,7 +395,7 @@ export const resetPassword = async (req, res) => {
 
     if (!user) return res.status(404).json("User not found");
 
-    res.json("Password reset successfully");
+    res.json("Password reset successfully").status(200);
   } catch (err) {
     console.error(err);
     res.status(500).json("Server error");

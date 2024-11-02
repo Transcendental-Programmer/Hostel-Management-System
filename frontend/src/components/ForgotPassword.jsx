@@ -17,7 +17,7 @@ function ForgotPassword() {
         body: JSON.stringify({ email }),
       });
       const data = await response.json();
-      if (data.success) {
+      if (response.ok) {
         toast.success("OTP sent to your email.");
         setStep(2); // Move to OTP verification step
       } else {
@@ -32,13 +32,13 @@ function ForgotPassword() {
   const handleVerifyOtp = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/users/verify-otp", {
+      const response = await fetch("http://localhost:3000/users/verify-password-reset-otp", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ email, otp }),
       });
       const data = await response.json();
-      if (data.success) {
+      if (response.ok) {
         toast.success("OTP verified. You can now set a new password.");
         setStep(3); // Move to reset password step
       } else {
@@ -59,7 +59,7 @@ function ForgotPassword() {
         body: JSON.stringify({ email, newPassword }),
       });
       const data = await response.json();
-      if (data.success) {
+      if (response.ok) {
         toast.success("Password successfully reset! You can now log in.");
         setStep(1); // Return to initial step after reset
       } else {

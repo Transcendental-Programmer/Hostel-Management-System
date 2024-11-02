@@ -26,7 +26,7 @@ export const createGrievance = async (req, res) => {
 export const getAllGrievances = async (req, res) => {
     try {
         const grievances = await Grievance.find();
-        res.json(grievances);
+        res.json(grievances).status(200);
     } catch (err) {
         console.error(err.message);
         res.status(500).json("Server error: Failed to get grievances");
@@ -38,7 +38,7 @@ export const getGrievancesByUser = async (req, res) => {
     try {
         const { user_id } = req.body;
         const grievances = await Grievance.find({ user_id });
-        res.json(grievances);
+        res.json(grievances).status(200);
     } catch (err) {
         console.error(err.message);
         res.status(500).json("Server error: Failed to get grievances");
@@ -49,7 +49,7 @@ export const getGrievanceById = async (req, res) => {
     try {
         const { grievance_id } = req.body;
         const grievance = await Grievance.findOne({ grievance_id });
-        res.json(grievance);
+        res.json(grievance).status(200);
     }
     catch (err) {
         console.error(err.message);
