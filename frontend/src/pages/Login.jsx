@@ -38,7 +38,7 @@ function Login() {
 
   return (
     <>
-      <div className="flex min-h-screen w-screen  items-center justify-center text-gray-600 bg-gray-50">
+      <div className="flex min-h-screen  items-center justify-center text-gray-600 bg-gray-50">
         <div className="relative">
           <div className="hidden sm:block h-56 w-56 text-indigo-300 absolute a-z-10 -left-20 -top-20">
             <svg
@@ -65,8 +65,8 @@ function Login() {
                 </pattern>
               </defs>
               <rect
-                width="800%"
-                height="800%"
+                width="100%"
+                height="100%"
                 transform="translate(0,0)"
                 fill="url(#a)"
               />
@@ -97,8 +97,8 @@ function Login() {
                 </pattern>
               </defs>
               <rect
-                width="800%"
-                height="800%"
+                width="100%"
+                height="100%"
                 transform="translate(0,0)"
                 fill="url(#b)"
               />
@@ -180,6 +180,9 @@ function Login() {
                   {" "}
                   Create an account{" "}
                 </Link>
+              </p>
+              <p className="text-center mt-2">
+                <Link to="/forgot-password" className="text-indigo-500 hover:text-indigo-500">Forgot Password?</Link>
               </p>
             </div>
           </div>
