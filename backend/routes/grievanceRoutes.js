@@ -9,7 +9,7 @@ import { createGrievance,
 
 const grievanceRoutes = express.Router();
 
-grievanceRoutes.post("/grievance", createGrievance);
+grievanceRoutes.post("/new", createGrievance);
 grievanceRoutes.get("/grievance", getAllGrievances);
 grievanceRoutes.get("/grievance/:user_id", getGrievancesByUser);
 grievanceRoutes.get("/grievance/:grievance_id", getGrievanceById);

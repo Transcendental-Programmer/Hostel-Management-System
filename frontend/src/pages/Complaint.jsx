@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../utils/Auth";
+import { toast } from "react-toastify";
 
 const formatTimestamp = (timestamp) => {
   const date = new Date(timestamp);
@@ -26,34 +27,47 @@ const formatTimestamp1 = (timestamp) => {
 
 const ComplaintForm = () => {
   const { authToken, headers } = useAuth();
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [room, setRoom] = useState("");
+  const [grievanceData,setGrievanceData] = useState({
+    title: "",
+    description: "",
+    urgency_level: "",
+    category: "",
+    items_used:[],
+  });
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
 
-    if (!name || name.trim() === "") {
-      alert("Please enter a valid name.");
+    if (!grievanceData.title || grievanceData.title.trim() === "") {
+      toast.error("Please enter a valid title.");
       return;
     }
-    if (!room || room.trim() === "") {
-      alert("Please enter Room No.");
+    if (!grievanceData.description || grievanceData.description.trim() === "") {
+      toast.error("Please enter a valid complaint description.");
       return;
     }
-    if (!description || description.trim() === "") {
-      alert("Please enter a valid complaint.");
+    if (!grievanceData.urgency_level || grievanceData.urgency_level.trim() === "") {
+      toast.error("Please select an urgency level.");
       return;
     }
-
+    if (!grievanceData.category || grievanceData.category.trim() === "") {
+      toast.error("Please enter a valid category.");
+      return;
+    }
     try {
-      const body = { name, description, room };
-      const response = await fetch("http://localhost:3000/complaints", {
+      const user_id = JSON.parse(localStorage.getItem("user")).user_id;
+      const response = await fetch("http://localhost:3000/grievances/new", {
         method: "POST",
         headers: headers,
-        body: JSON.stringify(body),
+        body: JSON.stringify({...grievanceData,user_id:user_id}),
       });
-      window.location = "/";
+      if(response.ok){
+      toast.success("Complaint submitted successfully!");
+      }else{
+        toast.error("Failed to submit complaint. Please try again.");
+        console.log(response);
+      }
+      // window.location = "/";
     } catch (err) {
       console.error(err.message);
     }
@@ -152,48 +166,87 @@ const ComplaintForm = () => {
             </div>
           </div>
           <div class="border border-gray-100 shadow-gray-500/20 mt-8 mb-8 max-w-md bg-white shadow-sm sm:rounded-lg sm:shadow-lg lg:mt-0">
-            <div class="relative border-b border-gray-300 p-4 py-8 sm:px-8">
-              <h3 class="mb-1 inline-block text-3xl font-medium">
-                <span class="mr-4">Submit Complaint</span>
-                <span class="inline-block rounded-md bg-blue-100 px-2 py-1 text-sm text-blue-700 sm:inline">
-                  Quick Response
-                </span>
-              </h3>
-              <p class="text-gray-600">
-                Contact us for hostel grievance redressal
-              </p>
-            </div>
-            <div class="p-4 sm:p-8">
-              <input
-                id="name"
-                type="text"
-                class="mt-1 w-full resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none hover:border-blue-500"
-                placeholder="Enter Complaint name"
-                onChange={(e) => setName(e.target.value)}
-              />
-              <input
-                id="email"
-                type="text"
-                class="peer mt-8 w-full resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none hover:border-blue-500"
-                placeholder="Enter your Room No."
-                onChange={(e) => setRoom(e.target.value)}
-              />
-              <label class="mt-5 mb-2 inline-block max-w-full">
-                Tell us about your grievance
-              </label>
-              <textarea
-                id="about"
-                class="mb-8 w-full resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none hover:border-blue-500"
-                onChange={(e) => setDescription(e.target.value)}
-              ></textarea>
-              <button
-                class="w-full rounded-lg border border-blue-700 bg-blue-700 p-3 text-center font-medium text-white outline-none transition focus:ring hover:border-blue-700 hover:bg-blue-600 hover:text-white"
-                onClick={onSubmitForm}
-              >
-                Submit
-              </button>
-            </div>
-          </div>
+  <div class="relative border-b border-gray-300 p-4 py-8 sm:px-8">
+    <h3 class="mb-1 inline-block text-3xl font-medium">
+      <span class="mr-4">Submit Complaint</span>
+      <span class="inline-block rounded-md bg-blue-100 px-2 py-1 text-sm text-blue-700 sm:inline">
+        Quick Response
+      </span>
+    </h3>
+    <p class="text-gray-600">
+      Contact us for hostel grievance redressal
+    </p>
+  </div>
+  <div class="p-4 sm:p-8">
+    <input
+      id="title"
+      type="text"
+      class="mt-1 w-full resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none hover:border-blue-500"
+      placeholder="Enter Complaint Title"
+      onChange={(e) => setGrievanceData({
+        ...grievanceData,
+        title:e.target.value
+      })}
+    />
+    <label class="mt-5 mb-2 inline-block max-w-full">
+      Tell us about your grievance
+    </label>
+    <textarea
+      id="description"
+      class="mb-8 w-full resize-y max-h-32 overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none hover:border-blue-500"
+      placeholder="Describe your issue"
+      onChange={(e) => setGrievanceData({
+        ...grievanceData,
+        description:e.target.value
+      })}
+    ></textarea>
+    <label class="block mb-2">Category</label>
+    <input
+      id="category"
+      type="text"
+      class="mb-8 w-full resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none hover:border-blue-500"
+      placeholder="Enter Category"
+      onChange={(e) => setGrievanceData({
+        ...grievanceData,
+        category:e.target.value
+      })}
+    />
+    <label class="block mb-2">Urgency Level</label>
+    <select
+      id="urgency"
+      class="mb-8 w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none hover:border-blue-500"
+      onChange={(e) => setGrievanceData({
+        ...grievanceData,
+        urgency_level:e.target.value
+      })}
+    >
+      <option value="" disabled selected>Select Urgency</option>
+      <option value="Low">Low</option>
+      <option value="Medium">Medium</option>
+      <option value="High">High</option>
+      <option value="Critical">Critical</option>
+    </select>
+    <label class="block mb-2">Items Used (optional)</label>
+    {/* items separatd by comma */}
+    <input
+      id="items_used"
+      type="text"
+      class="mb-8 w-full resize-y overflow-auto rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none hover:border-blue-500"
+      placeholder="List items separated by comma ' , '"
+      onChange={(e) => setGrievanceData({
+        ...grievanceData,
+        items_used:e.target.value.split(',').map(item=>item.trim())
+      })}
+    />
+    <button
+      class="w-full rounded-lg border border-blue-700 bg-blue-700 p-3 text-center font-medium text-white outline-none transition focus:ring hover:border-blue-700 hover:bg-blue-600 hover:text-white"
+      onClick={onSubmitForm}
+    >
+      Submit
+    </button>
+  </div>
+</div>
+
         </div>
       </section>
     </>
