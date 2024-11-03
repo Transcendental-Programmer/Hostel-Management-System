@@ -47,7 +47,7 @@ export const getGrievancesByUser = async (req, res) => {
 // Get a grievance by ID
 export const getGrievanceById = async (req, res) => {
     try {
-        const { grievance_id } = req.body;
+        const { grievance_id } = req.params;
         const grievance = await Grievance.findOne({ grievance_id });
         res.json(grievance).status(200);
     }
@@ -61,6 +61,7 @@ export const getGrievanceById = async (req, res) => {
 export const updateGrievanceById = async (req, res) => {
     try {
         const { grievance_id, status, title, description,urgency_level, items_used } = req.body;
+        console.log(`Updating grievance ${grievance_id}`);
         const grievance = await Grievance.findOneAndUpdate({ grievance_id }, { status }, { title },{urgency_level},{items_used}, { description }, { new: true });
         res.status(200).json(grievance);
     } catch (err) {

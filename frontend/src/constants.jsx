@@ -14,5 +14,6 @@ export const Roles = {
     GRIEVANCE:"/grievance",
     WARDEN_DASHBOARD:"/warden-dashboard",
     MY_GRIEVANCES:"/my-grievances",
-    SUBMIT_GRIEVANCE:"/submit-grievance"
+    SUBMIT_GRIEVANCE:"/submit-grievance",
+    GRIEVANCE_DETAILS:"/grievance"
 }

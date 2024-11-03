@@ -1,0 +1,299 @@
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useAuth } from "../utils/Auth";
+import { toast } from "react-toastify";
+import Navbar from "../components/Navbar";
+import UrgencyLabel from "../components/UrgencyLabel";
+
+const GrievanceDetails = () => {
+  const { grievance_id } = useParams();
+  const navigate = useNavigate();
+  const { headers } = useAuth();
+  const [grievance, setGrievance] = useState(null);
+  const [prevGrievance, setPrevGrievance] = useState(null);
+  const [user,setUser] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [formData, setFormData] = useState({
+    title: '',
+    category: '',
+    description: '',
+    urgency_level: '',
+    items_used: [],
+  });
+
+  useEffect(() => {
+    const fetchGrievance = async () => {
+      if(grievance){
+        return;
+      }
+      try {
+        const response = await fetch(`http://localhost:3000/grievances/details/${grievance_id}`, {
+          method: 'GET',
+          headers: headers
+        });
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          setGrievance(data);
+          setPrevGrievance(data);
+          setFormData({
+            title: data.title,
+            category: data.category,
+            description: data.description,
+            urgency_level: data.urgency_level,
+            items_used: data.items_used || [],
+          });
+
+          const userData = await fetch(`http://localhost:3000/users/getUserDetailsById/${data.user_id}`,{
+            method: 'GET',
+          headers: headers
+          }
+          );
+          if (response.ok) {
+            const userDataJson = await userData.json();
+            console.log(userDataJson);
+            setUser(userDataJson);
+          } else {
+            toast.error("Failed to fetch user details");
+          }
+          
+        } else {
+          toast.error("Failed to fetch grievance details");
+        }
+      } catch (error) {
+        console.error('Failed to fetch grievance:', error);
+        toast.error("Error loading grievance details");
+      }
+    };
+
+    fetchGrievance();
+  }, [grievance_id,user]);
+
+  const handleUpdate = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/grievances/update/${grievance_id}`, {
+        method: 'PUT',
+        headers: headers,
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        toast.success("Grievance updated successfully");
+        setIsEditing(false);
+        // Refresh grievance data
+        const updatedGrievance = await response.json();
+        setGrievance(updatedGrievance);
+      } else {
+        toast.error("Failed to update grievance");
+      }
+    } catch (error) {
+      console.error('Error updating grievance:', error);
+      toast.error("Error updating grievance");
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!window.confirm("Are you sure you want to delete this grievance?")) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:3000/grievances/delete/${grievance_id}`, {
+        method: 'DELETE',
+        headers: headers
+      });
+
+      if (response.ok) {
+        toast.success("Grievance deleted successfully");
+        navigate('/dashboard');
+      } else {
+        toast.error("Failed to delete grievance");
+      }
+    } catch (error) {
+      console.error('Error deleting grievance:', error);
+      toast.error("Error deleting grievance");
+    }
+  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setGrievance((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const formatDate = (timestamp) => {
+    return new Date(timestamp).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
+  if (!grievance) return (
+    <>
+      <Navbar />
+      <div className="mt-20 flex justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    </>
+  );
+
+  const handleCancel = () => {
+    setGrievance(prevGrievance);
+    setIsEditing(false);
+  };
+
+  return (
+    <>
+      <Navbar />
+      <div className="container mx-auto my-20 max-w-2xl bg-white p-6 rounded-lg shadow-md">
+      <input 
+  type="text"
+  name="title"
+  value={grievance.title}
+  onChange={(e) => handleChange(e)}
+  disabled={!isEditing}
+  className={`text-3xl font-semibold text-gray-800 mb-4 w-full bg-transparent border-none 
+    ${isEditing 
+      ? 'focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-text' 
+      : 'cursor-default'
+    } rounded px-2`}
+/>
+        <p className="text-sm text-gray-500">Submitted on: {formatDate(grievance.submission_timestamp)}</p>
+        {user && <p className="text-sm text-gray-500">By:{user.full_name}</p>}
+        
+          <div className="mt-6">
+          <div className="grid grid-cols-2 gap-4 mb-6">
+  <div className="bg-gray-50 p-4 rounded">
+    <label className="font-semibold block mb-2">Category:</label>
+    <input
+      name="category"
+      value={grievance.category}
+      onChange={handleChange}
+      disabled={!isEditing}
+      className={`w-full p-2 bg-transparent border-none rounded
+        ${isEditing 
+          ? 'focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-text' 
+          : 'cursor-default'}`}
+    >
+    </input>
+  </div>
+
+  <div className="bg-gray-50 p-4 rounded">
+    <label className="font-semibold block mb-2">Status:</label>
+    <select
+      name="status"
+      value={grievance.status}
+      onChange={handleChange}
+      disabled={!isEditing}
+      className={`w-full p-2 bg-transparent border-none rounded
+        ${isEditing 
+          ? 'focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-text' 
+          : 'cursor-default'}`}
+    >
+      <option value="Pending">Pending</option>
+      <option value="In-Progress">In-Progress</option>
+      <option value="Completed">Completed</option>
+    </select>
+  </div>
+
+  <div className="bg-gray-50 p-4 rounded">
+    <label className="font-semibold block mb-2">Urgency Level:</label>
+    <select
+      name="urgency_level" 
+      value={grievance.urgency_level}
+      onChange={handleChange}
+      disabled={!isEditing}
+      className={`w-full p-2 bg-transparent border-none rounded
+        ${isEditing 
+          ? 'focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-text' 
+          : 'cursor-default'}`}
+    >
+      <option value="Low">Low</option>
+      <option value="Medium">Medium</option>
+      <option value="High">High</option>
+      <option value="Critical">Critical</option>
+    </select>
+  </div>
+
+  <div className="bg-gray-50 p-4 rounded">
+    <label className="font-semibold block mb-2">Items Used:</label>
+    <input
+      type="text"
+      name="items_used"
+      value={grievance.items_used?.join(', ') || ''}
+      onChange={(e) => handleChange({
+        target: {
+          name: 'items_used',
+          value: e.target.value.split(',').map(item => item.trim())
+        }
+      })}
+      disabled={!isEditing}
+      className={`w-full p-2 bg-transparent border-none rounded
+        ${isEditing 
+          ? 'focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-text' 
+          : 'cursor-default'}`}
+    />
+  </div>
+</div>
+
+<div className="bg-gray-50 p-4 rounded mb-6">
+  <label className="font-semibold block mb-2">Description:</label>
+  <textarea
+    name="description"
+    value={grievance.description}
+    onChange={handleChange}
+    disabled={!isEditing}
+    rows={4}
+    className={`w-full p-2 bg-transparent border-none rounded resize-none
+      ${isEditing 
+        ? 'focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-text' 
+        : 'cursor-default'}`}
+  />
+</div>
+            
+            {!isEditing && grievance.status === "Pending" && (
+              <div className="flex gap-4">
+                <button
+                  onClick={() => setIsEditing(true)}
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={handleDelete}
+                  className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Delete
+                </button>
+              </div>
+            )}
+
+{
+            isEditing && (
+              <div className="flex gap-4 mt-6">
+              <button
+                onClick={handleUpdate}
+                className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Save Changes
+              </button>
+              <button
+                onClick={handleCancel}
+                className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Cancel
+              </button>
+            </div>
+            )
+          }
+          </div>
+
+          
+
+      </div>
+    </>
+  );
+};
+
+export default GrievanceDetails;

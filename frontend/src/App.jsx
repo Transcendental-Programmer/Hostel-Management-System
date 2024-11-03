@@ -11,6 +11,7 @@ import WardenDashboard from "./pages/WardenDashboard";
 import ForgotPassword from "./pages/ForgotPassword";
 import MyGrievances from "./pages/Student/MyGrievances";
 import SubmitGrievance from "./pages/Student/SubmitGrievance";
+import GrievanceDetails from "./pages/GrievanceDetails";
 import Layout from "./components/Layout";
 const routes = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const routes = createBrowserRouter([
       {
         path: RoutesPathName.SUBMIT_GRIEVANCE,
         element: <SubmitGrievance />,
+      },
+      {
+        path: `${RoutesPathName.GRIEVANCE_DETAILS}/:grievance_id`,
+        element: <GrievanceDetails />,
       },
       {
         path: RoutesPathName.CHAT_PAGE, // Define the route for the chat page
