@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { User, FileText, CheckSquare } from 'lucide-react';
+import { User, FileText, CheckSquare, X } from 'lucide-react';
 
 const StaffDashboard = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false);
   
   // Mock data
   const staffStats = {
@@ -13,6 +14,34 @@ const StaffDashboard = () => {
     totalGrievancesResolved: 45,
     activeGrievances: 3
   };
+
+  // Mock resolved grievances history
+  const resolvedGrievances = [
+    {
+      id: 1,
+      title: "Water Leakage - Room 102",
+      resolvedDate: "2024-03-15T14:30:00",
+      resolvedBy: "John Smith"
+    },
+    {
+      id: 2,
+      title: "AC Maintenance - Block A",
+      resolvedDate: "2024-03-14T11:20:00",
+      resolvedBy: "John Smith"
+    },
+    {
+      id: 3,
+      title: "Door Lock Repair - Room 405",
+      resolvedDate: "2024-03-13T16:45:00",
+      resolvedBy: "John Smith"
+    },
+    {
+      id: 4,
+      title: "Light Fixture - Common Area",
+      resolvedDate: "2024-03-12T09:15:00",
+      resolvedBy: "John Smith"
+    }
+  ];
 
   const [activeGrievances, setActiveGrievances] = useState([
     { 
@@ -54,6 +83,37 @@ const StaffDashboard = () => {
     );
   };
 
+  // History Modal Component
+  const HistoryModal = () => (
+    <div className={`fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center ${isHistoryModalOpen ? '' : 'hidden'}`}>
+      <div className="bg-white rounded-xl max-w-2xl w-full mx-4 max-h-[80vh] flex flex-col">
+        <div className="p-6 border-b border-gray-100 flex justify-between items-center">
+          <h3 className="text-lg font-semibold text-gray-900">Resolved Grievances History</h3>
+          <button 
+            onClick={() => setIsHistoryModalOpen(false)}
+            className="text-gray-400 hover:text-gray-500 transition-colors"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+        <div className="overflow-y-auto p-6">
+          <div className="space-y-4">
+            {resolvedGrievances.map((grievance) => (
+              <div key={grievance.id} className="border border-gray-100 rounded-lg p-4">
+                <h4 className="font-medium text-gray-900">{grievance.title}</h4>
+                <div className="mt-2 text-sm text-gray-500 space-y-1">
+                  <p>Resolved by: {grievance.resolvedBy}</p>
+                  <p>Date: {new Date(grievance.resolvedDate).toLocaleDateString()}</p>
+                  <p>Time: {new Date(grievance.resolvedDate).toLocaleTimeString()}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   // Dashboard Section Component
   const DashboardSection = () => (
     <div className="space-y-8">
@@ -82,6 +142,12 @@ const StaffDashboard = () => {
             <div className="text-center">
               <span className="block text-4xl font-bold text-green-600">{staffStats.totalGrievancesResolved}</span>
               <span className="block text-sm text-gray-600 mt-1">Total Grievances Resolved</span>
+              <button
+                onClick={() => setIsHistoryModalOpen(true)}
+                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm font-medium"
+              >
+                Check History
+              </button>
             </div>
           </div>
         </div>
@@ -204,6 +270,7 @@ const StaffDashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <DashboardSection />
+      <HistoryModal />
     </div>
   );
 };
