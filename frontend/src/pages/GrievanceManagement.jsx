@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const GrievanceManagement = () => {
+  const navigate = useNavigate();
   // Mock data
   const initialGrievances = [
     {
@@ -151,7 +153,8 @@ const GrievanceManagement = () => {
 
                 <div className="mt-4 flex justify-end">
                   <button
-                    onClick={() => setSelectedGrievance(grievance)}
+                    // onClick={() => setSelectedGrievance(grievance)}
+                    onClick={() => navigate(`/grievances/details/${grievance.complaint_id}`)}
                     className="text-blue-600 hover:text-blue-800 text-sm font-medium"
                   >
                     View Details

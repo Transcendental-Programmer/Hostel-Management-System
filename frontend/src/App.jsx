@@ -63,6 +63,10 @@ const routes = createBrowserRouter([
         path: RoutesPathName.WARDEN_DASHBOARD,
         element: <WardenDashboard />,
       },
+      {
+        path:"/grievances/details/:grievance_id",
+        element: <GrievanceDetails />,
+      }
     ],
   },
 ]);
