@@ -13,6 +13,7 @@ import MyGrievances from "./pages/Student/MyGrievances";
 import SubmitGrievance from "./pages/Student/SubmitGrievance";
 import GrievanceDetails from "./pages/GrievanceDetails";
 import Layout from "./components/Layout";
+import StaffDashboard from "./pages/Staff/StaffDashboard";
 const routes = createBrowserRouter([
   {
     path: '/',
@@ -62,6 +63,10 @@ const routes = createBrowserRouter([
       {
         path: RoutesPathName.WARDEN_DASHBOARD,
         element: <WardenDashboard />,
+      },
+      {
+        path: RoutesPathName.STAFF_DASHBOARD,
+        element: <StaffDashboard />,
       },
     ],
   },
