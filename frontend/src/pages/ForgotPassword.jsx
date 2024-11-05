@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
 
 function ForgotPassword() {
   const [step, setStep] = useState(1); // Step 1: Request Reset, Step 2: OTP Verification, Step 3: Reset Password
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const navigate = useNavigate();
 
   // Handle sending reset request and OTP
   const handleRequestReset = async (e) => {
@@ -61,7 +63,9 @@ function ForgotPassword() {
       const data = await response.json();
       if (response.ok) {
         toast.success("Password successfully reset! You can now log in.");
-        setStep(1); // Return to initial step after reset
+        // setStep(1); // Return to initial step after reset
+        navigate("/login"); // Redirect to login page
+
       } else {
         toast.error("Failed to reset password. Please try again.");
       }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { User, FileText, CheckSquare, BarChart2, Users } from 'lucide-react';
 import RegisterStaffForm from './RegisterStaffForm';
-
+import GrievanceManagementByWarden from './GrievanceManagementByWarden';
 
 const WardenDashboard = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -178,10 +178,10 @@ const WardenDashboard = () => {
       case 'dashboard':
         return <DashboardSection />;
       case 'grievances':
-        return <GrievanceManagement />;
+        return <GrievanceManagementByWarden />;
       case 'resolve':
         // return <div className="bg-white p-6 rounded-lg shadow-sm">Resolve Grievance Section</div>;
-        // return <GrievanceManagement />;
+        return <GrievanceManagementByWarden />;
       case 'performance':
         return <PerformanceDashboard />;
       case 'staff':

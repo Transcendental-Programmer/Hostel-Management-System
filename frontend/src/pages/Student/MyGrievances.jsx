@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import GrievanceCard from "../../components/GrievanceCard";
 import { toast } from "react-toastify";
 import { useAuth } from "../../utils/Auth";
+import { Navigate } from "react-router-dom";
 
 const formatTimestamp = (timestamp) => {
   const date = new Date(timestamp);
@@ -34,10 +35,12 @@ const MyGrievances = () => {
   const { authToken, headers } = useAuth();
   if(!authToken){
     toast.error("You need to be logged in to view this page.");
+    console.log("You need to be logged in to view this page.");
     return <Navigate to="/login" />;
   }
   else if(user_role !== "student"){
     toast.error("You need to be a student to view this page.");
+    console.log("You need to be a student to view this page.");
     return <Navigate to="/login" />;
   }
 
