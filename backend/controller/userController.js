@@ -164,11 +164,6 @@ export const resendOtp = async (req, res) => {
 export const userLogin = async (req, res) => {
   const { email, password } = req.body;
 
-  // Email validation
-  if (!emailPattern.test(email)) {
-    return res.status(400).json("Only the verified students, staff, and authorities of IIITM-Gwalior are allowed");
-  }
-
   try {
     let user;
     let role;
@@ -216,11 +211,6 @@ export const userLogin = async (req, res) => {
 export const createStaff = async (req, res) => {
   const { full_name, email, username, phone_number, password, department} = req.body;
   // const role = "staff"; // Staff always have 'staff' role
-
-  // Email validation
-  if (!emailPattern.test(email)) {
-    return res.status(400).json("Only the verified students, staff, and authorities of IIITM-Gwalior are allowed");
-  }
 
   try {
     // Check if the user already exists in any table

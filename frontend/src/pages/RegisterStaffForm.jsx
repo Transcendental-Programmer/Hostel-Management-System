@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaUser, FaEnvelope, FaUserTie, FaBuilding, FaLanguage, FaLock } from 'react-icons/fa';
+import { FaUser, FaEnvelope, FaUserTie, FaBuilding, FaLanguage, FaLock,FaPhone  } from 'react-icons/fa';
 
 const RegisterStaffForm = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +9,7 @@ const RegisterStaffForm = () => {
     department: '',
     languagePreference: '',
     password: '',
+    phone_number: '',
   });
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
@@ -19,7 +20,7 @@ const RegisterStaffForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(formData);  
     try {
       const response = await fetch('http://localhost:3000/users/createStaff', {
         method: 'POST',
@@ -41,6 +42,7 @@ const RegisterStaffForm = () => {
           department: '',
           languagePreference: '',
           password: '',
+          phone_number: '',
         });
       } else {
         const errorData = await response.json();
@@ -128,6 +130,18 @@ const RegisterStaffForm = () => {
             name="password"
             placeholder="Set Password"
             value={formData.password}
+            onChange={handleChange}
+            required
+            className="w-full bg-transparent outline-none text-gray-700"
+          />
+        </div>
+        <div className="flex items-center border border-gray-300 p-2 rounded-lg bg-gray-50">
+          <FaPhone className="text-gray-500 mr-2" />
+          <input
+            type="number"
+            name="phone_number"
+            placeholder="Phone number"
+            value={formData.phone_number}
             onChange={handleChange}
             required
             className="w-full bg-transparent outline-none text-gray-700"
