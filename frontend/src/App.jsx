@@ -13,6 +13,7 @@ import MyGrievances from "./pages/Student/MyGrievances";
 import SubmitGrievance from "./pages/Student/SubmitGrievance";
 import GrievanceDetails from "./pages/GrievanceDetails";
 import Layout from "./components/Layout";
+import StaffDashboard from "./pages/Staff/StaffDashboard";
 const routes = createBrowserRouter([
   {
     path: '/',
@@ -64,9 +65,15 @@ const routes = createBrowserRouter([
         element: <WardenDashboard />,
       },
       {
+<<<<<<< HEAD
         path:"/grievances/details/:grievance_id",
         element: <GrievanceDetails />,
       }
+=======
+        path: RoutesPathName.STAFF_DASHBOARD,
+        element: <StaffDashboard />,
+      },
+>>>>>>> a7b2995f69a1717d66e0731a883e4cd2951ef098
     ],
   },
 ]);
