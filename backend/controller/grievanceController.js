@@ -3,9 +3,10 @@ import Grievance from '../models/grievances.js';
 // Create a new grievance
 export const createGrievance = async (req, res) => {
     try {
-        const { user_id, title, description, category, urgency_level, items_used } = req.body;
+        const { user_id, staff_id, title, description, category, urgency_level, items_used } = req.body;
         const grievance = await Grievance.create({
             user_id,
+            staff_id,
             title,
             description,
             category,
@@ -73,12 +74,13 @@ export const getGrievanceById = async (req, res) => {
 // Update a grievance by ID
 export const updateGrievanceById = async (req, res) => {
     try {
-        const { grievance_id, status, title, description, urgency_level, items_used } = req.body;
+        const { grievance_id, status, staff_id, title, description, urgency_level, items_used } = req.body;
         console.log(`Updating grievance ${grievance_id}`);
         const grievance = await Grievance.findOneAndUpdate(
             { grievance_id },
             {
                 status: status.toLowerCase(), // Ensure status is lowercase
+                staff_id,
                 title,
                 description,
                 urgency_level,
@@ -106,4 +108,15 @@ export const deleteGrievanceById = async (req, res) => {
     }
 };
 
-// Detect language of a grievance
+
+// Get all staff members
+export const getStaff = async (req, res) => {
+    try {
+        const staffs = await Staff.find();
+        res.status(200).json(staffs);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json("Server error: Failed to get staff members");
+    }
+};
+

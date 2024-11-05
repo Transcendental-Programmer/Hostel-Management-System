@@ -1,18 +1,24 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "../../utils/Auth";
+import { useNavigate } from "react-router-dom";
 
 const SubmitGrievance = () => {
     const { authToken, headers } = useAuth();
     const user_role = localStorage.getItem("user_role");
+    const navigate = useNavigate();
+
     if(!authToken){
         toast.error("You need to be logged in to view this page.");
-        return <Navigate to="/login" />;
+        navigate("/login");
+        return null;
     }
     else if(user_role !== "student"){
         toast.error("You need to be a student to view this page.");
-        return <Navigate to="/login" />;
+        navigate("/login");
+        return null;
     }
+
     const [grievanceData, setGrievanceData] = useState({
         title: "",
         description: "",
@@ -23,7 +29,7 @@ const SubmitGrievance = () => {
 
     const onSubmitForm = async (e) => {
         e.preventDefault();
-
+    
         if (!grievanceData.title || grievanceData.title.trim() === "") {
             toast.error("Please enter a valid title.");
             return;
@@ -48,12 +54,14 @@ const SubmitGrievance = () => {
                 body: JSON.stringify({ ...grievanceData, user_id: user_id }),
             });
             if (response.ok) {
+                const data = await response.json();
                 toast.success("Grievance submitted successfully!");
+                // Redirect to the grievance details page
+                navigate(`/my-grievances`);
             } else {
                 toast.error("Failed to submit grievance. Please try again.");
                 console.log(response);
             }
-            // window.location = "/";
         } catch (err) {
             console.error(err.message);
         }

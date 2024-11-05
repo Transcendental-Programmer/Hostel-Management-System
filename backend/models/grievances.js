@@ -14,6 +14,12 @@ const GrievanceSchema = new mongoose.Schema({
     required: true,
     ref: 'Student'
   },
+  staff_id: {
+    type: String,
+    required: false,
+    default: null,
+    ref: 'Staff'
+  },
   category: {
     type: String,
     required: true,

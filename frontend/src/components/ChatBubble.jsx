@@ -15,7 +15,7 @@ const ChatBubble = () => {
   return (
     <div className="fixed bottom-4 right-4 z-50">
       {isOpen ? (
-        <div className="bg-white rounded-lg shadow-xl w-96 h-[600px]">
+        <div className="bg-white rounded-lg shadow-xl w-96 h-[90vh]">
           <div className="flex justify-between items-center p-4 border-b">
             <h3 className="font-semibold">Chat</h3>
             <button 
@@ -25,7 +25,7 @@ const ChatBubble = () => {
               ✕
             </button>
           </div>
-          <div className="h-[calc(600px-64px)]">
+          <div className="h-[calc(90vh-64px)]">
             <Chat />
           </div>
         </div>

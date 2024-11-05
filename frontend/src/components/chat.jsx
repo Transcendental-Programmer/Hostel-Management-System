@@ -93,7 +93,7 @@ const Chat = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gray-100 p-4">
+    <div className="flex flex-col h-full bg-gray-100 p-4">
       <div className="mb-4">
         <input
           type="text"
@@ -118,7 +118,7 @@ const Chat = () => {
         />
       </div>
 
-      <div className="flex-1 overflow-y-auto mb-4 space-y-4">
+      <div className="flex-1 overflow-y-auto mb-4 space-y-4 h-1/2">
         {renderMessages()}
       </div>
 

@@ -71,23 +71,22 @@ const GrievanceDetails = () => {
     fetchGrievance();
   }, [grievance_id, user]);
 
-  const handleUpdate = async () => {
+  const handleUpdate = async (updatedGrievance) => {
     try {
-      const updatedData = { ...grievance, status: grievance.status.toLowerCase() };
       const response = await fetch(`http://localhost:3000/grievances/update/${grievance_id}`, {
         method: 'PUT',
         headers: {
           ...headers,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(updatedData),
+        body: JSON.stringify(updatedGrievance),
       });
-  
+
       if (response.ok) {
         toast.success("Grievance updated successfully");
         setIsEditing(false);
-        const updatedGrievance = await response.json();
-        setGrievance(updatedGrievance);
+        const newGrievance = await response.json();
+        setGrievance(newGrievance);
       } else {
         toast.error("Failed to update grievance");
       }
@@ -96,7 +95,8 @@ const GrievanceDetails = () => {
       toast.error("Error updating grievance");
     }
   };
-  
+
+
 
   const handleDelete = async () => {
     if (!window.confirm("Are you sure you want to delete this grievance?")) {
@@ -123,10 +123,18 @@ const GrievanceDetails = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     console.log(name, value);
-    
-    setGrievance((prev) => ({ ...prev, [name]: name === 'status' ? value.toLowerCase() : value }));
+
+    // Update the grievance state
+    const updatedGrievance = { ...grievance, [name]: name === 'status' ? value.toLowerCase() : value };
+    setGrievance(updatedGrievance);
+
+    // If the field being changed is 'status', call handleUpdate with the updated grievance
+    if (name === 'status') {
+      handleUpdate(updatedGrievance);
+    }
   };
-  
+
+
 
   const formatDate = (timestamp) => {
     return new Date(timestamp).toLocaleDateString('en-US', {
@@ -193,13 +201,7 @@ const GrievanceDetails = () => {
               <select
                 name="status"
                 value={grievance.status}
-                onChange={(e) => {
-                  handleChange(e); // Update the local state
-                  console.log(e.target.value);
-                  console.log(grievance);
-                                    
-                  handleUpdate(); // Update the backend with the new status
-                }}
+                onChange={handleChange} // Call handleChange directly
                 disabled={false}
                 className={`w-full p-2 bg-transparent border-none rounded
   ${isEditing
@@ -210,6 +212,7 @@ const GrievanceDetails = () => {
                 <option value="completed">Completed</option>
                 <option value="closed">Closed</option>
               </select>
+
 
 
             </div>
