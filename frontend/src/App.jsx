@@ -65,6 +65,10 @@ const routes = createBrowserRouter([
         element: <WardenDashboard />,
       },
       {
+        path:"/grievances/details/:grievance_id",
+        element: <GrievanceDetails />,
+      },
+      {
         path: RoutesPathName.STAFF_DASHBOARD,
         element: <StaffDashboard />,
       },
