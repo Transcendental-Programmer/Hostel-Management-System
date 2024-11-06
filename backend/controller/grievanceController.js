@@ -1,4 +1,4 @@
-import Grievance from '../models/grievances.js'; 
+import Grievance from '../models/grievances.js';
 import Staff from '../models/staff.js';
 // Create a new grievance
 export const createGrievance = async (req, res) => {
@@ -36,9 +36,41 @@ export const getAllGrievances = async (req, res) => {
 // for staff and warden dashboard
 export const getOpenGrievances = async (req, res) => {
     try {
-        const grievances = await Grievance.find({
-            status: { $regex: /^(Pending|Completed)$/i }
-        });
+        const grievances = await Grievance.aggregate([
+            {
+                $match: {
+                    status: { $regex: /^(Pending|Completed)$/i }
+                }
+            },
+            {
+                $lookup: {
+                    from: 'students',
+                    localField: 'user_id',
+                    foreignField: 'user_id',
+                    as: 'student_info'
+                }
+            },
+            {
+                $project: {
+                    grievance_id: 1,
+                    user_id: 1,
+                    staff_id: 1,
+                    category: 1,
+                    title: 1,
+                    description: 1,
+                    submission_timestamp: 1,
+                    urgency_level: 1,
+                    status: 1,
+                    voice_input_url: 1,
+                    language_detected: 1,
+                    items_used: 1,
+                    created_at: 1,
+                    updated_at: 1,
+                    room_number: { $arrayElemAt: ['$student_info.room_number', 0] }
+                }
+            }
+        ]);
+
         res.status(200).json(grievances);
     } catch (err) {
         console.error(err.message);
@@ -113,6 +145,7 @@ export const deleteGrievanceById = async (req, res) => {
 export const getStaff = async (req, res) => {
     try {
         const staffs = await Staff.find();
+        console.log("staffs: ",staffs);
         res.status(200).json(staffs);
     } catch (err) {
         console.error(err.message);
@@ -123,22 +156,22 @@ export const getStaff = async (req, res) => {
 // Assign staff to a grievance
 export const assignStaff = async (req, res) => {
     try {
-      const { grievance_id, staff_id } = req.body;
-  
-      // Find the grievance by ID
-      const grievance = await Grievance.findOne({ grievance_id });
-  
-      if (!grievance) {
-        return res.status(404).json({ message: 'Grievance not found' });
-      }
-  
-      // Update the staff_id field
-      grievance.staff_id = staff_id;
-      await grievance.save();
-  
-      res.status(200).json(grievance);
+        const { grievance_id, staff_id } = req.body;
+
+        // Find the grievance by ID
+        const grievance = await Grievance.findOne({ grievance_id });
+
+        if (!grievance) {
+            return res.status(404).json({ message: 'Grievance not found' });
+        }
+
+        // Update the staff_id field
+        grievance.staff_id = staff_id;
+        await grievance.save();
+
+        res.status(200).json(grievance);
     } catch (err) {
-      console.error(err.message);
-      res.status(500).json({ message: 'Server error: Failed to assign staff' });
+        console.error(err.message);
+        res.status(500).json({ message: 'Server error: Failed to assign staff' });
     }
-  };
+};

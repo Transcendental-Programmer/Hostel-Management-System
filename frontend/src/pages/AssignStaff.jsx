@@ -26,6 +26,8 @@ useEffect(() => {
     try {
       const response = await axios.get('http://localhost:3000/grievances/staff');
       setStaffMembers(response.data);
+      console.log(response.data);
+      
     } catch (err) {
       console.error('Failed to fetch staff members:', err);
     }
@@ -40,7 +42,7 @@ useEffect(() => {
         try {
             setIsLoading(true);
             setError(null);
-            const response = await axios.get('http://localhost:3000/grievances');
+            const response = await axios.get('http://localhost:3000/grievances/open');
             setGrievances(response.data);
         } catch (err) {
             console.error('Failed to fetch grievances:', err);
