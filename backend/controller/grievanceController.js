@@ -143,15 +143,18 @@ export const deleteGrievanceById = async (req, res) => {
 
 // Get all staff members
 export const getStaff = async (req, res) => {
+    console.log("Getting staff members");
+    
     try {
-        const staffs = await Staff.find();
-        console.log("staffs: ",staffs);
-        res.status(200).json(staffs);
+        const staffs = await Staff.find({}, { _id: 0, user_id: 1, username: 1, full_name: 1, email: 1, department: 1, language_preference: 1 });
+        console.log("staffs: ", staffs);
+        res.status(200).json(staffs);  
     } catch (err) {
         console.error(err.message);
         res.status(500).json("Server error: Failed to get staff members");
     }
 };
+
 
 // Assign staff to a grievance
 export const assignStaff = async (req, res) => {

@@ -21,21 +21,21 @@ const AssignStaff = () => {
 
     const [staffMembers, setStaffMembers] = useState([]);
 
-useEffect(() => {
-  const fetchStaffMembers = async () => {
-    try {
-      const response = await axios.get('http://localhost:3000/grievances/staff');
-      setStaffMembers(response.data);
-      console.log(response.data);
-      
-    } catch (err) {
-      console.error('Failed to fetch staff members:', err);
-    }
-  };
+    useEffect(() => {
+        const fetchStaffMembers = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/grievances/staff');
+                setStaffMembers(response.data);
+                console.log(response.data);
 
-  fetchStaffMembers();
-  fetchGrievances();
-}, []);
+            } catch (err) {
+                console.error('Failed to fetch staff members:', err);
+            }
+        };
+
+        fetchStaffMembers();
+        fetchGrievances();
+    }, []);
 
     // Fetch grievances from API
     const fetchGrievances = async () => {
@@ -52,30 +52,30 @@ useEffect(() => {
         }
     };
 
-// Assign staff member to grievance
-const handleStaffAssignment = async (grievanceId, staffId) => {
-    try {
-      setError(null);
-      const response = await axios.put(`http://localhost:3000/grievances/assign`, {
-        grievance_id: grievanceId,
-        staff_id: staffId,
-      });
-  
-      if (response.status === 200) {
-        setGrievances((prevGrievances) =>
-          prevGrievances.map((grievance) =>
-            grievance.grievance_id === grievanceId
-              ? { ...grievance, staff_id: staffId }
-              : grievance
-          )
-        );
-        setEditingStatus(null);
-      }
-    } catch (err) {
-      console.error('Failed to assign staff member:', err);
-      setError('Failed to assign staff member. Please try again.');
-    }
-  };
+    // Assign staff member to grievance
+    const handleStaffAssignment = async (grievanceId, staffId) => {
+        try {
+            setError(null);
+            const response = await axios.put(`http://localhost:3000/grievances/assign`, {
+                grievance_id: grievanceId,
+                staff_id: staffId,
+            });
+
+            if (response.status === 200) {
+                setGrievances((prevGrievances) =>
+                    prevGrievances.map((grievance) =>
+                        grievance.grievance_id === grievanceId
+                            ? { ...grievance, staff_id: staffId }
+                            : grievance
+                    )
+                );
+                setEditingStatus(null);
+            }
+        } catch (err) {
+            console.error('Failed to assign staff member:', err);
+            setError('Failed to assign staff member. Please try again.');
+        }
+    };
 
     // Filter and search logic
     const filteredGrievances = grievances.filter(grievance => {
@@ -105,33 +105,42 @@ const handleStaffAssignment = async (grievanceId, staffId) => {
         });
     };
 
-    // Staff assignment dropdown component
-    const StaffAssignmentDropdown = ({ grievance }) => {
-        const relevantStaff = staffMembers.filter(
-            (staff) => staff.department.toLowerCase() === grievance.category.toLowerCase()
-          );
+ // Staff assignment dropdown component
+const StaffAssignmentDropdown = ({ grievance }) => {
+    const relevantStaff = staffMembers.filter(
+        (staff) =>
+            staff.department &&
+            grievance.category &&
+            staff.department.toLowerCase() === grievance.category.toLowerCase()
+    );
 
-        return (
-            <div className="relative inline-block">
-                <select
-                    value={grievance.staff_id || 'unassigned'}
-                    onChange={(e) => handleStaffAssignment(grievance.grievance_id, e.target.value === 'unassigned' ? null : e.target.value)}
-                    className="rounded-md border border-gray-300 px-2 py-1 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    autoFocus
-                >
-                    <option value="unassigned">Unassigned</option>
-                    {relevantStaff.map(staff => (
-                        <option key={staff.id} value={staff.id}>
-                            {staff.name} - {staff.department}
-                        </option>
-                    ))}
-                    {relevantStaff.length === 0 && (
-                        <option value="any">Assign to any staff</option>
-                    )}
-                </select>
-            </div>
-        );
-    };
+    // Use all staff if there are no relevant staff for the grievance category
+    const displayStaff = relevantStaff.length > 0 ? relevantStaff : staffMembers;
+
+    return (
+        <div className="relative inline-block">
+            <select
+                value={grievance.staff_id || 'unassigned'}
+                onChange={(e) =>
+                    handleStaffAssignment(
+                        grievance.grievance_id,
+                        e.target.value === 'unassigned' ? null : e.target.value
+                    )
+                }
+                className="rounded-md border border-gray-300 px-2 py-1 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+                <option value="unassigned">Unassigned</option>
+                {displayStaff.map((staff) => (
+                    <option key={staff.user_id} value={staff.user_id}>
+                        {staff.full_name} - {staff.department}
+                    </option>
+                ))}
+            </select>
+        </div>
+    );
+};
+
+
 
     if (isLoading) {
         return (
@@ -303,8 +312,9 @@ const handleStaffAssignment = async (grievanceId, staffId) => {
                                             </p>
                                             <p className="text-sm text-gray-600">
                                                 <span className="font-medium">Assigned To:</span> {
-                                                    staffMembers.find(staff => staff.id === grievance.staff_id)?.name
+                                                    staffMembers.find(staff => staff.user_id === grievance.staff_id)?.full_name || 'Unknown Staff'
                                                 }
+
                                             </p>
                                             <p className="text-sm text-gray-600">
                                                 <span className="font-medium">Created:</span> {formatDate(grievance.created_at)}
