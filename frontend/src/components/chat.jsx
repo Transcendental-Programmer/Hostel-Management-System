@@ -23,7 +23,9 @@ const Chat = () => {
     if (isChatEnabled) {
       socket.emit('joinChannel', { chatroomId, userId, senderType });
       socket.on('message', (message) => {
-        setMessages((prevMessages) => [...prevMessages, message]);
+        if (message && ((message.userId && message.userId !== userId) || (message.staffId && message.staffId !== userId))) {
+          setMessages((prevMessages) => [...prevMessages, message]);
+        }
       });
       return () => {
         socket.off('message');
