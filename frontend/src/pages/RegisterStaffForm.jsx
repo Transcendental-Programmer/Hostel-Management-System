@@ -56,7 +56,7 @@ const RegisterStaffForm = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
+    <div className="max-w-md mx-auto m-10 p-6 bg-indigo-200 rounded-lg shadow-lg">
       <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">Register New Staff</h2>
 
       {message && <div className="text-green-600 mb-4 text-center">{message}</div>}
@@ -101,7 +101,7 @@ const RegisterStaffForm = () => {
         </div>
         <div className="flex items-center border border-gray-300 p-2 rounded-lg bg-gray-50">
           <FaBuilding className="text-gray-500 mr-2" />
-          <input
+          <select
             type="text"
             name="department"
             placeholder="Department"
@@ -109,7 +109,17 @@ const RegisterStaffForm = () => {
             onChange={handleChange}
             required
             className="w-full bg-transparent outline-none text-gray-700"
-          />
+          >
+            <option value="" disabled selected>
+                  Select Category
+                </option>
+                <option value="Electricity">Electricity</option>
+                <option value="Internet">Internet</option>
+                <option value="Sweeper">Sweeper</option>
+                <option value="Carpenter">Carpenter</option>
+                <option value="Plumber">Plumber</option>
+                <option value="Other">Other</option>
+          </select>
         </div>
         <div className="flex items-center border border-gray-300 p-2 rounded-lg bg-gray-50">
           <FaLanguage className="text-gray-500 mr-2" />
