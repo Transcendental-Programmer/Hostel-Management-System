@@ -389,7 +389,7 @@ function Register() {
               <p className="mb-4 text-center">
                 Already have an account?
                 <Link
-                  to="/login2"
+                  to="/login"
                   className="cursor-pointer text-indigo-500 no-underline hover:text-indigo-500"
                 >
                   {" "}
