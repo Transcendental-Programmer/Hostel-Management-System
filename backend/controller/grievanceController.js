@@ -143,7 +143,7 @@ export const deleteGrievanceById = async (req, res) => {
 
 // Get all staff members
 export const getStaff = async (req, res) => {
-    // console.log("Getting staff members");
+    console.log("Getting staff members");
     
     try {
         const staffs = await Staff.find({}, { _id: 0, user_id: 1, username: 1, full_name: 1, email: 1, department: 1, language_preference: 1 });
@@ -177,4 +177,105 @@ export const assignStaff = async (req, res) => {
         console.error(err.message);
         res.status(500).json({ message: 'Server error: Failed to assign staff' });
     }
+};
+
+
+//apis for admin dashboard
+// Get quick stats for the admin dashboard
+export const getQuickStats = async (req, res) => {
+    console.log("Getting quick stats");
+    
+  if (req.method !== 'GET') {
+    return res.status(405).json({ message: 'Method Not Allowed' });
+  }
+
+  try {
+    const totalGrievances = await Grievance.countDocuments();
+    const pendingGrievances = await Grievance.countDocuments({ status: 'Pending' });
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const resolvedToday = await Grievance.countDocuments({
+      status: 'Resolved',
+      updated_at: { $gte: today }
+    });
+
+    res.status(200).json({
+      totalGrievances,
+      pendingGrievances,
+      resolvedToday,
+    });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+// Get an overview of staff members
+export const getStaffOverview = async (req, res) => {
+  if (req.method !== 'GET') {
+    return res.status(405).json({ message: 'Method Not Allowed' });
+  }
+
+  try {
+    const staffOnDuty = await Staff.countDocuments({ is_active: true });
+
+    const avgResolutionTimeResult = await Grievance.aggregate([
+      { $match: { status: 'Resolved' } },
+      {
+        $project: {
+          resolutionTime: { $subtract: ["$updated_at", "$submission_timestamp"] }
+        }
+      },
+      { $group: { _id: null, avgResolutionTime: { $avg: "$resolutionTime" } } }
+    ]);
+    const avgResolutionTime = avgResolutionTimeResult[0]
+      ? avgResolutionTimeResult[0].avgResolutionTime / (1000 * 60 * 60 * 24) // convert milliseconds to days
+      : 0;
+
+    const urgentMatters = await Grievance.countDocuments({
+      urgency_level: { $in: ['High', 'Critical'] },
+      status: 'Pending'
+    });
+
+    res.status(200).json({
+      staffOnDuty,
+      avgResolutionTime: avgResolutionTime.toFixed(1) + ' days',
+      urgentMatters,
+    });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+// Get recent activity for the admin dashboard
+export const getRecentActivity = async (req, res) => {
+  if (req.method !== 'GET') {
+    return res.status(405).json({ message: 'Method Not Allowed' });
+  }
+
+  try {
+    const recentActivities = await Grievance.find()
+      .sort({ updated_at: -1 })
+      .limit(5)
+      .select("title updated_at status");
+
+    // Here you can customize the activity messages based on the data
+    const activities = recentActivities.map(activity => {
+      const activityTime = new Date(activity.updated_at);
+      const timeAgo = Math.floor((new Date() - activityTime) / (1000 * 60)); // in minutes
+      return {
+        message: `${activity.title} - ${timeAgo} minutes ago`,
+        timestamp: activity.updated_at,
+      };
+    });
+
+    res.status(200).json(activities);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 };

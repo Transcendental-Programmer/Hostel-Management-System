@@ -35,7 +35,7 @@ const WardenDashboard = () => {
 
   // Dashboard Section Component 
   const DashboardSection = () => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 mt-20">
       <div className="bg-white p-4 sm:p-6 rounded-lg shadow-sm">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Stats</h3>
         <div className="space-y-4">
