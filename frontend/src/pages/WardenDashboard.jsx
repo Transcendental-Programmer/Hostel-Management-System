@@ -199,7 +199,7 @@ const WardenDashboard = () => {
 
   const navItems = [
     { id: 'dashboard', icon: User, label: 'Dashboard' },
-    { id: 'grievances', icon: FileText, label: 'Manage Grievances' },
+    { id: 'grievances', icon: FileText, label: 'Assign Staff' },
     { id: 'resolve', icon: CheckSquare, label: 'Resolve Grievance' },
     { id: 'performance', icon: BarChart2, label: 'Performance' },
     { id: 'staff', icon: Users, label: 'Staff Management' },
