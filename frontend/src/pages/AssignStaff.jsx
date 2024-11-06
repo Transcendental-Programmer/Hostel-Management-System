@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Pencil, Plus } from 'lucide-react';
 import axios from 'axios';
@@ -106,7 +106,24 @@ const AssignStaff = () => {
     };
 
  // Staff assignment dropdown component
-const StaffAssignmentDropdown = ({ grievance }) => {
+ const StaffAssignmentDropdown = ({ grievance }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef(null);  // New ref for dropdown
+
+    // New useEffect for handling outside clicks
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     const relevantStaff = staffMembers.filter(
         (staff) =>
             staff.department &&
@@ -114,28 +131,42 @@ const StaffAssignmentDropdown = ({ grievance }) => {
             staff.department.toLowerCase() === grievance.category.toLowerCase()
     );
 
-    // Use all staff if there are no relevant staff for the grievance category
     const displayStaff = relevantStaff.length > 0 ? relevantStaff : staffMembers;
 
     return (
-        <div className="relative inline-block">
-            <select
-                value={grievance.staff_id || 'unassigned'}
-                onChange={(e) =>
-                    handleStaffAssignment(
-                        grievance.grievance_id,
-                        e.target.value === 'unassigned' ? null : e.target.value
-                    )
-                }
-                className="rounded-md border border-gray-300 px-2 py-1 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500"
+        <div className="relative inline-block" ref={dropdownRef}>  {/* Added ref here */}
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-full rounded-md border border-gray-300 px-2 py-1 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-                <option value="unassigned">Unassigned</option>
-                {displayStaff.map((staff) => (
-                    <option key={staff.user_id} value={staff.user_id}>
-                        {staff.full_name} - {staff.department}
-                    </option>
-                ))}
-            </select>
+                {grievance.staff_id ? displayStaff.find(staff => staff.user_id === grievance.staff_id)?.full_name || 'Select Staff' : 'Unassigned'}
+            </button>
+
+            {isOpen && (
+                <div className="absolute mt-2 w-[180px] rounded-md border border-gray-300 bg-white shadow-lg max-h-32 overflow-y-auto z-10 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-400">
+                    <button
+                        onClick={() => {
+                            handleStaffAssignment(grievance.grievance_id, null);
+                            setIsOpen(false);
+                        }}
+                        className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100"
+                    >
+                        Unassigned
+                    </button>
+                    {displayStaff.map((staff) => (
+                        <button
+                            key={staff.user_id}
+                            onClick={() => {
+                                handleStaffAssignment(grievance.grievance_id, staff.user_id);
+                                setIsOpen(false);
+                            }}
+                            className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100"
+                        >
+                            {staff.full_name} - {staff.department}
+                        </button>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };
