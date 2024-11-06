@@ -1,5 +1,5 @@
 import Grievance from '../models/grievances.js'; 
-
+import Staff from '../models/staff.js';
 // Create a new grievance
 export const createGrievance = async (req, res) => {
     try {
@@ -120,3 +120,25 @@ export const getStaff = async (req, res) => {
     }
 };
 
+// Assign staff to a grievance
+export const assignStaff = async (req, res) => {
+    try {
+      const { grievance_id, staff_id } = req.body;
+  
+      // Find the grievance by ID
+      const grievance = await Grievance.findOne({ grievance_id });
+  
+      if (!grievance) {
+        return res.status(404).json({ message: 'Grievance not found' });
+      }
+  
+      // Update the staff_id field
+      grievance.staff_id = staff_id;
+      await grievance.save();
+  
+      res.status(200).json(grievance);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).json({ message: 'Server error: Failed to assign staff' });
+    }
+  };

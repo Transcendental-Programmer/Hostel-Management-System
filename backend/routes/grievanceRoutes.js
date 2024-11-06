@@ -6,7 +6,8 @@ import { createGrievance,
     getGrievanceById,
     updateGrievanceById,
     deleteGrievanceById,
-    getStaff
+    getStaff,
+    assignStaff
  } from '../controller/grievanceController.js';
 
 const grievanceRoutes = express.Router();
@@ -19,4 +20,5 @@ grievanceRoutes.get("/details/:grievance_id", getGrievanceById);
 grievanceRoutes.put("/update/:grievance_id", updateGrievanceById);
 grievanceRoutes.delete("/delete/:grievance_id", deleteGrievanceById);
 grievanceRoutes.get("/staff", getStaff);
+grievanceRoutes.put("/assign", assignStaff);
 export default grievanceRoutes;

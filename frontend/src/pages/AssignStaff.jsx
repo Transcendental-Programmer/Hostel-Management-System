@@ -10,19 +10,30 @@ const AssignStaff = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [filterCategory, setFilterCategory] = useState('all');
     const [editingStatus, setEditingStatus] = useState(null);
-    const [staffMembers, setStaffMembers] = useState([
-        { id: 1, name: 'John Doe', department: 'Electricity' },
-        { id: 2, name: 'Jane Smith', department: 'Plumbing' },
-        { id: 3, name: 'Bob Johnson', department: 'Technical' },
-        { id: 4, name: 'Sarah Lee', department: 'Internet' },
-    ]);
+    // const [staffMembers, setStaffMembers] = useState([
+    //     { id: 1, name: 'John Doe', department: 'Electricity' },
+    //     { id: 2, name: 'Jane Smith', department: 'Plumbing' },
+    //     { id: 3, name: 'Bob Johnson', department: 'Technical' },
+    //     { id: 4, name: 'Sarah Lee', department: 'Internet' },
+    // ]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // Fetch grievances on component mount
-    useEffect(() => {
-        fetchGrievances();
-    }, []);
+    const [staffMembers, setStaffMembers] = useState([]);
+
+useEffect(() => {
+  const fetchStaffMembers = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/grievances/staff');
+      setStaffMembers(response.data);
+    } catch (err) {
+      console.error('Failed to fetch staff members:', err);
+    }
+  };
+
+  fetchStaffMembers();
+  fetchGrievances();
+}, []);
 
     // Fetch grievances from API
     const fetchGrievances = async () => {
@@ -39,30 +50,30 @@ const AssignStaff = () => {
         }
     };
 
-    // Assign staff member to grievance
-    const handleStaffAssignment = async (grievanceId, staffId) => {
-        try {
-            setError(null);
-            const response = await axios.put(`http://localhost:3000/grievances/assign/${grievanceId}`, {
-                grievance_id: grievanceId,
-                staff_id: staffId,
-            });
-
-            if (response.status === 200) {
-                setGrievances(prevGrievances =>
-                    prevGrievances.map(grievance =>
-                        grievance.grievance_id === grievanceId
-                            ? { ...grievance, staff_id: staffId }
-                            : grievance
-                    )
-                );
-                setEditingStatus(null);
-            }
-        } catch (err) {
-            console.error('Failed to assign staff member:', err);
-            setError('Failed to assign staff member. Please try again.');
-        }
-    };
+// Assign staff member to grievance
+const handleStaffAssignment = async (grievanceId, staffId) => {
+    try {
+      setError(null);
+      const response = await axios.put(`http://localhost:3000/grievances/assign`, {
+        grievance_id: grievanceId,
+        staff_id: staffId,
+      });
+  
+      if (response.status === 200) {
+        setGrievances((prevGrievances) =>
+          prevGrievances.map((grievance) =>
+            grievance.grievance_id === grievanceId
+              ? { ...grievance, staff_id: staffId }
+              : grievance
+          )
+        );
+        setEditingStatus(null);
+      }
+    } catch (err) {
+      console.error('Failed to assign staff member:', err);
+      setError('Failed to assign staff member. Please try again.');
+    }
+  };
 
     // Filter and search logic
     const filteredGrievances = grievances.filter(grievance => {
@@ -95,8 +106,8 @@ const AssignStaff = () => {
     // Staff assignment dropdown component
     const StaffAssignmentDropdown = ({ grievance }) => {
         const relevantStaff = staffMembers.filter(
-            staff => staff.department.toLowerCase() === grievance.category.toLowerCase()
-        );
+            (staff) => staff.department.toLowerCase() === grievance.category.toLowerCase()
+          );
 
         return (
             <div className="relative inline-block">
