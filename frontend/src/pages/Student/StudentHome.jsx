@@ -18,7 +18,7 @@ const StudentHome = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center items-center p-4">
       <h1 className="text-4xl font-bold text-center w-full md:ml-4 text-gray-700 mb-8">
-        Welcome to <span></span>, <span className='text-black'>{userName}</span>
+        Welcome to HostelMate, <span className='text-black'>{userName}</span>
       </h1>
       <div>
       <div className="max-w-4xl justify-center w-full flex flex-col md:flex-row gap-6">
