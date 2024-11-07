@@ -16,7 +16,7 @@ const StudentHome = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center items-center p-4">
+    <div className="md:min-h-[calc(100vh-80px)] min-h-[calc(100vh-64px)] bg-gray-50 flex flex-col justify-center items-center p-4">
       <h1 className="text-4xl font-bold text-center w-full md:ml-4 text-gray-700 mb-8">
         Welcome to HostelMate, <span className='text-black'>{userName}</span>
       </h1>

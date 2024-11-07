@@ -114,7 +114,7 @@ const VerifyOTP = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
+    <div className="flex items-center justify-center bg-gray-50 p-4">
       <div className="w-full max-w-md space-y-8 rounded-lg bg-white p-6 shadow-lg">
         {notification.message && (
           <div 
@@ -165,7 +165,7 @@ const VerifyOTP = () => {
           </div>
 
           <div className="flex items-center justify-center space-x-1 text-sm">
-            <p className="text-gray-500">Didn`&#39;`t receive the code?</p>
+            <p className="text-gray-500">Didn&#39;t receive the code?</p>
             {timer > 0 ? (
               <p className="text-indigo-600">Resend in {timer}s</p>
             ) : (

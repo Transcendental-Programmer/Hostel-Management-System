@@ -5,9 +5,10 @@ import HomePage from './HomePage';
 import Navbar from './Navbar';
 const Layout = () => {
   return (
-    <div className="min-h-screen">
+    <div className="">
       <Navbar />
-      <main className="relative">
+      <div className="h-16 md:h-20"></div>
+      <main className="relative min-h-min">
         <Outlet />
         <ChatBubble />
         

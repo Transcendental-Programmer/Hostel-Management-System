@@ -311,3 +311,37 @@ export const getRecentActivity = async (req, res) => {
   }
 };
 
+
+// Get performance data
+export const getPerformanceData = async (req, res) => {
+  if (req.method !== 'GET') {
+    return res.status(405).json({ message: 'Method Not Allowed' });
+  }
+
+  try {
+    const performanceData = await Grievance.aggregate([
+      {
+        $group: {
+          _id: { $dateToString: { format: "%Y-%m-%d", date: "$updated_at" } },
+          resolved: { $sum: { $cond: [{ $regexMatch: { input: "$status", regex: /^closed$/i } }, 1, 0] } },
+          pending: { $sum: { $cond: [{ $regexMatch: { input: "$status", regex: /^pending$/i } }, 1, 0] } }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          name: "$_id",
+          resolved: 1,
+          pending: 1
+        }
+      },
+      { $sort: { name: 1 } }  // Sort by date
+    ]);
+
+    res.status(200).json(performanceData);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+

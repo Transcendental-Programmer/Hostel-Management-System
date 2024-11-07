@@ -20,7 +20,7 @@ function Navbar() {
 
   return (
     <>
-      <header className="shadow bg-white fixed w-full z-10 top-0">
+      <header className="shadow bg-white fixed w-full z-10 top-0 h-16 md:h-20">
         <div className="relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-2 md:py-3 lg:py-3 md:mx-auto md:flex-row md:items-center">
           <a href="/" className="flex items-center whitespace-nowrap text-2xl font-black">
             {/* <span className="text-black">IIITM HMS</span> */}
