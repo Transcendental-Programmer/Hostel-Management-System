@@ -2,6 +2,15 @@ import { useNavigate, Link } from "react-router-dom";
 import { Roles } from "../constants";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import {
+  FaUser,
+  FaEnvelope,
+  FaPhone,
+  FaUserTie,
+  FaBuilding,
+  FaDoorClosed,
+  FaLock,
+} from "react-icons/fa";
 
 function Register() {
   const navigate = useNavigate();
@@ -27,9 +36,10 @@ function Register() {
     return phoneRegex.test(phone);
   };
 
-   // Updated password validation function
-   const validatePassword = (password) => {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  // Updated password validation function
+  const validatePassword = (password) => {
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     return passwordRegex.test(password);
   };
 
@@ -62,7 +72,7 @@ function Register() {
       setUsername(value);
       setErrors((prevErrors) => ({
         ...prevErrors,
-        username: ""
+        username: "",
       }));
     }
   };
@@ -115,7 +125,7 @@ function Register() {
           email,
           username,
           password,
-          phone_number:phone,
+          phone_number: phone,
           role: role,
           hostel_number,
         };
@@ -125,7 +135,7 @@ function Register() {
           email,
           username,
           password,
-          phone_number:phone,
+          phone_number: phone,
           role: role,
           hostel_number,
           roll_number,
@@ -147,11 +157,12 @@ function Register() {
       // }
       if (response && response.ok) {
         toast.success("OTP sent successfully! Please verify your email.");
-        navigate('/verify-otp',{state: {email: email, password: password}});
-      }
-       else {
+        navigate("/verify-otp", {
+          state: { email: email, password: password },
+        });
+      } else {
         console.log(response);
-        
+
         toast.error(data);
         console.error(data);
       }
@@ -198,9 +209,10 @@ function Register() {
                     </label>
                   </div>
                   <div className="relative flex w-full flex-wrap items-stretch">
+                    <FaUser className="absolute left-3 top-3 text-gray-500" />
                     <input
                       type="text"
-                      className="relative block flex-auto cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
+                      className="relative block flex-auto cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 pl-10 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
                       name="full-name"
                       placeholder="Enter your full name"
                       onChange={(e) => setFullname(e.target.value)}
@@ -216,16 +228,23 @@ function Register() {
                     >
                       Email
                     </label>
-                    <input
-                      type="text"
-                      className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
-                      id="email"
-                      name="email-username"
-                      placeholder="Enter your email"
-                      onChange={(e) => handleInputChange("email", e.target.value)}
-                    />
+                    <div className="relative flex w-full items-stretch">
+                      <FaEnvelope className="absolute left-3 top-3 text-gray-500" />
+                      <input
+                        type="text"
+                        className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 pl-10 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
+                        id="email"
+                        name="email-username"
+                        placeholder="Enter your email"
+                        onChange={(e) =>
+                          handleInputChange("email", e.target.value)
+                        }
+                      />
+                    </div>
                     {errors.email && (
-                      <span className="text-xs text-red-500">{errors.email}</span>
+                      <span className="text-xs text-red-500">
+                        {errors.email}
+                      </span>
                     )}
                   </div>
                   <div className="flex-1">
@@ -235,18 +254,27 @@ function Register() {
                     >
                       Phone Number
                     </label>
-                    <input
-                      type="text"
-                      className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
-                      name="phone"
-                      placeholder="Enter your phone number"
-                      onChange={(e) => handleInputChange("phone", e.target.value)}
-                    />
+                    <div className="relative flex w-full items-stretch">
+                      <FaPhone className="absolute left-3 top-3 text-gray-500" />
+                      <input
+                        type="text"
+                        className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 pl-10 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
+                        name="phone"
+                        placeholder="Enter your phone number"
+                        onChange={(e) =>
+                          handleInputChange("phone", e.target.value)
+                        }
+                      />
+                    </div>
                     {errors.phone && (
-                      <span className="text-xs text-red-500">{errors.phone}</span>
+                      <span className="text-xs text-red-500">
+                        {errors.phone}
+                      </span>
                     )}
                   </div>
                 </div>
+
+                {/* Additional fields with icons for Username, Roll No, Hostel Number, Room, Password */}
                 <div className="mb-4 flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
                   <div className={role === Roles.STUDENT ? "flex-1" : "w-full"}>
                     <label
@@ -255,18 +283,26 @@ function Register() {
                     >
                       Username
                     </label>
-                    <input
-                      type="text"
-                      className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
-                      id="username"
-                      name="username"
-                      placeholder="Enter your username"
-                      onChange={(e) => handleInputChange("username", e.target.value)}
-                    />
+                    <div className="relative flex w-full items-stretch">
+                      <FaUserTie className="absolute left-3 top-3 text-gray-500" />
+                      <input
+                        type="text"
+                        className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 pl-10 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
+                        id="username"
+                        name="username"
+                        placeholder="Enter your username"
+                        onChange={(e) =>
+                          handleInputChange("username", e.target.value)
+                        }
+                      />
+                    </div>
                     {errors.username && (
-                      <span className="text-xs text-red-500">{errors.username}</span>
+                      <span className="text-xs text-red-500">
+                        {errors.username}
+                      </span>
                     )}
                   </div>
+
                   {role === Roles.STUDENT && (
                     <div className="flex-1">
                       <label
@@ -275,37 +311,43 @@ function Register() {
                       >
                         Roll no.
                       </label>
-                      <input
-                        type="text"
-                        className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
-                        name="roll_number"
-                        placeholder="Enter your roll no."
-                        onChange={(e) => setRoll_number(e.target.value)}
-                      />
+                      <div className="relative flex w-full items-stretch">
+                        <FaBuilding className="absolute left-3 top-3 text-gray-500" />
+                        <input
+                          type="text"
+                          className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 pl-10 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
+                          name="roll_number"
+                          placeholder="Enter your roll no."
+                          onChange={(e) => setRoll_number(e.target.value)}
+                        />
+                      </div>
                     </div>
                   )}
                 </div>
 
-
+                {/* Hostel number and Room */}
                 <div className="mb-4 flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
                   <div className="flex-1">
                     <label
                       htmlFor="hostel_number"
                       className="mb-1 inline-block text-xs font-medium uppercase text-gray-700"
                     >
-                      hostel_number
+                      Hostel Number
                     </label>
-                    <input
-                      type="text"
-                      className={`block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow ${role === Roles.WARDEN && "w-full"
-                        }`}
-                      id="hostel_number"
-                      name="hostel_number"
-                      placeholder="Enter your hostel"
-                      onChange={(e) => setHostelNumber(e.target.value)}
-                    />
+                    <div className="relative flex w-full items-stretch">
+                      <FaBuilding className="absolute left-3 top-3 text-gray-500" />
+                      <input
+                        type="text"
+                        className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 pl-10 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
+                        id="hostel_number"
+                        name="hostel_number"
+                        placeholder="Enter your hostel"
+                        onChange={(e) => setHostelNumber(e.target.value)}
+                      />
+                    </div>
                   </div>
-                  {role === Roles.WARDEN ? null : (
+
+                  {role !== Roles.WARDEN && (
                     <div className="flex-1">
                       <label
                         htmlFor="room"
@@ -313,37 +355,46 @@ function Register() {
                       >
                         Room
                       </label>
-                      <input
-                        type="text"
-                        className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
-                        name="room"
-                        placeholder="Enter your Room"
-                        onChange={(e) => setRoom(e.target.value)}
-                      />
+                      <div className="relative flex w-full items-stretch">
+                        <FaDoorClosed className="absolute left-3 top-3 text-gray-500" />
+                        <input
+                          type="text"
+                          className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 pl-10 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
+                          name="room"
+                          placeholder="Enter your Room"
+                          onChange={(e) => setRoom(e.target.value)}
+                        />
+                      </div>
                     </div>
                   )}
                 </div>
 
+                {/* Password field */}
                 <div className="mb-4 flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
-                  <div
-                    className="flex-1"
-                  >
+                  <div className="flex-1">
                     <label
                       htmlFor="password"
                       className="mb-1 inline-block text-xs font-medium uppercase text-gray-700"
                     >
                       Password
                     </label>
-                    <input
-                      type="password"
-                      id="password"
-                      className="relative block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
-                      name="password"
-                      placeholder="············"
-                      onChange={(e) => handleInputChange("password", e.target.value)}
-                    />
+                    <div className="relative flex w-full items-stretch">
+                      <FaLock className="absolute left-3 top-3 text-gray-500" />
+                      <input
+                        type="password"
+                        id="password"
+                        className="relative block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 pl-10 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
+                        name="password"
+                        placeholder="············"
+                        onChange={(e) =>
+                          handleInputChange("password", e.target.value)
+                        }
+                      />
+                    </div>
                     {errors.password && (
-                      <span className="text-xs text-red-500">{errors.password}</span>
+                      <span className="text-xs text-red-500">
+                        {errors.password}
+                      </span>
                     )}
                   </div>
                   <div className="flex-1">
@@ -357,20 +408,21 @@ function Register() {
                       <button
                         type="button"
                         onClick={() => setRole(Roles.WARDEN)}
-                        className={`rounded-md p-2 my-1 transition-all text-black ${role === Roles.WARDEN && " bg-indigo-500 text-white"
-                          }`}
+                        className={`rounded-md p-2 my-1 transition-all text-black ${
+                          role === Roles.WARDEN && " bg-indigo-500 text-white"
+                        }`}
                       >
                         Warden
                       </button>
                       <button
                         type="button"
                         onClick={() => setRole(Roles.STUDENT)}
-                        className={`rounded-md p-2 my-1 transition-all text-black ${role === Roles.STUDENT && "bg-indigo-500 text-white"
-                          }`}
+                        className={`rounded-md p-2 my-1 transition-all text-black ${
+                          role === Roles.STUDENT && "bg-indigo-500 text-white"
+                        }`}
                       >
                         Student
                       </button>
-
                     </div>
                   </div>
                 </div>
