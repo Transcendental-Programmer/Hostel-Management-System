@@ -19,6 +19,7 @@ import {
   Line,
   ResponsiveContainer,
 } from "recharts";
+import StaffStatusSwitch from "../components/StaffStatusSwitch";
 
 const WardenDashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -77,37 +78,6 @@ const WardenDashboard = () => {
     fetchDashboardData();
   }, []); // Empty dependency array means this runs once on component mount
 
-  const staffMembers = [
-    {
-      id: 1,
-      name: "John Smith",
-      role: "Maintenance",
-      status: "On Duty",
-      tasksCompleted: 45,
-    },
-    {
-      id: 2,
-      name: "Sarah Wilson",
-      role: "Security",
-      status: "On Leave",
-      tasksCompleted: 38,
-    },
-    {
-      id: 3,
-      name: "Mike Johnson",
-      role: "Housekeeping",
-      status: "On Duty",
-      tasksCompleted: 52,
-    },
-  ];
-
-  const performanceData = [
-    { name: "Oct 24", resolved: 25, pending: 8 },
-    { name: "Oct 25", resolved: 30, pending: 10 },
-    { name: "Oct 26", resolved: 28, pending: 12 },
-    { name: "Oct 27", resolved: 32, pending: 6 },
-    { name: "Oct 28", resolved: 35, pending: 9 },
-  ];
 
   // Dashboard Section Component
   const DashboardSection = () => {
@@ -271,6 +241,35 @@ const WardenDashboard = () => {
     const handleCancelRegister = () => {
       setIsRegisterFormVisible(false);
     };
+    const handleUpdateStatus = async (staffMember) => {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/users/updateStaffStatus/${staffMember.user_id}`,
+          {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ is_active: !staffMember.is_active }),
+          }
+        );
+
+        if (response.ok) {
+          // Update the staff member's status in the local state
+          setStaffMembers((prevMembers) =>
+            prevMembers.map((member) =>
+              member.user_id === staffMember.user_id
+                ? { ...member, is_active: !member.is_active }
+                : member
+            )
+          );
+        } else {
+          console.error('Failed to update staff member status');
+        }
+      } catch (err) {
+        console.error('Error updating staff member status:', err);
+      }
+    };
 
     const formatPhoneNumber = (phoneNumber) => {
       // Add any phone number formatting logic if needed
@@ -296,14 +295,14 @@ const WardenDashboard = () => {
     }
 
     return (
-      <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6 mt-20">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6">
+      <div className="bg-white rounded-lg shadow-sm p-4 xl:p-6 mt-20">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-0 mb-6">
           <h3 className="text-xl font-semibold text-gray-900">
             Staff Management
           </h3>
           <button
             onClick={handleRegisterStaff}
-            className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded"
+            className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded"
           >
             Register Staff
           </button>
@@ -315,45 +314,45 @@ const WardenDashboard = () => {
           </div>
         )}
 
-        <div className="overflow-x-auto -mx-4 sm:mx-0">
+        <div className="overflow-x-auto -mx-4 md:mx-0">
           <div className="inline-block min-w-full align-middle">
-            <div className="overflow-hidden border border-gray-200 sm:rounded-lg">
+            <div className="overflow-hidden border border-gray-200 md:rounded-lg">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
                     <th
                       scope="col"
-                      className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="px-4 xl:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       Name
                     </th>
                     <th
                       scope="col"
-                      className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="md:hidden px-4 xl:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       Details
                     </th>
                     <th
                       scope="col"
-                      className="hidden sm:table-cell px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="hidden md:table-cell px-4 xl:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       Department
                     </th>
                     <th
                       scope="col"
-                      className="hidden sm:table-cell px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="hidden md:table-cell px-4 xl:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       Contact
                     </th>
                     <th
                       scope="col"
-                      className="hidden sm:table-cell px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="hidden md:table-cell px-4 xl:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
-                      Status
+                      On Duty
                     </th>
                     <th
                       scope="col"
-                      className="hidden sm:table-cell px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="hidden md:table-cell px-4 xl:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       Actions
                     </th>
@@ -364,7 +363,7 @@ const WardenDashboard = () => {
                     <tr>
                       <td
                         colSpan="5"
-                        className="px-4 sm:px-6 py-4 text-center text-sm text-gray-500"
+                        className="px-4 md:px-6 py-4 text-center text-sm text-gray-500"
                       >
                         No staff members found
                       </td>
@@ -372,7 +371,7 @@ const WardenDashboard = () => {
                   ) : (
                     staffMembers.map((staff) => (
                       <tr key={staff.user_id} className="hover:bg-gray-50">
-                        <td className="px-4 sm:px-6 py-4 whitespace-nowrap">
+                        <td className="px-4 md:px-6 py-4 whitespace-nowrap">
                           <div className="flex flex-col">
                             <div className="text-sm font-medium text-gray-900">
                               {staff.full_name}
@@ -382,10 +381,10 @@ const WardenDashboard = () => {
                             </div>
                           </div>
                         </td>
-                        <td className="hidden sm:table-cell px-4 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="hidden md:table-cell px-4 md:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                           {staff.department}
                         </td>
-                        <td className="hidden sm:table-cell px-4 sm:px-6 py-4 whitespace-nowrap">
+                        <td className="hidden md:table-cell px-4 md:px-6 py-4 whitespace-nowrap">
                           <a
                             href={`tel:${staff.phone_number}`}
                             className="text-sm text-blue-600 hover:text-blue-800"
@@ -393,29 +392,41 @@ const WardenDashboard = () => {
                             {formatPhoneNumber(staff.phone_number)}
                           </a>
                         </td>
-                        <td className="hidden sm:table-cell px-4 sm:px-6 py-4 whitespace-nowrap">
+                        {/* <td className="hidden md:table-cell px-4 md:px-6 py-4 whitespace-nowrap">
                           <span
-                            className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                              staff.is_active
-                                ? "bg-green-100 text-green-800"
-                                : "bg-red-100 text-red-800"
-                            }`}
+                            className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${staff.is_active
+                                ? 'bg-green-100 text-green-800'
+                                : 'bg-red-100 text-red-800'
+                              }`}
                           >
-                            {staff.is_active ? "Present" : "Absent"}
+                            {staff.is_active ? 'Present' : 'Absent'}
                           </span>
+                          <button
+                            className="ml-2 text-blue-600 hover:text-blue-900"
+                            onClick={() => handleUpdateStatus(staff)}
+                          >
+                            {staff.is_active ? 'Mark Absent' : 'Mark Present'}
+                          </button>
+                        </td> */}
+                        <td className="hidden md:table-cell px-4 md:px-6 py-4 whitespace-nowrap">
+                          <StaffStatusSwitch
+                            staff={staff}
+                            onUpdateStatus={handleUpdateStatus}
+                          />
                         </td>
-                        <td className="hidden sm:table-cell px-4 sm:px-6 py-4 whitespace-nowrap text-sm">
+
+                        <td className="hidden md:table-cell px-4 md:px-6 py-4 whitespace-nowrap text-sm">
                           <button className="text-blue-600 hover:text-blue-900">
                             Manage
                           </button>
                         </td>
                         {/* Dropdown for small screens */}
-                        <td className="sm:hidden px-4 sm:px-6 py-4 whitespace-nowrap">
+                        <td className="md:hidden px-4 md:px-6 py-4 whitespace-nowrap">
                           <div className="mt-2 text-xs text-gray-500">
-                            <p>
+                            <p className="my-0.5">
                               <strong>Department:</strong> {staff.department}
                             </p>
-                            <p>
+                            <p className="my-0.5">
                               <strong>Contact:</strong>{" "}
                               <a
                                 href={`tel:${staff.phone_number}`}
@@ -424,11 +435,14 @@ const WardenDashboard = () => {
                                 {formatPhoneNumber(staff.phone_number)}
                               </a>
                             </p>
-                            <p>
-                              <strong>Status:</strong>{" "}
-                              {staff.is_active ? "Present" : "Absent"}
+                            <p className="my-0.5 flex justify-start gap-2 items-center mr-2">
+                              <strong>On Duty: </strong>{" "}
+                              <StaffStatusSwitch
+                            staff={staff}
+                            onUpdateStatus={handleUpdateStatus}
+                          />
                             </p>
-                            <p>
+                            <p className="my-0.5">
                               <button className="text-blue-600 hover:text-blue-900">
                                 Manage
                               </button>
@@ -533,11 +547,10 @@ const WardenDashboard = () => {
                   setActiveTab(item.id);
                   setIsSidebarOpen(false);
                 }}
-                className={`flex items-center space-x-3 w-full px-4 py-2 rounded-lg transition-colors duration-200 ${
-                  activeTab === item.id
-                    ? "bg-blue-50 text-blue-600"
-                    : "text-gray-600 hover:bg-gray-50"
-                }`}
+                className={`flex items-center space-x-3 w-full px-4 py-2 rounded-lg transition-colors duration-200 ${activeTab === item.id
+                  ? "bg-blue-50 text-blue-600"
+                  : "text-gray-600 hover:bg-gray-50"
+                  }`}
               >
                 <item.icon className="w-5 h-5" />
                 <span>{item.label}</span>

@@ -17,6 +17,22 @@ const Chat = () => {
     const date = new Date(dateString);
     if (isNaN(date.getTime())) return '';
 
+    const today = new Date();
+    const isToday =
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear();
+
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+    const isYesterday =
+      date.getDate() === yesterday.getDate() &&
+      date.getMonth() === yesterday.getMonth() &&
+      date.getFullYear() === yesterday.getFullYear();
+
+    if (isToday) return 'Today';
+    if (isYesterday) return 'Yesterday';
+
     return date.toLocaleDateString(undefined, {
       weekday: 'long',
       day: 'numeric',
@@ -24,6 +40,50 @@ const Chat = () => {
       year: 'numeric',
     });
   };
+  const languageMap = {
+    'english': 'en',
+    'hindi': 'hi',
+    'bengali': 'bn',
+    'telugu': 'te',
+    'tamil': 'ta',
+    'marathi': 'mr',
+    'gujarati': 'gu',
+    'kannada': 'kn',
+    'malayalam': 'ml',
+    'punjabi': 'pa'
+  };
+
+  const getLanguageCode = (language) => {
+    const normalizedLanguage = language.toLowerCase(); // Convert to lowercase for case insensitivity
+    const code = Object.keys(languageMap).find(key => key.toLowerCase() === normalizedLanguage);
+    return code ? languageMap[code] : null;
+  };
+
+  const translateMessage = async (messageText, language) => {
+    try {
+      const languageCode = getLanguageCode(language);
+      if (!languageCode) {
+        console.error(`Language "${language}" not supported.`);
+        return null;
+      }
+
+      const response = await axios.post('https://archcoder-hostel-management-and-greivance-redres-2eeefad.hf.space/api/translate', {
+        user_message: messageText,
+        target_language: languageCode,
+      });
+      console.log('Translated message:', response.data);
+      
+      return response.data.translated_message;
+    } catch (error) {
+      console.log('Error translating message:', error);
+      console.error('Error translating message:', error);
+      return null;
+    }
+  };
+
+
+
+
 
   const fetchPreviousMessages = async () => {
     try {
@@ -103,15 +163,41 @@ const Chat = () => {
 
   const renderMessages = () => {
     let lastDate = '';
-    // console.log("messages", messages);
+    console.log("messages", messages);
+
     return messages.map((msg, index) => {
       const messageDate = formatDate(msg.createdAt || msg.messageDate);
       const shouldRenderDate = messageDate !== lastDate && messageDate !== '';
-      const isCurrentUser = msg.sender_type === senderType; // Compare sender_type instead of IDs
+      const isCurrentUser = msg.sender_type === senderType;
 
       if (shouldRenderDate) {
         lastDate = messageDate;
       }
+
+      const handleTranslateClick = async (msg) => {
+        if (msg.translated_content) {
+          // If the message is already translated, toggle back to original
+          setMessages((prevMessages) =>
+            prevMessages.map((m) =>
+              m._id === msg._id ? { ...m, showOriginal: !m.showOriginal } : m
+            )
+          );
+        } else {
+          // Otherwise, fetch the translation
+          // pick language from localstorage from user object
+          const language = JSON.parse(localStorage.getItem('user'))?.language_preference || 'english';
+          const translatedText = await translateMessage(msg.message_content, language);
+          if (translatedText) {
+            setMessages((prevMessages) =>
+              prevMessages.map((m) =>
+                m._id === msg._id ? { ...m, translated_content: translatedText, showOriginal: false } : m
+              )
+            );
+          }
+        }
+      };
+
+
 
       return (
         <div key={index}>
@@ -126,14 +212,24 @@ const Chat = () => {
                 }`}
               style={{ wordWrap: 'break-word', wordBreak: 'break-word' }}
             >
-              <p className="text-sm break-words flex-1 pr-4">{msg.message_content}</p>
-              <span className="text-xs text-gray-300 whitespace-nowrap">{msg.timestamp}</span>
+              <p className="text-sm break-words flex-1 pr-4">
+                {msg.showOriginal ? msg.message_content : msg.translated_content || msg.message_content}
+              </p>
+              <span className={`text-xs ${isCurrentUser ? 'text-gray-200' : 'text-gray-400'} whitespace-nowrap`}>{msg.timestamp}</span>
+              {!isCurrentUser && (<button
+                onClick={() => handleTranslateClick(msg)}
+                className="ml-2 text-xs text-blue-500 hover:underline"
+              >
+                {msg.translated_content && !msg.showOriginal ? 'Original' : 'Translate'}
+              </button>)}
             </div>
           </div>
+
         </div>
       );
     });
   };
+
 
   return (
     <div className="flex flex-col h-full bg-gray-100 p-4">
