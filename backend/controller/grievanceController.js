@@ -116,7 +116,8 @@ export const updateGrievanceById = async (req, res) => {
                 title,
                 description,
                 urgency_level,
-                items_used
+                items_used,
+                updated_at: new Date()
             },
             { new: true }
         );
