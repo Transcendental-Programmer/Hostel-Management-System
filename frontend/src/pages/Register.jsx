@@ -176,7 +176,7 @@ function Register() {
 
   return (
     <>
-      <div className="flex min-h-screen bg-custom-gradient items-center justify-center text-gray-600">
+      <div className="flex md:min-h-[calc(100vh-80px)] min-h-[calc(100vh-64px)] bg-custom-gradient items-center justify-center text-gray-600">
         <div className="relative my-5">
           <div className="h-full relative flex flex-col sm:w-full md:w-[30rem] lg:w-[30rem] xl:w-[30rem] 2xl:w-[30rem] rounded-lg border-gray-400 bg-indigo-200 shadow-lg px-4">
             <div className="flex-auto h-full p-4">

@@ -12,6 +12,7 @@ import {
   getQuickStats,
   getStaffOverview,
   getRecentActivity,
+  getPerformanceData
 } from '../controller/grievanceController.js';
 
 const grievanceRoutes = express.Router();
@@ -23,6 +24,7 @@ grievanceRoutes.get("/staff", getStaff);
 grievanceRoutes.get("/quick-stats", getQuickStats);
 grievanceRoutes.get("/staff-overview", getStaffOverview);
 grievanceRoutes.get("/recent-activity", getRecentActivity);
+grievanceRoutes.get("/performance-data", getPerformanceData);
 
 grievanceRoutes.get("/:user_id", getGrievancesByUser);
 grievanceRoutes.get("/details/:grievance_id", getGrievanceById);

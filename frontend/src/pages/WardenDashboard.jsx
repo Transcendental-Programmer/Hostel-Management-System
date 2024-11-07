@@ -241,6 +241,8 @@ const WardenDashboard = () => {
     const handleCancelRegister = () => {
       setIsRegisterFormVisible(false);
     };
+
+
     const handleUpdateStatus = async (staffMember) => {
       try {
         const response = await fetch(
@@ -438,9 +440,9 @@ const WardenDashboard = () => {
                             <p className="my-0.5 flex justify-start gap-2 items-center mr-2">
                               <strong>On Duty: </strong>{" "}
                               <StaffStatusSwitch
-                            staff={staff}
-                            onUpdateStatus={handleUpdateStatus}
-                          />
+                                staff={staff}
+                                onUpdateStatus={handleUpdateStatus}
+                              />
                             </p>
                             <p className="my-0.5">
                               <button className="text-blue-600 hover:text-blue-900">
@@ -460,31 +462,74 @@ const WardenDashboard = () => {
       </div>
     );
   };
+  // const performanceData = [
+  //   { name: "Oct 24", resolved: 25, pending: 8 },
+  //   { name: "Oct 25", resolved: 30, pending: 10 },
+  //   { name: "Oct 26", resolved: 28, pending: 12 },
+  //   { name: "Oct 27", resolved: 32, pending: 6 },
+  //   { name: "Oct 28", resolved: 35, pending: 9 },
+  // ];
 
-  const PerformanceDashboard = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6">
-        <h3 className="text-xl font-semibold text-gray-900 mb-6">
-          Performance Metrics
-        </h3>
-        <div className="h-64 sm:h-80 w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart
-              data={performanceData}
-              margin={{ top: 5, right: 10, left: 0, bottom: 5 }}
-            >
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line type="monotone" dataKey="resolved" stroke="#10B981" />
-              <Line type="monotone" dataKey="pending" stroke="#F59E0B" />
-            </LineChart>
-          </ResponsiveContainer>
+
+  const PerformanceDashboard = () => {
+    // Function to fetch performance data from API
+    const fetchPerformanceData = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/grievances/performance-data', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch performance data');
+        }
+
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error('Error fetching performance data:', error);
+        return null;
+      }
+    };
+    const [performanceData, setPerformanceData] = useState([]);
+
+    useEffect(() => {
+      const getData = async () => {
+        const data = await fetchPerformanceData();
+        if (data) {
+          setPerformanceData(data);
+        }
+      };
+      getData();
+    }, []);
+
+    return (
+      <div className="space-y-6">
+        <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6">
+          <h3 className="text-xl font-semibold text-gray-900 mb-6">
+            Performance Metrics
+          </h3>
+          <div className="h-64 sm:h-80 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart
+                data={performanceData}
+                margin={{ top: 5, right: 10, left: 0, bottom: 5 }}
+              >
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="resolved" stroke="#10B981" />
+                <Line type="monotone" dataKey="pending" stroke="#F59E0B" />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   const renderContent = () => {
     switch (activeTab) {
@@ -512,7 +557,7 @@ const WardenDashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className=" bg-gray-100">
       {/* Mobile Header */}
       <div className="lg:hidden h-16 bg-white shadow-sm p-4 fixed top-0 left-0 right-0 z-50">
         <div className="flex items-center justify-between">
@@ -523,13 +568,13 @@ const WardenDashboard = () => {
           >
             <Menu className="w-6 h-6" />
           </button>
-          
+
         </div>
       </div>
 
       {/* Sidebar */}
       <div
-        className={`
+        className={` mt-16 lg:mt-20 lg:rounded-r-lg
         fixed top-0 left-0 h-screen bg-white shadow-sm z-40 transition-transform duration-300 ease-in-out
         w-64 lg:translate-x-0
         ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}

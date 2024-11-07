@@ -175,7 +175,7 @@ const AssignStaff = () => {
 
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+            <div className="md:min-h-[calc(100vh-80px)] min-h-[calc(100vh-64px)] bg-gray-100 flex items-center justify-center">
                 <div className="text-center">
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
                     <p className="mt-4 text-gray-600">Loading grievances...</p>
@@ -185,10 +185,10 @@ const AssignStaff = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-100 p-6">
+        <div className="md:min-h-[calc(100vh-80px)] min-h-[calc(100vh-64px)] bg-gray-100 p-6">
             <div className="max-w-7xl mx-auto">
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-6">Grievance Management System</h1>
+                    <h1 className="text-3xl font-bold text-gray-900 mb-6">Assign Staff</h1>
 
                     {error && (
                         <div className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-md">

@@ -268,7 +268,7 @@ const StaffDashboard = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 mt-16 p-8">
+    <div className="md:min-h-[calc(100vh-80px)] min-h-[calc(100vh-64px)] bg-gray-50 p-8">
       <DashboardSection />
       <HistoryModal />
     </div>
