@@ -78,37 +78,6 @@ const WardenDashboard = () => {
     fetchDashboardData();
   }, []); // Empty dependency array means this runs once on component mount
 
-  const staffMembers = [
-    {
-      id: 1,
-      name: "John Smith",
-      role: "Maintenance",
-      status: "On Duty",
-      tasksCompleted: 45,
-    },
-    {
-      id: 2,
-      name: "Sarah Wilson",
-      role: "Security",
-      status: "On Leave",
-      tasksCompleted: 38,
-    },
-    {
-      id: 3,
-      name: "Mike Johnson",
-      role: "Housekeeping",
-      status: "On Duty",
-      tasksCompleted: 52,
-    },
-  ];
-
-  const performanceData = [
-    { name: "Oct 24", resolved: 25, pending: 8 },
-    { name: "Oct 25", resolved: 30, pending: 10 },
-    { name: "Oct 26", resolved: 28, pending: 12 },
-    { name: "Oct 27", resolved: 32, pending: 6 },
-    { name: "Oct 28", resolved: 35, pending: 9 },
-  ];
 
   // Dashboard Section Component
   const DashboardSection = () => {
