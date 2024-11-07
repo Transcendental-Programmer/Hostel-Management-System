@@ -1,6 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 import { Roles } from "../constants";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import {
   FaUser,
@@ -25,6 +25,30 @@ function Register() {
   const [room, setRoom] = useState("");
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const ROLE_PATHS = {
+    STAFF: "/staff-dashboard",
+    STUDENT: "/student-home",
+    WARDEN: "/warden-dashboard",
+    ADMIN : "/warden-dashboard"
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwtToken");
+    const userRole = localStorage.getItem("user_role");
+
+    if (token && userRole) {
+      const roleKey = userRole.toUpperCase();
+      const path = ROLE_PATHS[roleKey];
+      if (path) {
+        navigate(path);
+      }
+      else {
+        // Default path if role does not match
+        navigate("/");
+      }
+    }
+  }, [navigate]);
 
   const validateEmail = (email) => {
     const iiitmEmailRegex = /^[^\s@]+@iiitm\.ac\.in$/;
@@ -408,18 +432,16 @@ function Register() {
                       <button
                         type="button"
                         onClick={() => setRole(Roles.WARDEN)}
-                        className={`rounded-md p-2 my-1 transition-all text-black ${
-                          role === Roles.WARDEN && " bg-indigo-500 text-white"
-                        }`}
+                        className={`rounded-md p-2 my-1 transition-all text-black ${role === Roles.WARDEN && " bg-indigo-500 text-white"
+                          }`}
                       >
                         Warden
                       </button>
                       <button
                         type="button"
                         onClick={() => setRole(Roles.STUDENT)}
-                        className={`rounded-md p-2 my-1 transition-all text-black ${
-                          role === Roles.STUDENT && "bg-indigo-500 text-white"
-                        }`}
+                        className={`rounded-md p-2 my-1 transition-all text-black ${role === Roles.STUDENT && "bg-indigo-500 text-white"
+                          }`}
                       >
                         Student
                       </button>

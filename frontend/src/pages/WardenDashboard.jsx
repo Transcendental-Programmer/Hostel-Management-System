@@ -20,6 +20,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import StaffStatusSwitch from "../components/StaffStatusSwitch";
+import { Link, useNavigate } from "react-router-dom";
+import Logo from "../components/NavLogo";
 
 const WardenDashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -40,6 +42,18 @@ const WardenDashboard = () => {
   const [recentActivities, setRecentActivities] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
+  const [authToken, setAuthToken] = useState(localStorage.getItem("jwtToken"));
+
+  const logout = () => {
+    setAuthToken(null);
+    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("user_role");
+    localStorage.removeItem("user_id");
+    navigate("/login");
+  };
+
 
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -558,32 +572,51 @@ const WardenDashboard = () => {
 
   return (
     <div className=" bg-gray-100">
-      {/* Mobile Header */}
-      <div className="lg:hidden h-16 bg-white shadow-sm p-4 fixed top-0 left-0 right-0 z-50">
+      {/* Mobile Header with Navbar Features */}
+      <div className="lg:hidden h-16 md:h-20 bg-white shadow-sm p-4 fixed top-0 left-0 right-0 z-50">
         <div className="flex items-center justify-between">
+          {/* Logo/Home Link */}
+
+          <a href="/" className="flex items-center text-xl font-bold text-gray-900">
+            <Logo />
+          </a>
           <h1 className="text-xl font-bold order-2 w-full text-center text-gray-900">Warden Portal</h1>
+
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
             className="p-2 rounded-lg order-1 hover:bg-gray-100"
           >
             <Menu className="w-6 h-6" />
           </button>
+        </div>
 
+        {/* Account and Logout buttons */}
+        <div className="flex justify-end mt-2 space-x-4">
+          <Link to="/account" className="text-gray-600 hover:text-blue-600">
+            Account
+          </Link>
+          <button
+            className="rounded-md border-2 border-blue-600 px-4 py-1 font-medium text-blue-600 transition-colors hover:bg-blue-600 hover:text-white"
+            onClick={logout}
+          >
+            Logout
+          </button>
         </div>
       </div>
 
       {/* Sidebar */}
       <div
-        className={` mt-16 lg:mt-20 lg:rounded-r-lg
+        className={` mt-16 lg:mt-20 
         fixed top-0 left-0 h-screen bg-white shadow-sm z-40 transition-transform duration-300 ease-in-out
         w-64 lg:translate-x-0
         ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
       `}
       >
-        <div className="p-6 hidden lg:block">
+        <div className="p-4 hidden lg:block text-center">
           <h1 className="text-2xl font-bold text-gray-900">Warden Portal</h1>
         </div>
-        <nav className="mt-6">
+        <nav className="mt-6 lg:mt-2">
           <div className="px-4 space-y-2">
             {navItems.map((item) => (
               <button

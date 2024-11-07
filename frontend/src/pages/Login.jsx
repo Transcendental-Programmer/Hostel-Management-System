@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaEnvelope, FaLock } from "react-icons/fa";
@@ -7,6 +7,30 @@ function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const ROLE_PATHS = {
+    STAFF: "/staff-dashboard",
+    STUDENT: "/student-home",
+    WARDEN: "/warden-dashboard",
+    ADMIN : "/warden-dashboard"
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwtToken");
+    const userRole = localStorage.getItem("user_role");
+
+    if (token && userRole) {
+      const roleKey = userRole.toUpperCase();
+      const path = ROLE_PATHS[roleKey];
+      if (path) {
+        navigate(path);
+      }
+      else {
+        // Default path if role does not match
+        navigate("/");
+      }
+    }
+  }, [navigate]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
