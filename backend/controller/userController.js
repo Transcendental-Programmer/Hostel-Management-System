@@ -459,7 +459,9 @@ export const updateUserDetails = async (req, res) => {
   try {
     const { user_id } = req.params; // Assume user_id is extracted from decoded JWT token
     const updateData = req.body; // Receive updated fields in the request body
-
+    // console.log(req.params);
+    
+    // console.log(updateData);
     // Determine which collection the user belongs to and set the role
     let user = await Student.findOne({ user_id });
     let role = "student"; // Default role if found in User table
@@ -510,11 +512,14 @@ export const updateUserDetails = async (req, res) => {
       filteredUpdateData.floor_number = updateData.floor_number;
       filteredUpdateData.available_time_slot = updateData.available_time_slot;
     } else if (role === "staff") {
-      filteredUpdateData.department = user.department; // Keep original department for staff
+      filteredUpdateData.is_active = user.is_active; // Keep original department for staff
     } else if (role === "admin") {
       filteredUpdateData.hostel_number = updateData.hostel_number;
     }
-
+    // console.log("Filtered Data:", filteredUpdateData);
+    // console.log("Model:", model);
+    
+    
     // Update the user in the appropriate collection
     const updatedUser = await model.findOneAndUpdate(
       { user_id },
@@ -526,5 +531,35 @@ export const updateUserDetails = async (req, res) => {
   } catch (error) {
     console.error("Error updating user details:", error);
     res.status(500).json("Server error");
+  }
+};
+
+// update staff status
+export const updateStaffStatus = async (req, res) => {
+  try {
+    const { user_id } = req.params;
+    const { is_active } = req.body;
+
+    if (!req.method === 'PUT') {
+      return res.status(405).json({ message: 'Method not allowed' });
+    }
+    console.log(user_id);
+    console.log(is_active);
+    
+    
+    const staff = await Staff.findOneAndUpdate(
+      { user_id: user_id },
+      { is_active, updated_at: Date.now() },
+      { new: true }
+    );
+
+    if (!staff) {
+      return res.status(404).json({ message: 'Staff member not found' });
+    }
+
+    res.status(200).json({ message: 'Staff status updated successfully' });
+  } catch (err) {
+    console.error('Error updating staff status:', err);
+    res.status(500).json({ message: 'Error updating staff status' });
   }
 };
