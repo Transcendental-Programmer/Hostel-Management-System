@@ -466,7 +466,7 @@ const WardenDashboard = () => {
                                 {formatPhoneNumber(staff.phone_number)}
                               </a>
                             </p>
-                            <p className="my-0.5">
+                            <p className="my-0.5 flex justify-start gap-2 items-center mr-2">
                               <strong>On Duty: </strong>{" "}
                               <StaffStatusSwitch
                             staff={staff}
