@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
-import { FaUser, FaEnvelope, FaUserTie, FaBuilding, FaLanguage, FaLock,FaPhone  } from 'react-icons/fa';
+import React, { useState } from "react";
+import {
+  FaUser,
+  FaEnvelope,
+  FaUserTie,
+  FaBuilding,
+  FaLanguage,
+  FaLock,
+  FaPhone,
+} from "react-icons/fa";
 
 const RegisterStaffForm = () => {
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    full_name: '',
-    department: '',
-    languagePreference: '',
-    password: '',
-    phone_number: '',
+    username: "",
+    email: "",
+    full_name: "",
+    department: "",
+    languagePreference: "",
+    password: "",
+    phone_number: "",
   });
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
@@ -20,46 +28,50 @@ const RegisterStaffForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);  
+    console.log(formData);
     try {
-      const response = await fetch('http://localhost:3000/users/createStaff', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3000/users/createStaff", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
       if (response.ok) {
         const data = await response.json();
-        setMessage('Staff registered successfully!');
+        setMessage("Staff registered successfully!");
         setError(null);
         // Optionally, clear the form
         setFormData({
-          username: '',
-          email: '',
-          full_name: '',
-          department: '',
-          languagePreference: '',
-          password: '',
-          phone_number: '',
+          username: "",
+          email: "",
+          full_name: "",
+          department: "",
+          languagePreference: "",
+          password: "",
+          phone_number: "",
         });
       } else {
         const errorData = await response.json();
-        setError(errorData.message || 'Failed to register staff.');
+        setError(errorData.message || "Failed to register staff.");
         setMessage(null);
       }
     } catch (err) {
-      setError('An error occurred. Please try again.');
+      setError("An error occurred. Please try again.");
       setMessage(null);
     }
   };
 
   return (
-    <div className="max-w-md mx-auto m-10 p-6 bg-indigo-200 rounded-lg shadow-lg">
-      <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">Register New Staff</h2>
+    <div className="max-w-md mx-auto m-10 p-6 bg-black rounded-lg shadow-lg">
+      <h2 className="text-2xl font-semibold text-center text-gray-100 mb-6">
+        Register New Staff
+      </h2>
 
-      {message && <div className="text-green-600 mb-4 text-center">{message}</div>}
+      {message && (
+        <div className="text-green-600 mb-4 text-center">{message}</div>
+      )}
       {error && <div className="text-red-600 mb-4 text-center">{error}</div>}
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -111,14 +123,14 @@ const RegisterStaffForm = () => {
             className="w-full bg-transparent outline-none text-gray-700"
           >
             <option value="" disabled selected>
-                  Select Category
-                </option>
-                <option value="Electricity">Electricity</option>
-                <option value="Internet">Internet</option>
-                <option value="Sweeper">Sweeper</option>
-                <option value="Carpenter">Carpenter</option>
-                <option value="Plumber">Plumber</option>
-                <option value="Other">Other</option>
+              Select Category
+            </option>
+            <option value="Electricity">Electricity</option>
+            <option value="Internet">Internet</option>
+            <option value="Sweeper">Sweeper</option>
+            <option value="Carpenter">Carpenter</option>
+            <option value="Plumber">Plumber</option>
+            <option value="Other">Other</option>
           </select>
         </div>
         <div className="flex items-center border border-gray-300 p-2 rounded-lg bg-gray-50">
@@ -159,7 +171,7 @@ const RegisterStaffForm = () => {
         </div>
         <button
           type="submit"
-          className="w-full bg-gray-800 text-white py-2 rounded-lg font-semibold hover:bg-gray-700 transition duration-200"
+          className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition duration-200"
         >
           Register Staff
         </button>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import { toast } from "react-toastify";
+import { FaEnvelope, FaLock } from "react-icons/fa";
 
 function Login() {
   const navigate = useNavigate();
@@ -29,7 +29,9 @@ function Login() {
         toast.success(`Welcome back, ${data.user.full_name}!`);
         navigate("/");
       } else {
-        toast.error("Invalid credentials. Please check your email and password.");
+        toast.error(
+          "Invalid credentials. Please check your email and password."
+        );
       }
     } catch (err) {
       console.log(err.message);
@@ -47,12 +49,11 @@ function Login() {
                   href="#"
                   className="flex cursor-pointer items-center gap-2 text-indigo-500 no-underline hover:text-indigo-500"
                 >
-                  <span className="flex-shrink-0 text-3xl font-black  tracking-tight opacity-100">
+                  <span className="flex-shrink-0 text-3xl font-black tracking-tight opacity-100">
                     Login
                   </span>
                 </a>
               </div>
-              {/* /Logo */}
               <h4 className="mb-2 font-medium text-gray-800 xl:text-xl">
                 Welcome!
               </h4>
@@ -67,15 +68,18 @@ function Login() {
                   >
                     Email{" "}
                   </label>
-                  <input
-                    type="text"
-                    className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
-                    id="email"
-                    name="email-username"
-                    placeholder="Enter your email"
-                    autoFocus=""
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
+                  <div className="flex items-center border border-gray-400 rounded-md p-2 bg-gray-50">
+                    <FaEnvelope className="text-gray-500 mr-2" />
+                    <input
+                      type="text"
+                      className="w-full bg-transparent outline-none text-gray-700"
+                      id="email"
+                      name="email-username"
+                      placeholder="Enter your email"
+                      autoFocus=""
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
                 </div>
                 <div className="mb-4">
                   <div className="flex justify-between">
@@ -86,11 +90,12 @@ function Login() {
                       Password
                     </label>
                   </div>
-                  <div className="relative flex w-full flex-wrap items-stretch">
+                  <div className="flex items-center border border-gray-400 rounded-md p-2 bg-gray-50">
+                    <FaLock className="text-gray-500 mr-2" />
                     <input
                       type="password"
                       id="password"
-                      className="relative block flex-auto cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
+                      className="w-full bg-transparent outline-none text-gray-700"
                       name="password"
                       placeholder="············"
                       onChange={(e) => setPassword(e.target.value)}
@@ -118,7 +123,12 @@ function Login() {
                 </Link>
               </p>
               <p className="text-center mt-2">
-                <Link to="/forgot-password" className="text-indigo-500 hover:text-indigo-500">Forgot Password?</Link>
+                <Link
+                  to="/forgot-password"
+                  className="text-indigo-500 hover:text-indigo-500"
+                >
+                  Forgot Password?
+                </Link>
               </p>
             </div>
           </div>
