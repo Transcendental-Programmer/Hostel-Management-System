@@ -13,11 +13,14 @@ function ForgotPassword() {
   const handleRequestReset = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/users/forgot-password", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
+      const response = await fetch(
+        "http://localhost:3000/users/forgot-password",
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ email }),
+        }
+      );
       const data = await response.json();
       if (response.ok) {
         toast.success("OTP sent to your email.");
@@ -34,11 +37,14 @@ function ForgotPassword() {
   const handleVerifyOtp = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/users/verify-password-reset-otp", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email, otp }),
-      });
+      const response = await fetch(
+        "http://localhost:3000/users/verify-password-reset-otp",
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ email, otp }),
+        }
+      );
       const data = await response.json();
       if (response.ok) {
         toast.success("OTP verified. You can now set a new password.");
@@ -55,17 +61,19 @@ function ForgotPassword() {
   const handleResetPassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/users/reset-password", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email, newPassword }),
-      });
+      const response = await fetch(
+        "http://localhost:3000/users/reset-password",
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ email, newPassword }),
+        }
+      );
       const data = await response.json();
       if (response.ok) {
         toast.success("Password successfully reset! You can now log in.");
         // setStep(1); // Return to initial step after reset
         navigate("/login"); // Redirect to login page
-
       } else {
         toast.error("Failed to reset password. Please try again.");
       }
@@ -76,22 +84,34 @@ function ForgotPassword() {
 
   return (
     <div className="flex min-h-screen w-full items-center justify-center text-gray-600 bg-gray-50">
-      <div className="relative flex flex-col sm:w-[30rem] rounded-lg border-gray-400 bg-white shadow-lg px-4">
+      <div className="relative flex flex-col sm:w-[30rem] rounded-lg border-gray-400 bg-indigo-200 shadow-lg px-4">
         <div className="flex-auto p-6">
           {step === 1 && (
             <>
-              <h4 className="mb-4 font-medium text-gray-700 xl:text-xl">Forgot Password?</h4>
-              <p className="mb-6 text-gray-500">Enter your email to receive an OTP.</p>
+              <h4 className="mb-4 text-xl lg:text-3xl md:text-2xl text-indigo-500 font-extrabold">
+                Forgot Password?
+              </h4>
+              <p className="mb-6 text-gray-500 lg:text-lg">
+                Enter your email to receive an OTP.
+              </p>
               <form onSubmit={handleRequestReset}>
-                <label htmlFor="email" className="text-xs font-medium uppercase text-gray-700">Email</label>
+                <label
+                  htmlFor="email"
+                  className="text-xs lg:text-base md:text-sm font-medium text-gray-700 "
+                >
+                  Email
+                </label>
                 <input
                   type="text"
                   id="email"
-                  className="block w-full rounded-md border-gray-400 py-2 px-3 text-sm focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
+                  className="block w-full rounded-md border border-gray-400 py-2 px-3 text-xs lg:text-base md:text-sm focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
                   placeholder="Enter your email"
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <button type="submit" className="w-full mt-4 rounded-md bg-indigo-500 py-2 px-5 text-sm text-white shadow hover:bg-indigo-600 focus:bg-indigo-600">
+                <button
+                  type="submit"
+                  className="w-full mt-4 rounded-md bg-indigo-500 py-2 px-5 text-xs lg:text-base md:text-sm text-white shadow hover:bg-indigo-600 focus:bg-indigo-600"
+                >
                   Send OTP
                 </button>
               </form>
@@ -99,10 +119,19 @@ function ForgotPassword() {
           )}
           {step === 2 && (
             <>
-              <h4 className="mb-4 font-medium text-gray-700 xl:text-xl">Verify OTP</h4>
-              <p className="mb-6 text-gray-500">Enter the OTP sent to your email.</p>
+              <h4 className="mb-4 font-medium text-gray-700 xl:text-xl">
+                Verify OTP
+              </h4>
+              <p className="mb-6 text-gray-500">
+                Enter the OTP sent to your email.
+              </p>
               <form onSubmit={handleVerifyOtp}>
-                <label htmlFor="otp" className="text-xs font-medium uppercase text-gray-700">OTP</label>
+                <label
+                  htmlFor="otp"
+                  className="text-xs font-medium uppercase text-gray-700"
+                >
+                  OTP
+                </label>
                 <input
                   type="text"
                   id="otp"
@@ -110,7 +139,10 @@ function ForgotPassword() {
                   placeholder="Enter OTP"
                   onChange={(e) => setOtp(e.target.value)}
                 />
-                <button type="submit" className="w-full mt-4 rounded-md bg-indigo-500 py-2 px-5 text-sm text-white shadow hover:bg-indigo-600 focus:bg-indigo-600">
+                <button
+                  type="submit"
+                  className="w-full mt-4 rounded-md bg-indigo-500 py-2 px-5 text-sm text-white shadow hover:bg-indigo-600 focus:bg-indigo-600"
+                >
                   Verify OTP
                 </button>
               </form>
@@ -118,10 +150,17 @@ function ForgotPassword() {
           )}
           {step === 3 && (
             <>
-              <h4 className="mb-4 font-medium text-gray-700 xl:text-xl">Reset Password</h4>
+              <h4 className="mb-4 font-medium text-gray-700 xl:text-xl">
+                Reset Password
+              </h4>
               <p className="mb-6 text-gray-500">Enter your new password.</p>
               <form onSubmit={handleResetPassword}>
-                <label htmlFor="newPassword" className="text-xs font-medium uppercase text-gray-700">New Password</label>
+                <label
+                  htmlFor="newPassword"
+                  className="text-xs font-medium uppercase text-gray-700"
+                >
+                  New Password
+                </label>
                 <input
                   type="password"
                   id="newPassword"
@@ -129,7 +168,10 @@ function ForgotPassword() {
                   placeholder="Enter new password"
                   onChange={(e) => setNewPassword(e.target.value)}
                 />
-                <button type="submit" className="w-full mt-4 rounded-md bg-indigo-500 py-2 px-5 text-sm text-white shadow hover:bg-indigo-600 focus:bg-indigo-600">
+                <button
+                  type="submit"
+                  className="w-full mt-4 rounded-md bg-indigo-500 py-2 px-5 text-sm text-white shadow hover:bg-indigo-600 focus:bg-indigo-600"
+                >
                   Reset Password
                 </button>
               </form>

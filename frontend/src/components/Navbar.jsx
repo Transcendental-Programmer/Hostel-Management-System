@@ -1,15 +1,21 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate,useLocation } from "react-router-dom";
 
 function Navbar() {
   const navigate = useNavigate();
   const [authToken, setAuthToken] = useState(localStorage.getItem("jwtToken"));
-
+  const location = useLocation();
   const logout = () => {
     setAuthToken(null);
     localStorage.removeItem("jwtToken");
+    localStorage.removeItem("user_role");
+    localStorage.removeItem("user_id");
     navigate("/login");
   };
+
+  if (location.pathname === "/login" || location.pathname === "/signup") {
+    return null;
+  }
 
   return (
     <>

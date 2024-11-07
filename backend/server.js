@@ -18,12 +18,16 @@ MongoDB();
 app.use(cors());
 app.use(express.json());
 
-app.use("/grievances", grievanceRoutes);
+app.use("/grievances/", grievanceRoutes);
 // app.use("/", studentRoutes);
 // app.use("/", wardenRoutes);
 app.use("/users/", userRoutes);
 app.use("/chat/", chatRoutes);
 
+// Handle invalid routes
+app.use((req, res) => {
+  res.status(404).json({ message: 'Route not found' });
+});
 // Initialize the Redis connection
 await client.connect(
   console.log('Connected to Redis')
@@ -37,10 +41,7 @@ server.listen(3000, () => {
   console.log("Application is running on port 3000");
 });
 
-// default route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to Grievance Portal" });
-});
+
 
 // Initialize Socket.io
 const socketServiceInstance = new SocketService();

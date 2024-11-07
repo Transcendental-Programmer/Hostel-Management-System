@@ -24,6 +24,8 @@ const GrievanceManagementByWarden = () => {
             setIsLoading(true);
             setError(null);
             const response = await axios.get('http://localhost:3000/grievances/open');
+            console.log(response.data);
+            
             setGrievances(response.data);
         } catch (err) {
             console.error('Failed to fetch grievances:', err);

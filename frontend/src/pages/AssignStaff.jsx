@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Pencil, Plus } from 'lucide-react';
 import axios from 'axios';
@@ -21,26 +21,28 @@ const AssignStaff = () => {
 
     const [staffMembers, setStaffMembers] = useState([]);
 
-useEffect(() => {
-  const fetchStaffMembers = async () => {
-    try {
-      const response = await axios.get('http://localhost:3000/grievances/staff');
-      setStaffMembers(response.data);
-    } catch (err) {
-      console.error('Failed to fetch staff members:', err);
-    }
-  };
+    useEffect(() => {
+        const fetchStaffMembers = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/grievances/staff');
+                setStaffMembers(response.data);
+                console.log(response.data);
 
-  fetchStaffMembers();
-  fetchGrievances();
-}, []);
+            } catch (err) {
+                console.error('Failed to fetch staff members:', err);
+            }
+        };
+
+        fetchStaffMembers();
+        fetchGrievances();
+    }, []);
 
     // Fetch grievances from API
     const fetchGrievances = async () => {
         try {
             setIsLoading(true);
             setError(null);
-            const response = await axios.get('http://localhost:3000/grievances');
+            const response = await axios.get('http://localhost:3000/grievances/open');
             setGrievances(response.data);
         } catch (err) {
             console.error('Failed to fetch grievances:', err);
@@ -50,30 +52,30 @@ useEffect(() => {
         }
     };
 
-// Assign staff member to grievance
-const handleStaffAssignment = async (grievanceId, staffId) => {
-    try {
-      setError(null);
-      const response = await axios.put(`http://localhost:3000/grievances/assign`, {
-        grievance_id: grievanceId,
-        staff_id: staffId,
-      });
-  
-      if (response.status === 200) {
-        setGrievances((prevGrievances) =>
-          prevGrievances.map((grievance) =>
-            grievance.grievance_id === grievanceId
-              ? { ...grievance, staff_id: staffId }
-              : grievance
-          )
-        );
-        setEditingStatus(null);
-      }
-    } catch (err) {
-      console.error('Failed to assign staff member:', err);
-      setError('Failed to assign staff member. Please try again.');
-    }
-  };
+    // Assign staff member to grievance
+    const handleStaffAssignment = async (grievanceId, staffId) => {
+        try {
+            setError(null);
+            const response = await axios.put(`http://localhost:3000/grievances/assign`, {
+                grievance_id: grievanceId,
+                staff_id: staffId,
+            });
+
+            if (response.status === 200) {
+                setGrievances((prevGrievances) =>
+                    prevGrievances.map((grievance) =>
+                        grievance.grievance_id === grievanceId
+                            ? { ...grievance, staff_id: staffId }
+                            : grievance
+                    )
+                );
+                setEditingStatus(null);
+            }
+        } catch (err) {
+            console.error('Failed to assign staff member:', err);
+            setError('Failed to assign staff member. Please try again.');
+        }
+    };
 
     // Filter and search logic
     const filteredGrievances = grievances.filter(grievance => {
@@ -103,33 +105,73 @@ const handleStaffAssignment = async (grievanceId, staffId) => {
         });
     };
 
-    // Staff assignment dropdown component
-    const StaffAssignmentDropdown = ({ grievance }) => {
-        const relevantStaff = staffMembers.filter(
-            (staff) => staff.department.toLowerCase() === grievance.category.toLowerCase()
-          );
+ // Staff assignment dropdown component
+ const StaffAssignmentDropdown = ({ grievance }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef(null);  // New ref for dropdown
 
-        return (
-            <div className="relative inline-block">
-                <select
-                    value={grievance.staff_id || 'unassigned'}
-                    onChange={(e) => handleStaffAssignment(grievance.grievance_id, e.target.value === 'unassigned' ? null : e.target.value)}
-                    className="rounded-md border border-gray-300 px-2 py-1 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    autoFocus
-                >
-                    <option value="unassigned">Unassigned</option>
-                    {relevantStaff.map(staff => (
-                        <option key={staff.id} value={staff.id}>
-                            {staff.name} - {staff.department}
-                        </option>
+    // New useEffect for handling outside clicks
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+    const relevantStaff = staffMembers.filter(
+        (staff) =>
+            staff.department &&
+            grievance.category &&
+            staff.department.toLowerCase() === grievance.category.toLowerCase()
+    );
+
+    const displayStaff = relevantStaff.length > 0 ? relevantStaff : staffMembers;
+
+    return (
+        <div className="relative inline-block" ref={dropdownRef}>  {/* Added ref here */}
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-full rounded-md border border-gray-300 px-2 py-1 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+                {grievance.staff_id ? displayStaff.find(staff => staff.user_id === grievance.staff_id)?.full_name || 'Select Staff' : 'Unassigned'}
+            </button>
+
+            {isOpen && (
+                <div className="absolute mt-2 w-[180px] rounded-md border border-gray-300 bg-white shadow-lg max-h-32 overflow-y-auto z-10 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-400">
+                    <button
+                        onClick={() => {
+                            handleStaffAssignment(grievance.grievance_id, null);
+                            setIsOpen(false);
+                        }}
+                        className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100"
+                    >
+                        Unassigned
+                    </button>
+                    {displayStaff.map((staff) => (
+                        <button
+                            key={staff.user_id}
+                            onClick={() => {
+                                handleStaffAssignment(grievance.grievance_id, staff.user_id);
+                                setIsOpen(false);
+                            }}
+                            className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100"
+                        >
+                            {staff.full_name} - {staff.department}
+                        </button>
                     ))}
-                    {relevantStaff.length === 0 && (
-                        <option value="any">Assign to any staff</option>
-                    )}
-                </select>
-            </div>
-        );
-    };
+                </div>
+            )}
+        </div>
+    );
+};
+
+
 
     if (isLoading) {
         return (
@@ -301,8 +343,9 @@ const handleStaffAssignment = async (grievanceId, staffId) => {
                                             </p>
                                             <p className="text-sm text-gray-600">
                                                 <span className="font-medium">Assigned To:</span> {
-                                                    staffMembers.find(staff => staff.id === grievance.staff_id)?.name
+                                                    staffMembers.find(staff => staff.user_id === grievance.staff_id)?.full_name || 'Unknown Staff'
                                                 }
+
                                             </p>
                                             <p className="text-sm text-gray-600">
                                                 <span className="font-medium">Created:</span> {formatDate(grievance.created_at)}
