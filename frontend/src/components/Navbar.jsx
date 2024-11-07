@@ -14,7 +14,10 @@ function Navbar() {
     navigate("/login");
   };
 
-  if (location.pathname === "/login" || location.pathname === "/signup") {
+  // if (location.pathname === "/login" || location.pathname === "/signup") {
+  //   return null;
+  // }
+  if (location.pathname === "/" ) {
     return null;
   }
 
