@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import socket from '../utils/socket';
+import axios from 'axios';
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
@@ -7,8 +8,31 @@ const Chat = () => {
   const [chatroomId, setChatroomId] = useState('');
   const [userId, setUserId] = useState('');
   const [senderType, setSenderType] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const formatDate = (date) => {
+  const messagesEndRef = useRef(null);
+
+  const formatDate = (dateString) => {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return '';
+
+    const today = new Date();
+    const isToday =
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear();
+
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+    const isYesterday =
+      date.getDate() === yesterday.getDate() &&
+      date.getMonth() === yesterday.getMonth() &&
+      date.getFullYear() === yesterday.getFullYear();
+
+    if (isToday) return 'Today';
+    if (isYesterday) return 'Yesterday';
+
     return date.toLocaleDateString(undefined, {
       weekday: 'long',
       day: 'numeric',
@@ -16,15 +40,90 @@ const Chat = () => {
       year: 'numeric',
     });
   };
+  const languageMap = {
+    'english': 'en',
+    'hindi': 'hi',
+    'bengali': 'bn',
+    'telugu': 'te',
+    'tamil': 'ta',
+    'marathi': 'mr',
+    'gujarati': 'gu',
+    'kannada': 'kn',
+    'malayalam': 'ml',
+    'punjabi': 'pa'
+  };
+
+  const getLanguageCode = (language) => {
+    const normalizedLanguage = language.toLowerCase(); // Convert to lowercase for case insensitivity
+    const code = Object.keys(languageMap).find(key => key.toLowerCase() === normalizedLanguage);
+    return code ? languageMap[code] : null;
+  };
+
+  const translateMessage = async (messageText, language) => {
+    try {
+      const languageCode = getLanguageCode(language);
+      if (!languageCode) {
+        console.error(`Language "${language}" not supported.`);
+        return null;
+      }
+
+      const response = await axios.post('https://archcoder-hostel-management-and-greivance-redres-2eeefad.hf.space/api/translate', {
+        user_message: messageText,
+        target_language: languageCode,
+      });
+      console.log('Translated message:', response.data);
+      
+      return response.data.translated_message;
+    } catch (error) {
+      console.log('Error translating message:', error);
+      console.error('Error translating message:', error);
+      return null;
+    }
+  };
+
+
+
+
+
+  const fetchPreviousMessages = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(`http://localhost:3000/chat/abb74e56-b185-4cc0-8c63-5789400a7db2/messages`);
+      const previousMessages = response.data.map(msg => ({
+        ...msg,
+        timestamp: new Date(msg.createdAt).toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+        messageDate: msg.createdAt || new Date().toISOString(),
+      }));
+      setMessages(previousMessages);
+    } catch (error) {
+      console.error('Error fetching previous messages:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const isChatEnabled = chatroomId && userId && senderType;
 
   useEffect(() => {
     if (isChatEnabled) {
+      fetchPreviousMessages();
+
       socket.emit('joinChannel', { chatroomId, userId, senderType });
       socket.on('message', (message) => {
-        if (message && ((message.userId && message.userId !== userId) || (message.staffId && message.staffId !== userId))) {
-          setMessages((prevMessages) => [...prevMessages, message]);
+        // console.log('New message received:', message);
+        // Only add messages from other users
+        if (message && message.sender_type !== senderType) {
+          setMessages((prevMessages) => [...prevMessages, {
+            ...message,
+            timestamp: new Date(message.createdAt).toLocaleTimeString([], {
+              hour: '2-digit',
+              minute: '2-digit',
+            }),
+            messageDate: message.createdAt,
+          }]);
         }
       });
       return () => {
@@ -33,21 +132,27 @@ const Chat = () => {
     }
   }, [chatroomId, userId, senderType, isChatEnabled]);
 
+  useEffect(() => {
+    // Scroll to the latest message when messages change
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
+
   const sendMessage = (e) => {
     e.preventDefault();
     if (inputValue.trim() && isChatEnabled) {
+      const messageDate = new Date().toISOString();
       const timestamp = new Date().toLocaleTimeString([], {
         hour: '2-digit',
         minute: '2-digit',
       });
-      const messageDate = new Date(); // Capture the current date for the message
 
       const newMessage = {
-        senderId: userId,
-        senderType,
-        messageText: inputValue,
+        sender_type: senderType, // Match API response format
+        message_content: inputValue, // Match API response format
         timestamp,
-        messageDate: messageDate.toISOString(), // Store date as ISO string for consistency
+        createdAt: messageDate,
       };
 
       socket.emit('event:message', { chatroomId, message: newMessage });
@@ -56,20 +161,43 @@ const Chat = () => {
     }
   };
 
-  const getMessageDate = (dateString) => {
-    return formatDate(new Date(dateString)); // Use the stored ISO string to create a Date object
-  };
-
   const renderMessages = () => {
     let lastDate = '';
+    console.log("messages", messages);
 
     return messages.map((msg, index) => {
-      const messageDate = getMessageDate(msg.messageDate);
-      const shouldRenderDate = messageDate !== lastDate;
+      const messageDate = formatDate(msg.createdAt || msg.messageDate);
+      const shouldRenderDate = messageDate !== lastDate && messageDate !== '';
+      const isCurrentUser = msg.sender_type === senderType;
 
       if (shouldRenderDate) {
         lastDate = messageDate;
       }
+
+      const handleTranslateClick = async (msg) => {
+        if (msg.translated_content) {
+          // If the message is already translated, toggle back to original
+          setMessages((prevMessages) =>
+            prevMessages.map((m) =>
+              m._id === msg._id ? { ...m, showOriginal: !m.showOriginal } : m
+            )
+          );
+        } else {
+          // Otherwise, fetch the translation
+          // pick language from localstorage from user object
+          const language = JSON.parse(localStorage.getItem('user'))?.language_preference || 'english';
+          const translatedText = await translateMessage(msg.message_content, language);
+          if (translatedText) {
+            setMessages((prevMessages) =>
+              prevMessages.map((m) =>
+                m._id === msg._id ? { ...m, translated_content: translatedText, showOriginal: false } : m
+              )
+            );
+          }
+        }
+      };
+
+
 
       return (
         <div key={index}>
@@ -78,21 +206,30 @@ const Chat = () => {
               {messageDate}
             </div>
           )}
-          <div className={`flex ${msg.senderId === userId ? 'justify-end' : 'justify-start'}`}>
+          <div className={`flex ${isCurrentUser ? 'justify-end' : 'justify-start'}`}>
             <div
-              className={`relative max-w-xs min-w-[120px] p-3 rounded-lg flex justify-between items-end ${
-                msg.senderId === userId ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
-              }`}
+              className={`relative max-w-xs min-w-[120px] p-3 rounded-lg flex justify-between items-end ${isCurrentUser ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+                }`}
               style={{ wordWrap: 'break-word', wordBreak: 'break-word' }}
             >
-              <p className="text-sm break-words flex-1 pr-4">{msg.messageText}</p>
-              <span className="text-xs text-gray-300 whitespace-nowrap">{msg.timestamp}</span>
+              <p className="text-sm break-words flex-1 pr-4">
+                {msg.showOriginal ? msg.message_content : msg.translated_content || msg.message_content}
+              </p>
+              <span className={`text-xs ${isCurrentUser ? 'text-gray-200' : 'text-gray-400'} whitespace-nowrap`}>{msg.timestamp}</span>
+              {!isCurrentUser && (<button
+                onClick={() => handleTranslateClick(msg)}
+                className="ml-2 text-xs text-blue-500 hover:underline"
+              >
+                {msg.translated_content && !msg.showOriginal ? 'Original' : 'Translate'}
+              </button>)}
             </div>
           </div>
+
         </div>
       );
     });
   };
+
 
   return (
     <div className="flex flex-col h-full bg-gray-100 p-4">
@@ -121,7 +258,15 @@ const Chat = () => {
       </div>
 
       <div className="flex-1 overflow-y-auto mb-4 space-y-4 h-1/2">
-        {renderMessages()}
+        {loading ? (
+          <div className="text-center">Loading previous messages...</div>
+        ) : (
+          <>
+            {renderMessages()}
+            {/* Reference to scroll into view */}
+            <div ref={messagesEndRef} />
+          </>
+        )}
       </div>
 
       <form onSubmit={sendMessage} className="flex items-center bg-white p-2 rounded-lg shadow">
