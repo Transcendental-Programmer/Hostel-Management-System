@@ -66,7 +66,7 @@ const MyGrievances = () => {
   return (
     <>
       <div className="bg-gray-100 p-4 py-8 sm:p-8 md:p-10 h-screen">
-        <h1 className="text-2xl font-bold mt-20 mb-8">Grievances</h1>
+        <h1 className="text-2xl font-bold mt-12 mb-8">Grievances</h1>
         {grievances.length === 0 ? (
           <p className="ml-4 mt-2 text-gray-600 text-xl">
             No grievances registered yet.

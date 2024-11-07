@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate,useLocation } from "react-router-dom";
+import Logo from "./NavLogo";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -20,9 +21,10 @@ function Navbar() {
   return (
     <>
       <header className="shadow bg-white fixed w-full z-10 top-0">
-        <div className="relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-4 md:mx-auto md:flex-row md:items-center">
+        <div className="relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-2 md:py-3 lg:py-3 md:mx-auto md:flex-row md:items-center">
           <a href="/" className="flex items-center whitespace-nowrap text-2xl font-black">
-            <span className="text-black">IIITM HMS</span>
+            {/* <span className="text-black">IIITM HMS</span> */}
+            <Logo />
           </a>
           <input type="checkbox" className="peer hidden" id="navbar-open" />
           <label className="absolute top-5 right-7 cursor-pointer md:hidden" htmlFor="navbar-open">

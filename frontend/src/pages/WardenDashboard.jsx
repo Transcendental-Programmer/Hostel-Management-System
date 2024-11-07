@@ -126,7 +126,7 @@ const WardenDashboard = () => {
     }
 
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 mb-8 mt-20">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 mb-8 mt-8 md:mt-20">
         <div className="bg-white p-4 sm:p-6 rounded-lg shadow-sm">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">
             Quick Stats
@@ -500,15 +500,16 @@ const WardenDashboard = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Mobile Header */}
-      <div className="lg:hidden bg-white shadow-sm p-4 fixed top-0 left-0 right-0 z-50">
+      <div className="lg:hidden h-16 bg-white shadow-sm p-4 fixed top-0 left-0 right-0 z-50">
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-bold text-gray-900">Warden Portal</h1>
+          <h1 className="text-xl font-bold order-2 w-full text-center text-gray-900">Warden Portal</h1>
           <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="p-2 rounded-lg hover:bg-gray-100"
+            className="p-2 rounded-lg order-1 hover:bg-gray-100"
           >
             <Menu className="w-6 h-6" />
           </button>
+          
         </div>
       </div>
 
