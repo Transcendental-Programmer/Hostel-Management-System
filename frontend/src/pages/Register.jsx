@@ -101,9 +101,19 @@ function Register() {
     }
   };
 
+  const allowedEmails = ['imt_2022089@iiitm.ac.in', 'imt_2022120@iiittm.ac.in'];
+
   const onSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    const email = document.getElementById("email").value;
+    const role = document.getElementById("role").value;
+
+    if (role === "warden" && !allowedEmails.includes(email)) {
+      toast.error("Only specific emails are allowed for the warden role.");
+        return;
+    }
 
     try {
       if (!validateEmail(email)) {
@@ -455,7 +465,7 @@ function Register() {
                     type="submit"
                     onClick={onSubmit}
                   >
-                    Sign in
+                    Sign up
                   </button>
                 </div>
               </form>
