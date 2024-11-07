@@ -53,7 +53,7 @@ const Chat = () => {
 
       socket.emit('joinChannel', { chatroomId, userId, senderType });
       socket.on('message', (message) => {
-        console.log('New message received:', message);
+        // console.log('New message received:', message);
         // Only add messages from other users
         if (message && message.sender_type !== senderType) {
           setMessages((prevMessages) => [...prevMessages, {
@@ -103,7 +103,7 @@ const Chat = () => {
 
   const renderMessages = () => {
     let lastDate = '';
-    console.log("messages", messages);
+    // console.log("messages", messages);
     return messages.map((msg, index) => {
       const messageDate = formatDate(msg.createdAt || msg.messageDate);
       const shouldRenderDate = messageDate !== lastDate && messageDate !== '';
