@@ -14,54 +14,26 @@ function AccountPage() {
   const [userHostel, setHostel] = useState("");
   const [userType, setUserType] = useState(null);
 
+ 
+
   useEffect(() => {
-    const fetchUserType = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/userType", {
-          method: "GET",
-          headers: headers,
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          setUserType(data.userType);
-          console.log(data.userType);
-        } else {
-          console.error("Failed to fetch user type");
-        }
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
-
-    fetchUserType();
-  }, []);
-
-  const getuserDetails = async (user_id) => {
-    try {
-      const response = await fetch(
-        `http://localhost:3000/userDetails/${user_id}`,
-        {
-          method: "GET",
-          headers: headers,
-        }
-      );
-      const data = await response.json();
-      console.log(data);
-      setUserName(data[0].full_name);
-      setemail(data[0].email);
-      setphone(data[0].phone);
-      setUsername(data[0].userName);
-      setRoom(data[0].room);
-      setRollno(data[0].Rollno);
-      setHostel(data[0].Hostel);
-    } catch (err) {
-      console.error(err.message);
+   
+    const storedUserDetails = JSON.parse(localStorage.getItem("user"));
+    if (storedUserDetails) {
+      setUserName(storedUserDetails.full_name || "");
+      setemail(storedUserDetails.email || "");
+      setphone(storedUserDetails.phone_number || "");
+      setUsername(storedUserDetails.username || "");
+      setRoom(storedUserDetails.room_number || "");
+      setRollno(storedUserDetails.roll_number || "");
+      setHostel(storedUserDetails.hostel_number || "");
     }
-  };
 
-  useEffect(() => {
-    getuserDetails();
+   
+    const storedUserType = localStorage.getItem("user_role");
+    if (storedUserType) {
+      setUserType(storedUserType); 
+    }
   }, []);
 
   return (
