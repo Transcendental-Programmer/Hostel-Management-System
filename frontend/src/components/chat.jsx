@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import socket from '../utils/socket';
+import axios from 'axios';
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
@@ -7,8 +8,15 @@ const Chat = () => {
   const [chatroomId, setChatroomId] = useState('');
   const [userId, setUserId] = useState('');
   const [senderType, setSenderType] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const formatDate = (date) => {
+  const messagesEndRef = useRef(null);
+
+  const formatDate = (dateString) => {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return '';
+
     return date.toLocaleDateString(undefined, {
       weekday: 'long',
       day: 'numeric',
@@ -17,14 +25,45 @@ const Chat = () => {
     });
   };
 
+  const fetchPreviousMessages = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(`http://localhost:3000/chat/abb74e56-b185-4cc0-8c63-5789400a7db2/messages`);
+      const previousMessages = response.data.map(msg => ({
+        ...msg,
+        timestamp: new Date(msg.createdAt).toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+        messageDate: msg.createdAt || new Date().toISOString(),
+      }));
+      setMessages(previousMessages);
+    } catch (error) {
+      console.error('Error fetching previous messages:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const isChatEnabled = chatroomId && userId && senderType;
 
   useEffect(() => {
     if (isChatEnabled) {
+      fetchPreviousMessages();
+
       socket.emit('joinChannel', { chatroomId, userId, senderType });
       socket.on('message', (message) => {
-        if (message && ((message.userId && message.userId !== userId) || (message.staffId && message.staffId !== userId))) {
-          setMessages((prevMessages) => [...prevMessages, message]);
+        console.log('New message received:', message);
+        // Only add messages from other users
+        if (message && message.sender_type !== senderType) {
+          setMessages((prevMessages) => [...prevMessages, {
+            ...message,
+            timestamp: new Date(message.createdAt).toLocaleTimeString([], {
+              hour: '2-digit',
+              minute: '2-digit',
+            }),
+            messageDate: message.createdAt,
+          }]);
         }
       });
       return () => {
@@ -33,21 +72,27 @@ const Chat = () => {
     }
   }, [chatroomId, userId, senderType, isChatEnabled]);
 
+  useEffect(() => {
+    // Scroll to the latest message when messages change
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
+
   const sendMessage = (e) => {
     e.preventDefault();
     if (inputValue.trim() && isChatEnabled) {
+      const messageDate = new Date().toISOString();
       const timestamp = new Date().toLocaleTimeString([], {
         hour: '2-digit',
         minute: '2-digit',
       });
-      const messageDate = new Date(); // Capture the current date for the message
 
       const newMessage = {
-        senderId: userId,
-        senderType,
-        messageText: inputValue,
+        sender_type: senderType, // Match API response format
+        message_content: inputValue, // Match API response format
         timestamp,
-        messageDate: messageDate.toISOString(), // Store date as ISO string for consistency
+        createdAt: messageDate,
       };
 
       socket.emit('event:message', { chatroomId, message: newMessage });
@@ -56,16 +101,13 @@ const Chat = () => {
     }
   };
 
-  const getMessageDate = (dateString) => {
-    return formatDate(new Date(dateString)); // Use the stored ISO string to create a Date object
-  };
-
   const renderMessages = () => {
     let lastDate = '';
-
+    console.log("messages", messages);
     return messages.map((msg, index) => {
-      const messageDate = getMessageDate(msg.messageDate);
-      const shouldRenderDate = messageDate !== lastDate;
+      const messageDate = formatDate(msg.createdAt || msg.messageDate);
+      const shouldRenderDate = messageDate !== lastDate && messageDate !== '';
+      const isCurrentUser = msg.sender_type === senderType; // Compare sender_type instead of IDs
 
       if (shouldRenderDate) {
         lastDate = messageDate;
@@ -78,14 +120,13 @@ const Chat = () => {
               {messageDate}
             </div>
           )}
-          <div className={`flex ${msg.senderId === userId ? 'justify-end' : 'justify-start'}`}>
+          <div className={`flex ${isCurrentUser ? 'justify-end' : 'justify-start'}`}>
             <div
-              className={`relative max-w-xs min-w-[120px] p-3 rounded-lg flex justify-between items-end ${
-                msg.senderId === userId ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
-              }`}
+              className={`relative max-w-xs min-w-[120px] p-3 rounded-lg flex justify-between items-end ${isCurrentUser ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+                }`}
               style={{ wordWrap: 'break-word', wordBreak: 'break-word' }}
             >
-              <p className="text-sm break-words flex-1 pr-4">{msg.messageText}</p>
+              <p className="text-sm break-words flex-1 pr-4">{msg.message_content}</p>
               <span className="text-xs text-gray-300 whitespace-nowrap">{msg.timestamp}</span>
             </div>
           </div>
@@ -121,7 +162,15 @@ const Chat = () => {
       </div>
 
       <div className="flex-1 overflow-y-auto mb-4 space-y-4 h-1/2">
-        {renderMessages()}
+        {loading ? (
+          <div className="text-center">Loading previous messages...</div>
+        ) : (
+          <>
+            {renderMessages()}
+            {/* Reference to scroll into view */}
+            <div ref={messagesEndRef} />
+          </>
+        )}
       </div>
 
       <form onSubmit={sendMessage} className="flex items-center bg-white p-2 rounded-lg shadow">

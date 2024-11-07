@@ -12,7 +12,7 @@ class SocketService {
         methods: ['GET', 'POST'],
       },
     });
-  } 
+  }
 
   async initListeners() {
     const io = this.io;
@@ -28,42 +28,29 @@ class SocketService {
       socket.on('joinChannel', ({ chatroomId, userId, senderType }) => {
         socket.join(chatroomId);
         console.log(`User ${userId} of type ${senderType} joined chatroom ${chatroomId}`);
-        socket.userId = userId; // Store userId in socket
-        socket.senderType = senderType; // Store senderType in socket
+        socket.userId = userId;
+        socket.senderType = senderType;
       });
 
       // Handle sending a message
       socket.on('event:message', async ({ chatroomId, message }) => {
-        const data = {
-          messageText: message.messageText,
-          media: message.media,
-          userId: socket.userId,
-          senderType: socket.senderType, // Include sender type
-          chatroomId,
+        // Align with frontend message structure
+        const messageData = {
+          chatroom_id: chatroomId,
+          message_content: message.message_content, // Updated to match frontend
+          translated_content: message.translated_content || null,
+          language: message.language || 'English',
+          sender_type: socket.senderType,
+          // Store user_id or staff_id based on sender type
+          user_id: socket.senderType === 'student' ? socket.userId : null,
+          staff_id: socket.senderType === 'staff' ? socket.userId : null,
+          createdAt: new Date().toISOString(), // Add timestamp to match frontend
         };
 
-        console.log('New Message Received:', message.messageText);
-        console.log('Sender Type:', socket.senderType);
-        console.log('Sender user id :', socket.userId);
-        // console.log('Socket:', socket);
+        console.log('New Message Received:', messageData);
 
-        
-        // Emit the message to the specific chatroom
-        io.to(chatroomId).emit('message', data);
-
-        // Save the message to MongoDB
         try {
-          const messageData = {
-            chatroom_id: chatroomId,
-            message_content: message.messageText,
-            translated_content: message.translatedContent || null,
-            language: message.language || 'English',
-            // Store user_id or staff_id based on sender type
-            user_id: socket.senderType === 'student' ? socket.userId : null,
-            staff_id: socket.senderType === 'staff' ? socket.userId : null,
-            sender_type: socket.senderType,
-          };
-
+          // Save the message to MongoDB
           const savedMessage = await Messages.create(messageData);
           console.log('Message saved to MongoDB:', savedMessage._id);
 
@@ -73,6 +60,18 @@ class SocketService {
             { $push: { message_ids: savedMessage._id } },
             { new: true }
           );
+
+          // Emit message with frontend-compatible structure
+          const emitData = {
+            _id: savedMessage._id,
+            message_content: messageData.message_content,
+            translated_content: messageData.translated_content,
+            sender_type: messageData.sender_type,
+            createdAt: messageData.createdAt,
+            language: messageData.language,
+          };
+
+          io.to(chatroomId).emit('message', emitData);
           console.log(`Message ID ${savedMessage._id} added to Chatroom ${chatroomId}`);
         } catch (error) {
           console.error('Error saving message to MongoDB:', error);
