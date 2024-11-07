@@ -18,17 +18,18 @@ const grievanceRoutes = express.Router();
 
 grievanceRoutes.post("/new", createGrievance);
 grievanceRoutes.get("/open", getOpenGrievances);
+// Admin dashboard APIs
 grievanceRoutes.get("/staff", getStaff);
+grievanceRoutes.get("/quick-stats", getQuickStats);
+grievanceRoutes.get("/staff-overview", getStaffOverview);
+grievanceRoutes.get("/recent-activity", getRecentActivity);
+
 grievanceRoutes.get("/:user_id", getGrievancesByUser);
 grievanceRoutes.get("/details/:grievance_id", getGrievanceById);
 grievanceRoutes.put("/update/:grievance_id", updateGrievanceById);
 grievanceRoutes.delete("/delete/:grievance_id", deleteGrievanceById);
 grievanceRoutes.put("/assign", assignStaff);
 
-// Admin dashboard APIs
-grievanceRoutes.get("/quick-stats", getQuickStats);
-grievanceRoutes.get("/staff-overview", getStaffOverview);
-grievanceRoutes.get("/recent-activity", getRecentActivity);
 
 // Catch-all route for undefined routes under /grievances
 grievanceRoutes.all("*", (req, res) => {
