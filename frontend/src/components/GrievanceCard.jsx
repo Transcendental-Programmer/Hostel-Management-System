@@ -9,7 +9,7 @@ const GrievanceCard = ({ grievance }) => {
     };
 
     return (
-        <NavLink to={`/grievance-details/${grievance.grievance_id}`} className="flex flex-col w-full h-full">
+        <NavLink to={`/grievances/details/${grievance.grievance_id}`} className="flex flex-col w-full h-full">
         <div className="relative flex h-full flex-col rounded-md border border-gray-300 shadow-sm hover:cursor-pointer bg-white p-2.5 hover:border-gray-400 sm:rounded-lg sm:p-5">
             <div className="text-lg mb-2 font-semibold text-gray-900 hover:text-black sm:mb-1.5 sm:text-2xl">
                 {grievance.title}
