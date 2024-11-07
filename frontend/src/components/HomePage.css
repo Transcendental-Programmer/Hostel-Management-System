@@ -1,0 +1,75 @@
+/* Styling the homepage */
+.homepage-container {
+    background-image: url('/path/to/your/image.png'); /* Path to the generated image */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    overflow: hidden;
+}
+
+.overlay {
+    /* background: rgba(43, 0, 94, 0.7); Bluish-purple overlay */
+    background: linear-gradient(180deg, rgba(0, 168, 255, 1) 0%, rgba(108, 73, 205, 1) 68%);;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.app-name {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #e0e5f8; /* Light color for contrast */
+    margin-bottom: 10px;
+}
+
+.tagline {
+    font-size: 1.5rem;
+    color: #c8d3f9;
+    margin-bottom: 20px;
+}
+
+.button-group {
+    display: flex;
+    gap: 20px;
+}
+
+.login-btn,
+.signup-btn {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-btn {
+    background-color: #4b4f8c; /* Slightly darker bluish shade */
+    color: #fff;
+}
+
+.signup-btn {
+    background-color: #7367f0; /* Purple button */
+    color: #fff;
+}
+
+.login-btn:hover {
+    background-color: #3b3e70;
+}
+
+.signup-btn:hover {
+    background-color: #5e56d9;
+}

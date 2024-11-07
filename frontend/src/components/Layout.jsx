@@ -1,7 +1,8 @@
 import { Outlet } from 'react-router-dom';
-import Navbar from './Navbar';
+import Nav2 from './Nav2';
 import ChatBubble from './ChatBubble';
-
+import HomePage from './HomePage';
+import Navbar from './Navbar';
 const Layout = () => {
   return (
     <div className="min-h-screen">
@@ -9,6 +10,7 @@ const Layout = () => {
       <main className="relative">
         <Outlet />
         <ChatBubble />
+        
       </main>
     </div>
   );

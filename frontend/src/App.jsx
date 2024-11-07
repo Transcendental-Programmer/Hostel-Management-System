@@ -15,14 +15,20 @@ import GrievanceDetails from "./pages/GrievanceDetails";
 import Layout from "./components/Layout";
 import StaffDashboard from "./pages/Staff/StaffDashboard";
 import StudentHome from "./pages/Student/StudentHome";
+import HomePage from "./components/HomePage";
+
 const routes = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
     children: [
       {
+        index: true,  // This makes HomePage the default component for '/'
+        element: <HomePage />,
+      },
+      {
         path: RoutesPathName.SIGNUP_PAGE,
-        index: true,
+        // index: true,
         Component: Register,
       },
       {
