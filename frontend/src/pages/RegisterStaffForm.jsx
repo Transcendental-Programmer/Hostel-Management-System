@@ -64,8 +64,8 @@ const RegisterStaffForm = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto m-10 p-6 bg-black rounded-lg shadow-lg">
-      <h2 className="text-2xl font-semibold text-center text-gray-100 mb-6">
+    <div className="max-w-md mx-auto m-10 p-6 bg-indigo-300 rounded-lg shadow-lg">
+      <h2 className="text-2xl font-semibold text-center text-indigo-500 mb-6">
         Register New Staff
       </h2>
 

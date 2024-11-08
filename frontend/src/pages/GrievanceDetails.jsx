@@ -205,7 +205,7 @@ const GrievanceDetails = () => {
                 disabled={false}
                 className={`w-full p-2 bg-transparent border-none rounded
   ${isEditing
-                    ? 'focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-text'
+                    ? 'focus:outline-none focus:ring-2 focus:ring-blue-600 cursor-text'
                     : 'cursor-default'}`}
               >
                 <option value="pending">Pending</option>
@@ -226,7 +226,7 @@ const GrievanceDetails = () => {
                 disabled={!isEditing}
                 className={`w-full p-2 bg-transparent border-none rounded
     ${isEditing
-                    ? 'focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-text'
+                    ? 'focus:outline-none focus:ring-2 focus:ring-blue-600 cursor-text'
                     : 'cursor-default'}`}
               />
 
