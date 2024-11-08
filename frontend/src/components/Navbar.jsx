@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate,useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Logo from "./NavLogo";
 
 function Navbar() {
@@ -11,24 +11,53 @@ function Navbar() {
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("user_role");
     localStorage.removeItem("user_id");
+    localStorage.removeItem("user");
     navigate("/login");
   };
 
-  
-  if (location.pathname === "/" ) {
+  // if (location.pathname === "/login" || location.pathname === "/signup") {
+  //   return null;
+  // }
+  if (location.pathname === "/") {
     return null;
   }
 
- 
+  const ROLE_PATHS = {
+    STAFF: "/staff-dashboard",
+    STUDENT: "/student-home",
+    WARDEN: "/warden-dashboard",
+    ADMIN: "/warden-dashboard"
+  };
+  const token = localStorage.getItem("jwtToken");
+  const userRole = localStorage.getItem("user_role");
+  // Function to handle navigation based on role
+  const handleBackNavigation = () => {
+    if (token && userRole) {
+      const roleKey = userRole.toUpperCase();
+      const path = ROLE_PATHS[roleKey];
+      if (path) {
+        navigate(path);
+      } else {
+        // Default path if role does not match
+        navigate("/");
+      }
+    } else {
+      // Navigate to default path if no token or role
+      navigate("/");
+    }
+  };
 
   return (
     <>
       <header className="shadow bg-white fixed w-full z-10 top-0 h-16 md:h-20">
         <div className="relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-2 md:py-3 lg:py-3 md:mx-auto md:flex-row md:items-center">
-          <a href="/" className="flex items-center whitespace-nowrap text-2xl font-black">
+          <div
+            onClick={handleBackNavigation}
+            className="flex items-center whitespace-nowrap text-2xl font-black cursor-pointer"
+          >
             {/* <span className="text-black">IIITM HMS</span> */}
             <Logo />
-          </a>
+          </div>
           <input type="checkbox" className="peer hidden" id="navbar-open" />
           <label className="absolute top-5 right-7 cursor-pointer md:hidden" htmlFor="navbar-open">
             <span className="sr-only">Toggle Navigation</span>

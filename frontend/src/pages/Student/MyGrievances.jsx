@@ -33,12 +33,12 @@ const formatTimestamp1 = (timestamp) => {
 const MyGrievances = () => {
   const [grievances, setGrievances] = useState([]);
   const { authToken, headers } = useAuth();
-  if(!authToken){
+  if (!authToken) {
     toast.error("You need to be logged in to view this page.");
     console.log("You need to be logged in to view this page.");
     return <Navigate to="/login" />;
   }
-  else if(user_role !== "student"){
+  else if (user_role !== "student") {
     toast.error("You need to be a student to view this page.");
     console.log("You need to be a student to view this page.");
     return <Navigate to="/login" />;
@@ -52,8 +52,8 @@ const MyGrievances = () => {
         headers: headers,
       });
       const jsonData = await response.json();
-
-      setGrievances(jsonData);
+      const openGrievances = jsonData.filter(grievance => grievance.status !== "closed");
+      setGrievances(openGrievances);
     } catch (err) {
       console.error(err.message);
     }
