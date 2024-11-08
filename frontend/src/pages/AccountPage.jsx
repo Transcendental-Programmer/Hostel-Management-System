@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import { useState, useEffect } from "react";
 import { useAuth } from "../utils/Auth";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function AccountPage() {
   const { headers } = useAuth();
@@ -14,10 +15,35 @@ function AccountPage() {
   const [userHostel, setHostel] = useState("");
   const [userType, setUserType] = useState(null);
 
- 
+  const navigate = useNavigate();
 
+  const ROLE_PATHS = {
+    STAFF: "/staff-dashboard",
+    STUDENT: "/student-home",
+    WARDEN: "/warden-dashboard",
+    ADMIN: "/warden-dashboard"
+  };
+  // Function to handle navigation based on role
+  const token = localStorage.getItem("jwtToken");
+  const userRole = localStorage.getItem("user_role");
+  const handleBackNavigation = () => {
+    if (token && userRole) {
+      const roleKey = userRole.toUpperCase();
+      const path = ROLE_PATHS[roleKey];
+      if (path) {
+        navigate(path);
+      } else {
+        // Default path if role does not match
+        navigate("/");
+      }
+    } else {
+      // Navigate to default path if no token or role
+      navigate("/");
+    }
+  };
+  
   useEffect(() => {
-   
+    
     const storedUserDetails = JSON.parse(localStorage.getItem("user"));
     if (storedUserDetails) {
       setUserName(storedUserDetails.full_name || "");
@@ -89,13 +115,16 @@ function AccountPage() {
           </>
         )}
       </ul>
-      <button class="mt-5 ml-5 relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
-        <Link
+      <button className="mt-5 ml-5 relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800" 
+      onClick={handleBackNavigation}
+      >
+        
+        {/* <Link
           class=" relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-blue-500 rounded-md group-hover:bg-opacity-0"
           to="/"
-        >
+        > */}
           Back
-        </Link>
+        {/* </Link> */}
       </button>
     </>
   );
