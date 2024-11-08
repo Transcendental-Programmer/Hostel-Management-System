@@ -233,9 +233,8 @@ const GrievanceDetails = () => {
               >
                 <option value="pending">Pending</option>
                 <option value="completed">Completed</option>
-                <option value="closed">Closed</option>
+                {localStorage.getItem('user_role')?.toLowerCase() !== 'staff' && <option value="closed">Closed</option>}
               </select>
-
 
 
             </div>

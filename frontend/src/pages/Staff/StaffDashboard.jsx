@@ -240,6 +240,7 @@ const StaffDashboard = () => {
                       <span className="text-sm text-gray-500">Mark as Resolved</span>
                     </div>
                   </td>
+                  
                 </tr>
               ))}
             </tbody>
