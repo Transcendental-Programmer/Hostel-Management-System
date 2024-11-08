@@ -56,7 +56,7 @@ const AssignStaff = () => {
     const handleStaffAssignment = async (grievanceId, staffId) => {
         try {
             setError(null);
-            const response = await axios.put(`http://localhost:3000/grievances/assign`, {
+            const response = await axios.put(`https://hostelmate-backend-5zcj.onrender.com/grievances/assign`, {
                 grievance_id: grievanceId,
                 staff_id: staffId,
             });
