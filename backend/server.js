@@ -11,7 +11,8 @@ import chatRoutes from './routes/chatRoutes.js';
 import grievanceRoutes from './routes/grievanceRoutes.js';
 import staffRoutes from './routes/staffRouter.js';
 import http from 'http';
-
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 MongoDB();
