@@ -54,7 +54,30 @@ const WardenDashboard = () => {
     navigate("/login");
   };
 
-
+  const ROLE_PATHS = {
+    STAFF: "/staff-dashboard",
+    STUDENT: "/student-home",
+    WARDEN: "/warden-dashboard",
+    ADMIN: "/warden-dashboard"
+  };
+  const token = localStorage.getItem("jwtToken");
+  const userRole = localStorage.getItem("user_role");
+  // Function to handle navigation based on role
+  const handleBackNavigation = () => {
+    if (token && userRole) {
+      const roleKey = userRole.toUpperCase();
+      const path = ROLE_PATHS[roleKey];
+      if (path) {
+        navigate(path);
+      } else {
+        // Default path if role does not match
+        navigate("/");
+      }
+    } else {
+      // Navigate to default path if no token or role
+      navigate("/");
+    }
+  };
   useEffect(() => {
     const fetchDashboardData = async () => {
       setIsLoading(true);
@@ -584,9 +607,13 @@ const WardenDashboard = () => {
           </button>
 
           {/* Logo/Home Link */}
-          <a href="/" className="flex items-center text-xl font-bold text-gray-900">
+          <div
+            onClick={handleBackNavigation}
+            className="flex items-center whitespace-nowrap text-2xl font-black cursor-pointer"
+          >
+            {/* <span className="text-black">IIITM HMS</span> */}
             <Logo />
-          </a>
+          </div>
 
           {/* Title in Center */}
           <h1 className="text-xl font-bold sm:text-center text-left text-gray-900 absolute sm:left-1/2 left-1/3 transform -translate-x-1/2 ">
