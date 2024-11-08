@@ -40,7 +40,7 @@ const GrievanceCard = ({ grievance }) => {
                 {grievance.description}
             </div>
             <button
-                className={`group flex w-1/3 mt-3 cursor-pointer items-center justify-center rounded-md px-4 py-2 text-white transition text-sm ${grievance.status === 'Completed' ? 'bg-green-500' : 'bg-red-600'
+                className={`group flex w-1/3 mt-3 cursor-pointer items-center justify-center rounded-md px-4 py-2 text-white transition text-sm ${grievance.status === 'completed' ||grievance.status === 'Completed'  ? 'bg-green-500' : 'bg-red-600'
                     }`}
             >
                 <span className="group flex w-full items-center justify-center rounded py-1 text-center font-bold">
