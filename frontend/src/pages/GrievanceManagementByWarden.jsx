@@ -23,7 +23,7 @@ const GrievanceManagementByWarden = () => {
         try {
             setIsLoading(true);
             setError(null);
-            const response = await axios.get('http://localhost:3000/grievances/open');
+            const response = await axios.get('https://hostelmate-backend-5zcj.onrender.com/grievances/open');
             console.log(response.data);
             
             setGrievances(response.data);
@@ -39,7 +39,7 @@ const GrievanceManagementByWarden = () => {
     const handleStatusChange = async (grievanceId, newStatus) => {
         try {
             setError(null);
-            const response = await axios.put(`http://localhost:3000/grievances/update/${grievanceId}`, {
+            const response = await axios.put(`https://hostelmate-backend-5zcj.onrender.com/grievances/update/${grievanceId}`, {
                 grievance_id: grievanceId,
                 status: newStatus,
             });

@@ -30,7 +30,7 @@ const GrievanceDetails = () => {
         return;
       }
       try {
-        const response = await fetch(`http://localhost:3000/grievances/details/${grievance_id}`, {
+        const response = await fetch(`https://hostelmate-backend-5zcj.onrender.com/grievances/details/${grievance_id}`, {
           method: 'GET',
           headers: headers
         });
@@ -49,7 +49,7 @@ const GrievanceDetails = () => {
             items_used: data.items_used || [],
           });
 
-          const userData = await fetch(`http://localhost:3000/users/getUserDetailsById/${data.user_id}`, {
+          const userData = await fetch(`https://hostelmate-backend-5zcj.onrender.com/users/getUserDetailsById/${data.user_id}`, {
             method: 'GET',
             headers: headers
           }
@@ -61,7 +61,7 @@ const GrievanceDetails = () => {
           } else {
             toast.error("Failed to fetch user details");
           }
-          const chatroomResponse = await fetch('http://localhost:3000/chat/createChatroom', {
+          const chatroomResponse = await fetch('https://hostelmate-backend-5zcj.onrender.com/chat/createChatroom', {
             method: 'POST',
             headers: {
               ...headers,
@@ -95,7 +95,7 @@ const GrievanceDetails = () => {
 
   const handleUpdate = async (updatedGrievance) => {
     try {
-      const response = await fetch(`http://localhost:3000/grievances/update/${grievance_id}`, {
+      const response = await fetch(`https://hostelmate-backend-5zcj.onrender.com/grievances/update/${grievance_id}`, {
         method: 'PUT',
         headers: {
           ...headers,
@@ -126,7 +126,7 @@ const GrievanceDetails = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/grievances/delete/${grievance_id}`, {
+      const response = await fetch(`https://hostelmate-backend-5zcj.onrender.com/grievances/delete/${grievance_id}`, {
         method: 'DELETE',
         headers: headers
       });

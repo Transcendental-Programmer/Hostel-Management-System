@@ -86,9 +86,9 @@ const WardenDashboard = () => {
         // Fetch all data in parallel
         const [statsResponse, staffResponse, activitiesResponse] =
           await Promise.all([
-            fetch("http://localhost:3000/grievances/quick-stats"),
-            fetch("http://localhost:3000/grievances/staff-overview"),
-            fetch("http://localhost:3000/grievances/recent-activity"),
+            fetch("https://hostelmate-backend-5zcj.onrender.com/grievances/quick-stats"),
+            fetch("https://hostelmate-backend-5zcj.onrender.com/grievances/staff-overview"),
+            fetch("https://hostelmate-backend-5zcj.onrender.com/grievances/recent-activity"),
           ]);
 
         if (!statsResponse.ok || !staffResponse.ok || !activitiesResponse.ok) {
@@ -253,7 +253,7 @@ const WardenDashboard = () => {
         setIsLoading(true);
         try {
           const response = await fetch(
-            "http://localhost:3000/grievances/staff"
+            "https://hostelmate-backend-5zcj.onrender.com/grievances/staff"
           );
           if (!response.ok) {
             throw new Error("Failed to fetch staff data");
@@ -283,7 +283,7 @@ const WardenDashboard = () => {
     const handleUpdateStatus = async (staffMember) => {
       try {
         const response = await fetch(
-          `http://localhost:3000/users/updateStaffStatus/${staffMember.user_id}`,
+          `https://hostelmate-backend-5zcj.onrender.com/users/updateStaffStatus/${staffMember.user_id}`,
           {
             method: 'PUT',
             headers: {
@@ -512,7 +512,7 @@ const WardenDashboard = () => {
     // Function to fetch performance data from API
     const fetchPerformanceData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/grievances/performance-data', {
+        const response = await fetch('https://hostelmate-backend-5zcj.onrender.com/grievances/performance-data', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

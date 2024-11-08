@@ -24,7 +24,7 @@ const AssignStaff = () => {
     useEffect(() => {
         const fetchStaffMembers = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/grievances/staff');
+                const response = await axios.get('https://hostelmate-backend-5zcj.onrender.com/grievances/staff');
                 setStaffMembers(response.data);
                 console.log(response.data);
 
@@ -42,7 +42,7 @@ const AssignStaff = () => {
         try {
             setIsLoading(true);
             setError(null);
-            const response = await axios.get('http://localhost:3000/grievances/open');
+            const response = await axios.get('https://hostelmate-backend-5zcj.onrender.com/grievances/open');
             setGrievances(response.data);
         } catch (err) {
             console.error('Failed to fetch grievances:', err);
@@ -56,7 +56,7 @@ const AssignStaff = () => {
     const handleStaffAssignment = async (grievanceId, staffId) => {
         try {
             setError(null);
-            const response = await axios.put(`http://localhost:3000/grievances/assign`, {
+            const response = await axios.put(`https://hostelmate-backend-5zcj.onrender.com/grievances/assign`, {
                 grievance_id: grievanceId,
                 staff_id: staffId,
             });

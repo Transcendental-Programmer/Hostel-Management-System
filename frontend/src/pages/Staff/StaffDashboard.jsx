@@ -32,7 +32,7 @@ const StaffDashboard = () => {
 
   const fetchStaffStats = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/staff/getStaffStats/${staffId}`);
+      const response = await axios.get(`https://hostelmate-backend-5zcj.onrender.com/staff/getStaffStats/${staffId}`);
       setStaffStats(response.data);
     } catch (error) {
       console.error('Error fetching staff stats:', error);
@@ -41,7 +41,7 @@ const StaffDashboard = () => {
 
   const fetchResolvedGrievances = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/staff/getStaffHistory/${staffId}`);
+      const response = await axios.get(`https://hostelmate-backend-5zcj.onrender.com/staff/getStaffHistory/${staffId}`);
       setResolvedGrievances(response.data);
     } catch (error) {
       console.error('Error fetching resolved grievances:', error);
@@ -50,7 +50,7 @@ const StaffDashboard = () => {
 
   const fetchActiveGrievances = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/staff/getActiveGrievances/${staffId}`);
+      const response = await axios.get(`https://hostelmate-backend-5zcj.onrender.com/staff/getActiveGrievances/${staffId}`);
       setActiveGrievances({
         assignedTasks: response.data.assignedTasks,
         highPriorityCount: response.data.highPriorityCount,
@@ -63,7 +63,7 @@ const StaffDashboard = () => {
 
   const fetchStaffTasks = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/staff/getStaffTasks/${staffId}`);
+      const response = await axios.get(`https://hostelmate-backend-5zcj.onrender.com/staff/getStaffTasks/${staffId}`);
       console.log(response);
       setStaffTasks(response.data);
     } catch (error) {
@@ -73,7 +73,7 @@ const StaffDashboard = () => {
 
   const handleStaffResolution = async (grievanceId) => {
     try {
-      await axios.put('http://localhost:3000/staff/markComplete', { grievance_id: grievanceId });
+      await axios.put('https://hostelmate-backend-5zcj.onrender.com/staff/markComplete', { grievance_id: grievanceId });
       fetchActiveGrievances(); // Refresh the active grievances list
     } catch (error) {
       console.error('Error marking grievance as complete:', error);

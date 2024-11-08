@@ -50,7 +50,7 @@ const SubmitGrievance = () => {
     }
     try {
       const user_id = JSON.parse(localStorage.getItem("user")).user_id;
-      const response = await fetch("http://localhost:3000/grievances/new", {
+      const response = await fetch("https://hostelmate-backend-5zcj.onrender.com/grievances/new", {
         method: "POST",
         headers: headers,
         body: JSON.stringify({ ...grievanceData, user_id: user_id }),
