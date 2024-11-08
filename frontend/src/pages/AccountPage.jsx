@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import { useState, useEffect } from "react";
 import { useAuth } from "../utils/Auth";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 
 function AccountPage() {
   const { headers } = useAuth();
@@ -13,6 +13,7 @@ function AccountPage() {
   const [userRollno, setRollno] = useState("");
   const [userHostel, setHostel] = useState("");
   const [userType, setUserType] = useState(null);
+  const navigate  = useNavigate();
   const ROLE_PATHS = {
     STAFF: "/staff-dashboard",
     STUDENT: "/student-home",
