@@ -18,9 +18,9 @@ function Navbar() {
   // if (location.pathname === "/login" || location.pathname === "/signup") {
   //   return null;
   // }
-  if (location.pathname === "/") {
-    return null;
-  }
+  // if (location.pathname === "/") {
+  //   return null;
+  // }
 
   const ROLE_PATHS = {
     STAFF: "/staff-dashboard",
@@ -65,7 +65,7 @@ function Navbar() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </label>
-          {!(location.pathname==="/login" || location.pathname==="/signup"|| location.pathname==="/forgot-password"||location.pathname==="/verify-otp") && <nav
+          {!(location.pathname==="/login" || location.pathname==="/signup"|| location.pathname==="/forgot-password"||location.pathname==="/verify-otp"||location.pathname==="/") && <nav
             aria-label="Header Navigation"
             className={`peer-checked:mt-8 peer-checked:max-h-56 flex max-h-0 w-full flex-col items-center justify-between overflow-hidden transition-all md:ml-24 md:max-h-full md:flex-row md:items-start`}
           >
