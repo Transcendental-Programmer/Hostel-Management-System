@@ -7,6 +7,7 @@ function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);//added
 
   const ROLE_PATHS = {
     STAFF: "/staff-dashboard",
@@ -34,7 +35,7 @@ function Login() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true);//added
     try {
       const body = { email, password };
       const response = await fetch("http://localhost:3000/users/login", {
@@ -72,6 +73,17 @@ function Login() {
       }
     } catch (err) {
       console.log(err.message);
+      toast.error("Something went wrong. Please try again.");
+    }finally{
+      setIsLoading(false);
+    }
+
+    if (isLoading) {
+      return (
+        <div className="flex justify-center items-center h-64">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        </div>
+      );
     }
   };
 

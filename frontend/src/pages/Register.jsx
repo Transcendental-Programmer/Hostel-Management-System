@@ -101,7 +101,8 @@ function Register() {
     }
   };
 
-  const allowedEmails = ['imt_2022089@iiitm.ac.in', 'imt_2022120@iiittm.ac.in'];
+  const allowedEmails = ['imt_2022089@iiitm.ac.in', 'imt_2022014@iiittm.ac.in',"anjali@iiitm.ac.in","pinkuranjan@iiitm.ac.in","kapil@iiitm.ac.in"];
+  
 
   const onSubmit = async (e) => {
     e.preventDefault();
