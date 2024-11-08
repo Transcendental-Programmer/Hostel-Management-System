@@ -2,6 +2,7 @@ import React from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css'; // Import the CSS file for additional styles if needed
+import Navbar from './Navbar';
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -21,7 +22,7 @@ const HomePage = () => {
     });
 
     return (
-        <div className="homepage-container">
+        <div className="homepage-container md:min-h-[calc(100vh-80px)] min-h-[calc(100vh-64px)]">
             <animated.div style={fadeIn} className="overlay">
                 <h1 className="app-name">Welcome to HostelMate</h1>
                 <p className="tagline">Your All-in-One Hostel Management Solution</p>
@@ -36,6 +37,7 @@ const HomePage = () => {
                 </animated.div>
             </animated.div>
         </div>
+       
     );
 };
 
