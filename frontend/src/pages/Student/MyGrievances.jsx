@@ -65,14 +65,14 @@ const MyGrievances = () => {
 
   return (
     <>
-      <div className="bg-gray-100 p-4 py-8 sm:p-8 md:p-10 h-screen">
-        <h1 className="text-2xl font-bold mt-12 mb-8">Grievances</h1>
+      <div className="bg-gray-100 p-4 py-8 sm:p-8 md:py-10 h-screen">
+        <h1 className="text-2xl font-bold xl:mt-4 mb-8">My Grievances</h1>
         {grievances.length === 0 ? (
           <p className="ml-4 mt-2 text-gray-600 text-xl">
             No grievances registered yet.
           </p>
         ) : (
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 pb-10">
             {grievances.map((grievance) => (
               <GrievanceCard key={grievance._id} grievance={grievance} />
             ))}
