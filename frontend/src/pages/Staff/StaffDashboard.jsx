@@ -14,7 +14,7 @@ const StaffDashboard = () => {
     assignedTasks: 0,
     highPriorityCount: 0,
     pendingVerifications: 0,
-});
+  });
   const [staffTasks, setStaffTasks] = useState([]);
 
   let staffId = '';
@@ -86,7 +86,7 @@ const StaffDashboard = () => {
       <div className="bg-white rounded-xl max-w-2xl w-full mx-4 max-h-[80vh] flex flex-col">
         <div className="p-6 border-b border-gray-100 flex justify-between items-center">
           <h3 className="text-lg font-semibold text-gray-900">Resolved Grievances History</h3>
-          <button 
+          <button
             onClick={() => setIsHistoryModalOpen(false)}
             className="text-gray-400 hover:text-gray-500 transition-colors"
           >
@@ -188,11 +188,11 @@ const StaffDashboard = () => {
               <span className="text-2xl font-bold text-purple-600">{staffStats.resolvedCount}</span>
             </div>
             <div className="flex justify-between items-center">
-  <span className="text-gray-600">Today's Status</span>
-  <span className="px-2 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-    {staffStats.present ? 'Present' : 'Absent'}
-  </span>
-</div>
+              <span className="text-gray-600">Today's Status</span>
+              <span className="px-2 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                {staffStats.present ? 'Present' : 'Absent'}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -209,6 +209,7 @@ const StaffDashboard = () => {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Task</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Priority</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Resolved by Staff</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">More Details</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -219,20 +220,19 @@ const StaffDashboard = () => {
                     <div className="text-sm text-gray-500">{grievance.urgency_level}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      grievance.urgency_level === 'High' 
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${grievance.urgency_level === 'High'
                         ? 'bg-red-100 text-red-800'
                         : grievance.urgency_level === 'Medium'
-                        ? 'bg-yellow-100 text-yellow-800'
-                        : 'bg-green-100 text-green-800'
-                    }`}>
+                          ? 'bg-yellow-100 text-yellow-800'
+                          : 'bg-green-100 text-green-800'
+                      }`}>
                       {grievance.urgency_level}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center space-x-2">
-                      <input 
-                        type="checkbox" 
+                      <input
+                        type="checkbox"
                         checked={grievance.staffResolved}
                         onChange={() => handleStaffResolution(grievance._id)}
                         className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer"
@@ -240,7 +240,16 @@ const StaffDashboard = () => {
                       <span className="text-sm text-gray-500">Mark as Resolved</span>
                     </div>
                   </td>
-                  
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <a
+                      href={`/grievances/details/${grievance.grievance_id}`}
+                      className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                    >
+                      View Details
+                    </a>
+                  </td>
+
+
                 </tr>
               ))}
             </tbody>
