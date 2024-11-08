@@ -4,6 +4,7 @@ import { useAuth } from "../utils/Auth";
 import { toast } from "react-toastify";
 import Navbar from "../components/Navbar";
 import UrgencyLabel from "../components/UrgencyLabel";
+import ChatBubble from '../components/ChatBubble';
 
 const GrievanceDetails = () => {
   const { grievance_id } = useParams();
@@ -13,6 +14,8 @@ const GrievanceDetails = () => {
   const [prevGrievance, setPrevGrievance] = useState(null);
   const [user, setUser] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [chatroomId, setChatroomId] = useState(null);
+
   const [formData, setFormData] = useState({
     title: '',
     category: '',
@@ -57,6 +60,25 @@ const GrievanceDetails = () => {
             setUser(userDataJson);
           } else {
             toast.error("Failed to fetch user details");
+          }
+          const chatroomResponse = await fetch('http://localhost:3000/chat/createChatroom', {
+            method: 'POST',
+            headers: {
+              ...headers,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              grievanceId: data.grievance_id,
+              studentId: data.user_id,
+              staffId: '8986728b-cc0f-4b6f-abd6-93320d5a82b5' // replace with actual staffId
+            })
+          });
+          const chatroomData = await chatroomResponse.json();
+          if (chatroomResponse.ok) {
+            console.log(chatroomData);
+            setChatroomId(chatroomData.chatroom._id);  // Store the chatroom ID
+          } else {
+            toast.error("Failed to create or fetch chatroom");
           }
 
         } else {
@@ -162,7 +184,8 @@ const GrievanceDetails = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
+      {chatroomId && <ChatBubble chatroomId={chatroomId} />}
       <div className="container mx-auto my-20 max-w-2xl bg-white p-6 rounded-lg shadow-md">
         <input
           type="text"
@@ -237,7 +260,7 @@ const GrievanceDetails = () => {
               <input
                 type="text"
                 name="items_used"
-                value={grievance.items_used?.join(', ') || ''}
+                value={grievance.items_used?.join(', ') || 'None'}
                 onChange={(e) => handleChange({
                   target: {
                     name: 'items_used',

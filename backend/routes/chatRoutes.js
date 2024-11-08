@@ -5,7 +5,7 @@ import {getMessages,createChatroom} from '../controller/chatController.js';
 const chatRoutes = express.Router();
 
 chatRoutes.post("/createChatroom", createChatroom);
-chatRoutes.get("/:grievanceId/messages", getMessages);
+chatRoutes.get("/:id/messages", getMessages);
 
 
 export default chatRoutes;

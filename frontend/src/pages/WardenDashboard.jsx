@@ -54,7 +54,30 @@ const WardenDashboard = () => {
     navigate("/login");
   };
 
-
+  const ROLE_PATHS = {
+    STAFF: "/staff-dashboard",
+    STUDENT: "/student-home",
+    WARDEN: "/warden-dashboard",
+    ADMIN: "/warden-dashboard"
+  };
+  const token = localStorage.getItem("jwtToken");
+  const userRole = localStorage.getItem("user_role");
+  // Function to handle navigation based on role
+  const handleBackNavigation = () => {
+    if (token && userRole) {
+      const roleKey = userRole.toUpperCase();
+      const path = ROLE_PATHS[roleKey];
+      if (path) {
+        navigate(path);
+      } else {
+        // Default path if role does not match
+        navigate("/");
+      }
+    } else {
+      // Navigate to default path if no token or role
+      navigate("/");
+    }
+  };
   useEffect(() => {
     const fetchDashboardData = async () => {
       setIsLoading(true);
@@ -366,12 +389,12 @@ const WardenDashboard = () => {
                     >
                       On Duty
                     </th>
-                    <th
+                    {/* <th
                       scope="col"
                       className="hidden md:table-cell px-4 xl:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       Actions
-                    </th>
+                    </th> */}
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -431,11 +454,11 @@ const WardenDashboard = () => {
                           />
                         </td>
 
-                        <td className="hidden md:table-cell px-4 md:px-6 py-4 whitespace-nowrap text-sm">
+                        {/* <td className="hidden md:table-cell px-4 md:px-6 py-4 whitespace-nowrap text-sm">
                           <button className="text-blue-600 hover:text-blue-900">
                             Manage
                           </button>
-                        </td>
+                        </td> */}
                         {/* Dropdown for small screens */}
                         <td className="md:hidden px-4 md:px-6 py-4 whitespace-nowrap">
                           <div className="mt-2 text-xs text-gray-500">
@@ -458,11 +481,11 @@ const WardenDashboard = () => {
                                 onUpdateStatus={handleUpdateStatus}
                               />
                             </p>
-                            <p className="my-0.5">
+                            {/* <p className="my-0.5">
                               <button className="text-blue-600 hover:text-blue-900">
                                 Manage
                               </button>
-                            </p>
+                            </p> */}
                           </div>
                         </td>
                       </tr>
@@ -584,9 +607,13 @@ const WardenDashboard = () => {
           </button>
 
           {/* Logo/Home Link */}
-          <a href="/" className="flex items-center text-xl font-bold text-gray-900">
+          <div
+            onClick={handleBackNavigation}
+            className="flex items-center whitespace-nowrap text-2xl font-black cursor-pointer"
+          >
+            {/* <span className="text-black">IIITM HMS</span> */}
             <Logo />
-          </a>
+          </div>
 
           {/* Title in Center */}
           <h1 className="text-xl font-bold sm:text-center text-left text-gray-900 absolute sm:left-1/2 left-1/3 transform -translate-x-1/2 ">
