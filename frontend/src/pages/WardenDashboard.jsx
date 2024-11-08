@@ -389,12 +389,12 @@ const WardenDashboard = () => {
                     >
                       On Duty
                     </th>
-                    <th
+                    {/* <th
                       scope="col"
                       className="hidden md:table-cell px-4 xl:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       Actions
-                    </th>
+                    </th> */}
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -454,11 +454,11 @@ const WardenDashboard = () => {
                           />
                         </td>
 
-                        <td className="hidden md:table-cell px-4 md:px-6 py-4 whitespace-nowrap text-sm">
+                        {/* <td className="hidden md:table-cell px-4 md:px-6 py-4 whitespace-nowrap text-sm">
                           <button className="text-blue-600 hover:text-blue-900">
                             Manage
                           </button>
-                        </td>
+                        </td> */}
                         {/* Dropdown for small screens */}
                         <td className="md:hidden px-4 md:px-6 py-4 whitespace-nowrap">
                           <div className="mt-2 text-xs text-gray-500">
@@ -481,11 +481,11 @@ const WardenDashboard = () => {
                                 onUpdateStatus={handleUpdateStatus}
                               />
                             </p>
-                            <p className="my-0.5">
+                            {/* <p className="my-0.5">
                               <button className="text-blue-600 hover:text-blue-900">
                                 Manage
                               </button>
-                            </p>
+                            </p> */}
                           </div>
                         </td>
                       </tr>
