@@ -287,7 +287,7 @@ const AssignStaff = () => {
                                                 )}
                                             </div>
                                             <button
-                                                onClick={() => navigate(`/grievance-details/${grievance.grievance_id}`)}
+                                                onClick={() => navigate(`/grievances/details/${grievance.grievance_id}`)}
                                                 className="text-blue-600 hover:text-blue-800 text-sm font-medium"
                                             >
                                                 View Details
@@ -366,7 +366,7 @@ const AssignStaff = () => {
                                                 )}
                                             </div>
                                             <button
-                                                onClick={() => navigate(`/grievance-details/${grievance.grievance_id}`)}
+                                                onClick={() => navigate(`/grievances/details/${grievance.grievance_id}`)}
                                                 className="text-blue-600 hover:text-blue-800 text-sm font-medium"
                                             >
                                                 View Details
