@@ -11,7 +11,7 @@ const emailPattern = /^[a-zA-Z0-9._%+-]+@iiitm\.ac\.in$/;
 // Register User API with OTP
 // Updated registerUser function
 export const registerUser = async (req, res) => {
-  const { full_name, email, username, phone_number, password, role, roll_number, hostel_number } = req.body;
+  const { full_name, email, username, phone_number, password, role, roll_number, hostel_number,room_number } = req.body;
   console.log(req.body);
   if(!email || !full_name || !username) {
     return res.status(400).json("Full name, email, and username are required");
@@ -50,7 +50,7 @@ export const registerUser = async (req, res) => {
     await sendOtp(email, otp, full_name);
 
     // Cache OTP and user data with expiration (e.g., 5 minutes)
-    const tempUserData = { full_name, email, username, phone_number, password, role, roll_number, hostel_number };
+    const tempUserData = { full_name, email, username, phone_number, password, role, roll_number, hostel_number,room_number};
     await client.setEx(`otp:${email}`, 300, JSON.stringify({ otp, tempUserData }));
 
     res.json("OTP sent, please verify to complete registration");

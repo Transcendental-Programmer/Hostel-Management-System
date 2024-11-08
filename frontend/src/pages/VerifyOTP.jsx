@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const VerifyOTP = () => {
   const location = useLocation();
-  const {email,password} = location.state || {};
+  const navigate = useNavigate();
+  const { email, password } = location.state || {};
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [timer, setTimer] = useState(60);
   const [isResending, setIsResending] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
   const [notification, setNotification] = useState({ type: '', message: '' });
-
+  const ROLE_PATHS = {
+    STAFF: "/staff-dashboard",
+    STUDENT: "/student-home",
+    WARDEN: "/warden-dashboard",
+    ADMIN: "/warden-dashboard"
+  };
   useEffect(() => {
     if (timer > 0) {
       const countdown = setInterval(() => {
@@ -85,24 +92,25 @@ const VerifyOTP = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           otp: otpValue,
-          email:email,
-          password:password
-         }),
+          email: email,
+          password: password
+        }),
       });
       const data = await response.json();
       console.log(data);
       if (data.jwtToken) {
-        showNotification('success', response.data.message);
+        showNotification('success', response.message);
         setIsVerifying(false);
         toast.success("User registered successfully! Please login to continue.");
+        navigate("/login");
       }
     } catch (error) {
-      showNotification('error', error.response.data.message);
+      showNotification('error', error.message);
       setIsVerifying(false);
-  };
-}
+    }
+  }
 
   const handleDemoResend = () => {
     setIsResending(true);
@@ -117,17 +125,16 @@ const VerifyOTP = () => {
     <div className="flex items-center justify-center bg-gray-50 p-4">
       <div className="w-full max-w-md space-y-8 rounded-lg bg-white p-6 shadow-lg">
         {notification.message && (
-          <div 
-            className={`mb-4 rounded-md p-4 ${
-              notification.type === 'error' 
-                ? 'bg-red-50 text-red-700' 
+          <div
+            className={`mb-4 rounded-md p-4 ${notification.type === 'error'
+                ? 'bg-red-50 text-red-700'
                 : 'bg-green-50 text-green-700'
-            }`}
+              }`}
           >
             {notification.message}
           </div>
         )}
-        
+
         <div>
           <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
             Verify your email

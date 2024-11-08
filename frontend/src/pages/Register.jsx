@@ -30,7 +30,7 @@ function Register() {
     STAFF: "/staff-dashboard",
     STUDENT: "/student-home",
     WARDEN: "/warden-dashboard",
-    ADMIN : "/warden-dashboard"
+    ADMIN: "/warden-dashboard"
   };
 
   useEffect(() => {
@@ -106,41 +106,42 @@ function Register() {
   const onSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    const email = document.getElementById("email").value;
-    const role = document.getElementById("role").value;
-
-    if (role === "warden" && !allowedEmails.includes(email)) {
+  
+    // Use state values directly
+    // const role = role;    // Already stored in state
+    // const email = email;  // Already stored in state
+  
+    if (role === Roles.WARDEN && !allowedEmails.includes(email)) {
       toast.error("Only specific emails are allowed for the warden role.");
-        return;
+      return;
     }
-
+  
     try {
       if (!validateEmail(email)) {
         toast.error("Email must be a valid @iiitm.ac.in address");
         return;
       }
-
+  
       if (!validatePhone(phone)) {
         toast.error("Phone number must be exactly 10 digits");
         return;
       }
-
+  
       if (!validatePassword(password)) {
         toast.error("Password must be at least 8 characters long");
         return;
       }
-
+  
       if (!fullname.trim()) {
         toast.error("Full name is required");
         return;
       }
-
+  
       if (!hostel_number.trim()) {
         toast.error("Hostel field is required");
         return;
       }
-
+  
       if (role === Roles.STUDENT) {
         if (!roll_number.trim()) {
           toast.error("Roll number is required for students");
@@ -151,7 +152,7 @@ function Register() {
           return;
         }
       }
-
+  
       let body;
       if (role === Roles.WARDEN) {
         body = {
@@ -173,22 +174,18 @@ function Register() {
           role: role,
           hostel_number,
           roll_number,
-          room,
+          room_number: room,
         };
       }
-
+  
       const response = await fetch("http://localhost:3000/users/register", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(body),
       });
-
+  
       const data = await response.json();
-
-      // if (data.jwtToken) {
-      //   toast.success("Registration successful! Please login to continue.");
-      //   navigate('/login');
-      // }
+  
       if (response && response.ok) {
         toast.success("OTP sent successfully! Please verify your email.");
         navigate("/verify-otp", {
@@ -196,7 +193,6 @@ function Register() {
         });
       } else {
         console.log(response);
-
         toast.error(data);
         console.error(data);
       }
@@ -207,6 +203,8 @@ function Register() {
       setIsSubmitting(false);
     }
   };
+  
+
 
   return (
     <>
