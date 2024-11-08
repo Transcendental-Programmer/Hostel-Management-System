@@ -1,86 +1,83 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { User, FileText, CheckSquare, X } from 'lucide-react';
+import axios from 'axios';
 
 const StaffDashboard = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false);
-  
-  // Mock data
-  const staffStats = {
-    totalLeaves: 12,
-    leavesTaken: 4,
-    activeDays: 234,
-    status: 'Present',
-    totalGrievancesResolved: 45,
-    activeGrievances: 3
+  const [staffStats, setStaffStats] = useState({
+    resolvedCount: 0,
+    present: false,
+  });
+  const [resolvedGrievances, setResolvedGrievances] = useState([]);
+  const [activeGrievances, setActiveGrievances] = useState({
+    assignedTasks: 0,
+    highPriorityCount: 0,
+    pendingVerifications: 0,
+});
+  const [staffTasks, setStaffTasks] = useState([]);
+
+  let staffId = '';
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      staffId = user.user_id;
+      fetchStaffStats();
+      fetchResolvedGrievances();
+      fetchActiveGrievances();
+      fetchStaffTasks();
+    }
+  }, []);
+
+  const fetchStaffStats = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/staff/getStaffStats/${staffId}`);
+      setStaffStats(response.data);
+    } catch (error) {
+      console.error('Error fetching staff stats:', error);
+    }
   };
 
-  // Mock resolved grievances history
-  const resolvedGrievances = [
-    {
-      id: 1,
-      title: "Water Leakage - Room 102",
-      resolvedDate: "2024-03-15T14:30:00",
-      resolvedBy: "John Smith"
-    },
-    {
-      id: 2,
-      title: "AC Maintenance - Block A",
-      resolvedDate: "2024-03-14T11:20:00",
-      resolvedBy: "John Smith"
-    },
-    {
-      id: 3,
-      title: "Door Lock Repair - Room 405",
-      resolvedDate: "2024-03-13T16:45:00",
-      resolvedBy: "John Smith"
-    },
-    {
-      id: 4,
-      title: "Light Fixture - Common Area",
-      resolvedDate: "2024-03-12T09:15:00",
-      resolvedBy: "John Smith"
+  const fetchResolvedGrievances = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/staff/getStaffHistory/${staffId}`);
+      setResolvedGrievances(response.data);
+    } catch (error) {
+      console.error('Error fetching resolved grievances:', error);
     }
-  ];
+  };
 
-  const [activeGrievances, setActiveGrievances] = useState([
-    { 
-      id: 1, 
-      title: "Plumbing Issue - Room 304",
-      status: "In Progress",
-      staffResolved: true,
-      wardenVerified: false,
-      priority: "High",
-      deadline: "2024-03-20"
-    },
-    { 
-      id: 2, 
-      title: "Electrical Maintenance - Block B",
-      status: "Pending",
-      staffResolved: false,
-      wardenVerified: false,
-      priority: "Medium",
-      deadline: "2024-03-22"
-    },
-    { 
-      id: 3, 
-      title: "Window Repair - Room 201",
-      status: "In Progress",
-      staffResolved: true,
-      wardenVerified: true,
-      priority: "Low",
-      deadline: "2024-03-25"
+  const fetchActiveGrievances = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/staff/getActiveGrievances/${staffId}`);
+      setActiveGrievances({
+        assignedTasks: response.data.assignedTasks,
+        highPriorityCount: response.data.highPriorityCount,
+        pendingVerifications: response.data.pendingVerifications,
+      });
+    } catch (error) {
+      console.error('Error fetching active grievances:', error);
     }
-  ]);
+  };
 
-  const handleStaffResolution = (grievanceId) => {
-    setActiveGrievances(prevGrievances =>
-      prevGrievances.map(grievance =>
-        grievance.id === grievanceId
-          ? { ...grievance, staffResolved: !grievance.staffResolved, wardenVerified: false }
-          : grievance
-      )
-    );
+  const fetchStaffTasks = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/staff/getStaffTasks/${staffId}`);
+      console.log(response);
+      setStaffTasks(response.data);
+    } catch (error) {
+      console.error('Error fetching staff tasks:', error);
+    }
+  };
+
+  const handleStaffResolution = async (grievanceId) => {
+    try {
+      await axios.put('http://localhost:3000/staff/markComplete', { grievance_id: grievanceId });
+      fetchActiveGrievances(); // Refresh the active grievances list
+    } catch (error) {
+      console.error('Error marking grievance as complete:', error);
+    }
   };
 
   // History Modal Component
@@ -98,8 +95,8 @@ const StaffDashboard = () => {
         </div>
         <div className="overflow-y-auto p-6">
           <div className="space-y-4">
-            {resolvedGrievances.map((grievance) => (
-              <div key={grievance.id} className="border border-gray-100 rounded-lg p-4">
+            {Array.isArray(resolvedGrievances) && resolvedGrievances.map((grievance) => (
+              <div key={grievance._id} className="border border-gray-100 rounded-lg p-4">
                 <h4 className="font-medium text-gray-900">{grievance.title}</h4>
                 <div className="mt-2 text-sm text-gray-500 space-y-1">
                   <p>Resolved by: {grievance.resolvedBy}</p>
@@ -108,6 +105,11 @@ const StaffDashboard = () => {
                 </div>
               </div>
             ))}
+            {
+              resolvedGrievances.length === 0 && (
+                <div className="text-center text-gray-500">No grievances resolved yet</div>
+              )
+            }
           </div>
         </div>
       </div>
@@ -161,15 +163,15 @@ const StaffDashboard = () => {
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <span className="text-gray-600">Assigned Tasks</span>
-              <span className="text-2xl font-bold text-orange-600">{staffStats.activeGrievances}</span>
+              <span className="text-2xl font-bold text-orange-600">{activeGrievances.assignedTasks}</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-gray-600">High Priority</span>
-              <span className="text-red-600 font-medium">1</span>
+              <span className="text-red-600 font-medium">{activeGrievances.highPriorityCount}</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-gray-600">Pending Verification</span>
-              <span className="text-blue-600 font-medium">2</span>
+              <span className="text-blue-600 font-medium">{activeGrievances.pendingVerifications}</span>
             </div>
           </div>
         </div>
@@ -182,19 +184,15 @@ const StaffDashboard = () => {
           </div>
           <div className="space-y-3">
             <div className="flex justify-between items-center">
-              <span className="text-gray-600">Active Days</span>
-              <span className="text-2xl font-bold text-purple-600">{staffStats.activeDays}</span>
+              <span className="text-gray-600">Resolved Count</span>
+              <span className="text-2xl font-bold text-purple-600">{staffStats.resolvedCount}</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-gray-600">Leaves Taken</span>
-              <span className="text-xl font-semibold">{staffStats.leavesTaken}</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-gray-600">Today's Status</span>
-              <span className="px-2 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                {staffStats.status}
-              </span>
-            </div>
+  <span className="text-gray-600">Today's Status</span>
+  <span className="px-2 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+    {staffStats.present ? 'Present' : 'Absent'}
+  </span>
+</div>
           </div>
         </div>
       </div>
@@ -210,52 +208,36 @@ const StaffDashboard = () => {
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Task</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Priority</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Deadline</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Resolved by Staff</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Verified by Warden</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {activeGrievances.map((grievance) => (
-                <tr key={grievance.id}>
+              {Array.isArray(staffTasks) && staffTasks.map((grievance) => (
+                <tr key={grievance._id}>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm font-medium text-gray-900">{grievance.title}</div>
-                    <div className="text-sm text-gray-500">{grievance.status}</div>
+                    <div className="text-sm text-gray-500">{grievance.urgency_level}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      grievance.priority === 'High' 
+                      grievance.urgency_level === 'High' 
                         ? 'bg-red-100 text-red-800'
-                        : grievance.priority === 'Medium'
+                        : grievance.urgency_level === 'Medium'
                         ? 'bg-yellow-100 text-yellow-800'
                         : 'bg-green-100 text-green-800'
                     }`}>
-                      {grievance.priority}
+                      {grievance.urgency_level}
                     </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {grievance.deadline}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center space-x-2">
                       <input 
                         type="checkbox" 
                         checked={grievance.staffResolved}
-                        onChange={() => handleStaffResolution(grievance.id)}
+                        onChange={() => handleStaffResolution(grievance._id)}
                         className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer"
                       />
                       <span className="text-sm text-gray-500">Mark as Resolved</span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex items-center space-x-2">
-                      <input 
-                        type="checkbox" 
-                        checked={grievance.wardenVerified}
-                        disabled
-                        className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-not-allowed"
-                      />
-                      <span className="text-sm text-gray-500">Pending Verification</span>
                     </div>
                   </td>
                 </tr>

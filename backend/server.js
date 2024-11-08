@@ -9,6 +9,7 @@ import SocketService from './config/socket.js';
 import userRoutes from './routes/userRoutes.js';
 import chatRoutes from './routes/chatRoutes.js';
 import grievanceRoutes from './routes/grievanceRoutes.js';
+import staffRoutes from './routes/staffRouter.js';
 import http from 'http';
 
 
@@ -23,6 +24,7 @@ app.use("/grievances/", grievanceRoutes);
 // app.use("/", wardenRoutes);
 app.use("/users/", userRoutes);
 app.use("/chat/", chatRoutes);
+app.use("/staff/",staffRoutes);
 
 // Handle invalid routes
 app.use((req, res) => {
