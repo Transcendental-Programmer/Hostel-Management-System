@@ -71,8 +71,8 @@ const SubmitGrievance = () => {
 
   return (
     <>
-      <section class="bg-gray-100 py-12 text-gray-800 sm:py-24 h-full">
-        <div class="bg-gray-100 mx-auto flex max-w-md flex-col justify-center rounded-lg lg:max-w-screen-xl lg:flex-row">
+      <section className="bg-gray-100  text-gray-800 pt-4 h-full">
+        <div className="bg-gray-100 mx-auto flex max-w-md flex-col justify-center rounded-lg lg:max-w-screen-xl lg:flex-row">
           {/* <div class="max-w-2xl px-4 lg:pl-24 order-1 lg:order-2">
             <p class="mb-2 text-blue-600">Hostel Grievance Redressal</p>
             <h3 class="mb-5 text-3xl font-semibold">Submit Your Grievance</h3>
