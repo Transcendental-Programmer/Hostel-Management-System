@@ -75,13 +75,11 @@ export async function getMessages(req, res) {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  const { grievanceId } = req.params; // Ensure grievanceId is obtained from params
-//   console.log('Grievance ID:', grievanceId);
+  const { id } = req.params; // Get the _id from params
 
   try {
-    // Find the chatroom by grievanceId
-    const chatroom = await Chatroom.findOne({ grievance_id: grievanceId }).populate('message_ids');
-    // console.log('Chatroom:', chatroom);
+    // Find the chatroom by _id
+    const chatroom = await Chatroom.findById(id).populate('message_ids');
     
     if (!chatroom) {
       return res.status(404).json({ error: 'Chatroom not found' });
@@ -107,3 +105,5 @@ export async function getMessages(req, res) {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+

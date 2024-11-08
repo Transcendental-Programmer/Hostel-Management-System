@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import socket from '../utils/socket';
 import axios from 'axios';
 
-const Chat = () => {
+const Chat = ({ chatroomId: initialChatroomId }) => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [chatroomId, setChatroomId] = useState('');
@@ -11,6 +11,27 @@ const Chat = () => {
   const [loading, setLoading] = useState(false);
 
   const messagesEndRef = useRef(null);
+  
+  useEffect(() => {
+    if (initialChatroomId) {
+      setChatroomId(initialChatroomId);
+    }
+  }, [initialChatroomId]);
+
+  useEffect(() => {
+    // Retrieve user data from localStorage and set userId and senderType
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+
+    if (storedUser) {
+      setUserId(storedUser.user_id || '');
+      const type = (localStorage.getItem('user_role'))?.toLowerCase(); // Ensure lowercase
+      if (type === 'staff' || type === 'student') {
+        setSenderType(type);
+      } else {
+        console.error("Invalid sender type: Only 'staff' or 'student' are allowed");
+      }
+    }
+  }, []);
 
   const formatDate = (dateString) => {
     if (!dateString) return '';
@@ -88,7 +109,7 @@ const Chat = () => {
   const fetchPreviousMessages = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:3000/chat/abb74e56-b185-4cc0-8c63-5789400a7db2/messages`);
+      const response = await axios.get(`http://localhost:3000/chat/${chatroomId}/messages`);
       const previousMessages = response.data.map(msg => ({
         ...msg,
         timestamp: new Date(msg.createdAt).toLocaleTimeString([], {
@@ -162,6 +183,14 @@ const Chat = () => {
   };
 
   const renderMessages = () => {
+    if (messages.length === 0) {
+      return (
+        <div className="flex items-center justify-center h-[90%]">
+          <p className="text-gray-500 text-lg">No messages yet</p>
+        </div>
+      );
+    }
+
     let lastDate = '';
     console.log("messages", messages);
 
@@ -233,15 +262,15 @@ const Chat = () => {
 
   return (
     <div className="flex flex-col h-full bg-gray-100 p-4">
-      <div className="mb-4">
-        <input
+      {/* <div className="mb-4">
+        {/* <input
           type="text"
           value={chatroomId}
           onChange={(e) => setChatroomId(e.target.value)}
           className="p-2 border border-gray-300 rounded mb-2 w-full"
           placeholder="Enter Chatroom ID"
-        />
-        <input
+        /> */}
+        {/* <input
           type="text"
           value={userId}
           onChange={(e) => setUserId(e.target.value)}
@@ -254,8 +283,8 @@ const Chat = () => {
           onChange={(e) => setSenderType(e.target.value)}
           className="p-2 border border-gray-300 rounded mb-4 w-full"
           placeholder="Enter Sender Type (e.g., 'student' or 'staff')"
-        />
-      </div>
+        /> */}
+      {/* </div> */}
 
       <div className="flex-1 overflow-y-auto mb-4 space-y-4 h-1/2">
         {loading ? (
