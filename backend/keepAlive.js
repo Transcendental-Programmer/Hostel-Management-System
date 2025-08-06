@@ -3,17 +3,20 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const client = createClient({
-  url: process.env.REDIS_URL,
-});
+const client = createClient({ url: process.env.REDIS_URL });
 
-try {
-  await client.connect();
-  await client.set('heartbeat', Date.now().toString());
-  console.log('✅ Redis heartbeat set');
-  await client.disconnect();
-  process.exit(0);
-} catch (err) {
-  console.error('❌ Redis heartbeat error:', err);
-  process.exit(1);
+async function sendHeartbeat() {
+  try {
+    if (!client.isOpen) await client.connect();
+    await client.set('heartbeat', Date.now().toString());
+    console.log('✅ Redis heartbeat set');
+  } catch (err) {
+    console.error('❌ Redis heartbeat error:', err);
+  }
 }
+
+// First call immediately
+sendHeartbeat();
+
+// Then every 24 hours
+setInterval(sendHeartbeat, 24 * 60 * 60 * 1000);

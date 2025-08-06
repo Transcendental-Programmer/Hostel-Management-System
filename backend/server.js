@@ -12,6 +12,7 @@ import grievanceRoutes from './routes/grievanceRoutes.js';
 import staffRoutes from './routes/staffRouter.js';
 import http from 'http';
 import dotenv from 'dotenv';
+import './keepAlive.js';
 dotenv.config();
 
 const app = express();
