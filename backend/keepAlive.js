@@ -27,20 +27,27 @@ async function sendHeartbeats() {
 
   // MongoDB
   try {
-    if (mongoose.connection.readyState !== 1) {
-      await mongoose.connect(process.env.MONGO_URI, {
-        dbName: 'test',
-      });
-    }
-    // console.log('MongoDB connected:', mongoose.connection.name);
-    if (!mongoose.connection.db) {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-    }
-    const result = await mongoose.connection.db.command({ ping: 1 });
-    console.log(`✅ MongoDB ping result: ${result.ok}`);
-  } catch (err) {
-    console.error('❌ MongoDB heartbeat error:', err);
+  if (mongoose.connection.readyState !== 1) {
+    await mongoose.connect(process.env.MONGO_URI, {
+      dbName: 'test',
+    });
   }
+
+  // Wait for db to be ready, max 20s (20 attempts with 1s delay)
+  let db;
+  for (let i = 0; i < 20; i++) {
+    db = mongoose.connection.db;
+    if (db) break;
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+  }
+  if (!db) throw new Error('MongoDB connection db still undefined after 20s');
+
+  const result = await db.command({ ping: 1 });
+  console.log(`✅ MongoDB ping result: ${result.ok}`);
+} catch (err) {
+  console.error('❌ MongoDB heartbeat error:', err);
+}
+
 }
 
 sendHeartbeats();
